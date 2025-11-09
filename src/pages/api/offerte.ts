@@ -472,6 +472,7 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
     console.error('[Email] Resend failed:', e);
     return { emailed: false, error: String(e) };
   }
+}
 
 export const prerender = false;
 
