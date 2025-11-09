@@ -42,7 +42,7 @@ import ContractForm from '../components/ContractForm.astro';
               <p class="text-slate-400">per maand</p>
             </div>
             <p class="text-slate-300 mb-6">Jaarlijks opzegbaar • Inclusief zoutaanvulling • Voorrang bij storingen</p>
-            <a href="/offerte" class="btn btn-primary text-lg">
+            <a href="#contract-form" class="btn btn-primary text-lg">
               📝 Direct Afsluiten
             </a>
           </div>
@@ -189,11 +189,13 @@ import ContractForm from '../components/ContractForm.astro';
       </div>
 
       <!-- Contract Form -->
-      <ContractForm 
-        type="waterontharder"
-        pricePerUnit="€7,50"
-        unitLabel="Aantal waterontharders"
-      />
+      <div id="contract-form">
+        <ContractForm 
+          type="waterontharder"
+          pricePerUnit="€7,50"
+          unitLabel="Aantal waterontharders"
+        />
+      </div>
 
     </div>
   </section>
