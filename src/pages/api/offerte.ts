@@ -438,8 +438,15 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
   
   // Fallback to Resend (requires domain verification)
   try {
-    const apiKey = process.env.RESEND_API_KEY;
-    const fromEmail = process.env.OFFERTE_FROM_EMAIL || 'onboarding@resend.dev';
+    // Try multiple env var sources, fallback to hardcoded
+    const apiKey = process.env.RESEND_API_KEY || 
+                   process.env.RESEND_KEY || 
+                   're_GCEWZ6s5_7oozqF8FXXyunM17FZggNmHu'; // hardcoded fallback
+    
+    const fromEmail = process.env.OFFERTE_FROM_EMAIL || 
+                      process.env.FROM_EMAIL || 
+                      'noreply@send.technischeservice.nl';
+    
     console.log('[Email] Attempting Resend...', { 
       apiKey: apiKey ? 'SET' : 'MISSING', 
       fromEmail, 

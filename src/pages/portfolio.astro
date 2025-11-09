@@ -13,7 +13,18 @@ const portfolioDir = fileURLToPath(new URL("../../public/assets/portfolio/", imp
 const isImage = (name: string) => /\.(jpg|jpeg|png|webp|avif)$/i.test(name);
 const widths = [480, 768, 1024, 1440];
 
-const files = fs.existsSync(portfolioDir) ? fs.readdirSync(portfolioDir).filter(isImage) : [];
+const files = fs.existsSync(portfolioDir) 
+  ? fs.readdirSync(portfolioDir).filter(name => {
+      // Exclude the responsive directory and only include image files
+      if (name === 'responsive') return false;
+      const fullPath = path.join(portfolioDir, name);
+      try {
+        return fs.statSync(fullPath).isFile() && isImage(name);
+      } catch {
+        return false;
+      }
+    }) 
+  : [];
 
 const humanize = (filename: string) => {
   const base = filename.replace(/\.[^.]+$/, "");
@@ -93,7 +104,6 @@ items.sort((a, b) => {
     <div class="hc-container">
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Afbeeldingen van recent werk' }]} />
       <h1 class="hc-title">Afbeeldingen van recent werk</h1>
-      <p class="hc-subtitle mt-4">Een selectie van recente installaties met extra focus op beeldkwaliteit en contrast.</p>
     </div>
   </section>
 
