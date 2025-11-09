@@ -8,8 +8,18 @@ import ContractForm from '../components/ContractForm.astro';
   title="Waterontharder Onderhoudscontract | €7,50 per maand | Technische Service Assen" 
   description="Houd uw waterontharder in topvorm met ons onderhoudscontract vanaf €7,50/maand. Professioneel onderhoud en zoutaanvulling."
 >
-  <section class="hc-section hc-section-light">
-    <div class="hc-container">
+  <section class="hc-section hc-section-light relative overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/assets/afbeeldingupload/responsive/analoge meting-1440w.webp"
+        alt="Waterontharder onderhoud achtergrond"
+        class="w-full h-full object-cover opacity-[0.03]"
+        loading="eager"
+      />
+    </div>
+    
+    <div class="hc-container relative z-10">
       <Breadcrumbs items={[
         { name: 'Home', href: '/' }, 
         { name: 'Waterontharder', href: '/waterontharder' },

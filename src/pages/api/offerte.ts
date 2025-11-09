@@ -166,6 +166,42 @@ async function sendNotificationEmail(data: Record<string, any>) {
                               </span>
                             </td>
                           </tr>
+                          ${data.units ? `
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">
+                              ${data.service.includes('Airco') ? 'Buitenunits:' : 'Aantal units:'}
+                            </td>
+                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">${data.units}</td>
+                          </tr>
+                          ` : ''}
+                          ${data['indoor-units'] ? `
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Binnenunits:</td>
+                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">${data['indoor-units']}</td>
+                          </tr>
+                          ` : ''}
+                          ${data['distance-surcharge'] ? `
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Afstandstoeslag:</td>
+                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">✓ Ja (€3,50)</td>
+                          </tr>
+                          ` : ''}
+                          ${data.model ? `
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Type:</td>
+                            <td style="color: #2d3748; font-size: 14px;">${data.model}</td>
+                          </tr>
+                          ` : ''}
+                          ${data.iban ? `
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">IBAN:</td>
+                            <td style="color: #2d3748; font-size: 14px; font-family: 'Courier New', monospace;">${data.iban}</td>
+                          </tr>
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Rekeninghouder:</td>
+                            <td style="color: #2d3748; font-size: 14px;">${data['account-holder']}</td>
+                          </tr>
+                          ` : ''}
                           ${data.personen ? `
                           <tr>
                             <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Personen:</td>
@@ -181,6 +217,76 @@ async function sendNotificationEmail(data: Record<string, any>) {
                         </table>
                       </td>
                     </tr>
+                    
+                    ${data.service && data.service.includes('Onderhoudscontract') && data.units ? `
+                    <!-- Maandelijkse Kosten -->
+                    <tr>
+                      <td style="padding-bottom: 25px;">
+                        <h2 style="margin: 0 0 15px 0; color: #2d3748; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                          💰 Maandelijkse Kosten
+                        </h2>
+                        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 20px; border-radius: 8px;">
+                          <table width="100%" cellpadding="6" cellspacing="0">
+                            ${data.service.includes('Airco') ? `
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px;">Buitenunits:</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right;">${data.units} × €7,50</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right; font-weight: 600;">€${(parseFloat(data.units) * 7.50).toFixed(2).replace('.', ',')}</td>
+                            </tr>
+                            ${data['indoor-units'] ? `
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px;">Binnenunits:</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right;">${data['indoor-units']} × €2,50</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right; font-weight: 600;">€${(parseFloat(data['indoor-units']) * 2.50).toFixed(2).replace('.', ',')}</td>
+                            </tr>
+                            ` : ''}
+                            ${data['distance-surcharge'] ? `
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px;">Afstandstoeslag:</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right;"></td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right; font-weight: 600;">€3,50</td>
+                            </tr>
+                            ` : ''}
+                            ` : data.service.includes('Quooker') ? `
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px;">Quooker units:</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right;">${data.units} × €5,00</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right; font-weight: 600;">€${(parseFloat(data.units) * 5.00).toFixed(2).replace('.', ',')}</td>
+                            </tr>
+                            ` : data.service.includes('Waterontharder') ? `
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px;">Waterontharders:</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right;">${data.units} × €7,50</td>
+                              <td style="color: #ffffff; font-size: 14px; text-align: right; font-weight: 600;">€${(parseFloat(data.units) * 7.50).toFixed(2).replace('.', ',')}</td>
+                            </tr>
+                            ` : ''}
+                            <tr>
+                              <td colspan="3" style="padding-top: 10px; border-top: 2px solid rgba(255,255,255,0.3);"></td>
+                            </tr>
+                            <tr>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 600;">Totaal per maand:</td>
+                              <td></td>
+                              <td style="color: #ffffff; font-size: 18px; text-align: right; font-weight: 700;">
+                                €${(() => {
+                                  let total = 0;
+                                  if (data.service.includes('Airco')) {
+                                    total = parseFloat(data.units || 0) * 7.50;
+                                    if (data['indoor-units']) total += parseFloat(data['indoor-units']) * 2.50;
+                                    if (data['distance-surcharge']) total += 3.50;
+                                  } else if (data.service.includes('Quooker')) {
+                                    total = parseFloat(data.units || 0) * 5.00;
+                                  } else if (data.service.includes('Waterontharder')) {
+                                    total = parseFloat(data.units || 0) * 7.50;
+                                  }
+                                  return total.toFixed(2).replace('.', ',');
+                                })()}
+                              </td>
+                            </tr>
+                          </table>
+                        </div>
+                      </td>
+                    </tr>
+                    ` : ''}
                     
                     ${data.opmerkingen ? `
                     <!-- Opmerkingen -->
