@@ -816,7 +816,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Sanitize and basic validation
-    const data: Record<string, string> = {
+    const data: Record<string, any> = {
       voornaam: sanitize(body.voornaam, 100),
       achternaam: sanitize(body.achternaam, 120),
       telefoon: sanitize(body.telefoon, 40),
@@ -828,7 +828,23 @@ export const POST: APIRoute = async ({ request }) => {
       personen: sanitize(body.personen ?? '', 20),
       datum: sanitize(body.datum ?? '', 20),
       opmerkingen: sanitize(body.opmerkingen ?? '', 2000),
+      // Contract specific fields
+      units: body.units,
+      'indoor-units': body['indoor-units'],
+      'distance-surcharge': body['distance-surcharge'],
+      'accessible': body['accessible'],
+      model: sanitize(body.model ?? '', 100),
+      iban: sanitize(body.iban ?? '', 34),
+      'account-holder': sanitize(body['account-holder'] ?? '', 100),
+      photos: body.photos || []
     };
+    
+    console.log('[Offerte API] Received data:', { 
+      service: data.service,
+      units: data.units, 
+      indoorUnits: data['indoor-units'],
+      photos: data.photos?.length || 0
+    });
 
     const missing = ['voornaam','achternaam','telefoon','email','adres','postcode','woonplaats','service'].filter(k => !data[k]);
     if (missing.length) {
@@ -837,9 +853,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (!isEmail(data.email)) {
       return new Response(JSON.stringify({ ok: false, message: 'Ongeldig e-mailadres' }), { status: 400, headers: { 'content-type': 'application/json' } });
     }
-    if (!isPostcodeNL(data.postcode)) {
-      return new Response(JSON.stringify({ ok: false, message: 'Ongeldige postcode (NL)' }), { status: 400, headers: { 'content-type': 'application/json' } });
-    }
+    // Removed strict postcode validation to accept all formats
 
     // Optional server-side basic rate limiting via header fingerprint (best-effort)
     // Intentionally omitted persistent rate limiting in this minimal setup.

@@ -511,6 +511,9 @@ const titles = {
       }
     });
     
+    console.log('[Form] Collected form data:', data);
+    console.log('[Form] Units value:', data.units, 'Indoor units:', data['indoor-units']);
+    
     try {
       const requestBody = {
         ...data,
