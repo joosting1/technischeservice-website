@@ -171,19 +171,32 @@ async function sendNotificationEmail(data: Record<string, any>) {
                             <td style="color: #6c757d; font-size: 14px; font-weight: 500;">
                               ${data.service.includes('Airco') ? 'Buitenunits:' : 'Aantal units:'}
                             </td>
-                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">${data.units}</td>
+                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">
+                              ${data.units} ${data.service.includes('Airco') ? 'buitenunit(s)' : data.service.includes('Quooker') ? 'kraan/kranen' : 'waterontharder(s)'}
+                            </td>
                           </tr>
                           ` : ''}
                           ${data['indoor-units'] ? `
                           <tr>
                             <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Binnenunits:</td>
-                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">${data['indoor-units']}</td>
+                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">${data['indoor-units']} binnenunit(s)</td>
                           </tr>
                           ` : ''}
                           ${data['distance-surcharge'] ? `
                           <tr>
                             <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Afstandstoeslag:</td>
-                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">✓ Ja (€3,50)</td>
+                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">✓ Ja (€3,50/maand)</td>
+                          </tr>
+                          ` : ''}
+                          ${data['accessible'] === 'on' ? `
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Bereikbaarheid:</td>
+                            <td style="color: #2d3748; font-size: 14px; font-weight: 600;">✓ Goed bereikbaar (&lt;3m)</td>
+                          </tr>
+                          ` : data['accessible'] !== undefined ? `
+                          <tr>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500;">Bereikbaarheid:</td>
+                            <td style="color: #f59e0b; font-size: 14px; font-weight: 600;">⚠️ Moeilijk bereikbaar - meerprijs in overleg (±€150-€300)</td>
                           </tr>
                           ` : ''}
                           ${data.model ? `

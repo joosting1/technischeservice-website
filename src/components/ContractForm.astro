@@ -32,8 +32,10 @@ const titles = {
             id="date" 
             name="date"
             required
-            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+            min=""
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent [color-scheme:dark]"
           />
+          <p class="text-xs text-slate-400 mt-1">Kies een datum voor de start van het contract</p>
         </div>
 
         <div>
@@ -84,10 +86,10 @@ const titles = {
             id="postal" 
             name="postal"
             required
-            pattern="[0-9]{4}\s?[A-Za-z]{2}"
             placeholder="1234 AB"
             class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
           />
+          <p class="text-xs text-slate-400 mt-1">Accepteert alle formaten (1234AB, 1234 AB, etc.)</p>
         </div>
 
         <div>
@@ -161,14 +163,21 @@ const titles = {
             </div>
 
             <div class="md:col-span-2">
-              <label class="flex items-center gap-3 text-slate-300">
+              <label class="flex items-start gap-3 text-slate-300">
                 <input 
                   type="checkbox" 
                   id="accessible" 
                   name="accessible"
-                  class="w-5 h-5 bg-slate-800 border-slate-700 rounded text-orange-400 focus:ring-2 focus:ring-orange-400"
+                  class="w-5 h-5 mt-0.5 bg-slate-800 border-slate-700 rounded text-orange-400 focus:ring-2 focus:ring-orange-400"
                 />
-                <span>De unit is goed bereikbaar (beneden 3 meter)</span>
+                <div>
+                  <span class="font-medium">De unit is goed bereikbaar (beneden 3 meter)</span>
+                  <div id="accessibility-warning" class="hidden mt-2 p-3 bg-amber-500/10 border border-amber-500 rounded-lg text-amber-400 text-sm">
+                    ⚠️ <strong>Let op:</strong> Voor moeilijk bereikbare units (boven 3 meter, ladder nodig, of beperkte toegang) 
+                    berekenen we een meerprijs in overleg. Dit komt neer op ongeveer 2 uur extra werk (±€150-€300 per beurt). 
+                    We nemen hierover contact met u op.
+                  </div>
+                </div>
               </label>
             </div>
 
@@ -347,6 +356,13 @@ const titles = {
 </div>
 
 <script>
+  // Set min date to today
+  const dateInput = document.getElementById('date') as HTMLInputElement;
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+  }
+
   // Price calculation for Airco contracts
   const unitsInput = document.getElementById('units') as HTMLInputElement;
   const indoorUnitsInput = document.getElementById('indoor-units') as HTMLInputElement;
@@ -392,6 +408,20 @@ const titles = {
   }
   if (distanceSurchargeCheckbox) {
     distanceSurchargeCheckbox.addEventListener('change', calculatePrice);
+  }
+
+  // Accessibility warning toggle
+  const accessibleCheckbox = document.getElementById('accessible') as HTMLInputElement;
+  const accessibilityWarning = document.getElementById('accessibility-warning');
+  
+  if (accessibleCheckbox && accessibilityWarning) {
+    accessibleCheckbox.addEventListener('change', function() {
+      if (!this.checked) {
+        accessibilityWarning.classList.remove('hidden');
+      } else {
+        accessibilityWarning.classList.add('hidden');
+      }
+    });
   }
 
   // Photo preview functionality
