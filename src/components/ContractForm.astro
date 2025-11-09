@@ -172,6 +172,31 @@ const titles = {
               </label>
             </div>
 
+            <!-- Price Calculation Display for Airco -->
+            <div class="md:col-span-2">
+              <div id="price-calculation" class="hidden bg-linear-to-r from-green-500/10 to-emerald-500/10 border-2 border-green-400 rounded-lg p-6">
+                <h3 class="text-lg font-semibold text-green-400 mb-3">💰 Maandelijkse Kosten</h3>
+                <div class="space-y-2 text-slate-200">
+                  <div id="outdoor-price-line" class="flex justify-between">
+                    <span class="text-slate-300">Buitenunits:</span>
+                    <span class="font-semibold" id="outdoor-calc">0 × €7,50 = €0,00</span>
+                  </div>
+                  <div id="indoor-price-line" class="flex justify-between">
+                    <span class="text-slate-300">Binnenunits:</span>
+                    <span class="font-semibold" id="indoor-calc">0 × €2,50 = €0,00</span>
+                  </div>
+                  <div id="distance-price-line" class="flex justify-between" style="display: none;">
+                    <span class="text-slate-300">Afstandstoeslag:</span>
+                    <span class="font-semibold">1 × €3,50 = €3,50</span>
+                  </div>
+                  <div class="border-t-2 border-green-400 pt-2 mt-2 flex justify-between text-lg">
+                    <span class="text-green-400 font-bold">Totaal per maand:</span>
+                    <span class="text-green-400 font-bold" id="total-price">€0,00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="md:col-span-2">
               <label for="photos" class="block text-sm font-medium text-slate-300 mb-2">
                 📸 Foto's van de installatie
@@ -322,6 +347,53 @@ const titles = {
 </div>
 
 <script>
+  // Price calculation for Airco contracts
+  const unitsInput = document.getElementById('units') as HTMLInputElement;
+  const indoorUnitsInput = document.getElementById('indoor-units') as HTMLInputElement;
+  const distanceSurchargeCheckbox = document.getElementById('distance-surcharge') as HTMLInputElement;
+  const priceCalculation = document.getElementById('price-calculation');
+  
+  function calculatePrice() {
+    if (!unitsInput || !priceCalculation) return;
+    
+    const outdoorUnits = parseInt(unitsInput.value) || 0;
+    const indoorUnits = indoorUnitsInput ? parseInt(indoorUnitsInput.value) || 0 : 0;
+    const hasDistanceSurcharge = distanceSurchargeCheckbox ? distanceSurchargeCheckbox.checked : false;
+    
+    if (outdoorUnits > 0 || indoorUnits > 0) {
+      const outdoorPrice = outdoorUnits * 7.50;
+      const indoorPrice = indoorUnits * 2.50;
+      const distancePrice = hasDistanceSurcharge ? 3.50 : 0;
+      const total = outdoorPrice + indoorPrice + distancePrice;
+      
+      // Update display
+      const outdoorCalc = document.getElementById('outdoor-calc');
+      const indoorCalc = document.getElementById('indoor-calc');
+      const distanceLine = document.getElementById('distance-price-line');
+      const totalPriceEl = document.getElementById('total-price');
+      
+      if (outdoorCalc) outdoorCalc.textContent = `${outdoorUnits} × €7,50 = €${outdoorPrice.toFixed(2)}`;
+      if (indoorCalc) indoorCalc.textContent = `${indoorUnits} × €2,50 = €${indoorPrice.toFixed(2)}`;
+      if (distanceLine) distanceLine.style.display = hasDistanceSurcharge ? 'flex' : 'none';
+      if (totalPriceEl) totalPriceEl.textContent = `€${total.toFixed(2)}`;
+      
+      priceCalculation.classList.remove('hidden');
+    } else {
+      priceCalculation.classList.add('hidden');
+    }
+  }
+  
+  // Add event listeners for Airco price calculation
+  if (unitsInput) {
+    unitsInput.addEventListener('input', calculatePrice);
+  }
+  if (indoorUnitsInput) {
+    indoorUnitsInput.addEventListener('input', calculatePrice);
+  }
+  if (distanceSurchargeCheckbox) {
+    distanceSurchargeCheckbox.addEventListener('change', calculatePrice);
+  }
+
   // Photo preview functionality
   const photoInput = document.getElementById('photos') as HTMLInputElement;
   const photoPreview = document.getElementById('photo-preview');
@@ -373,15 +445,22 @@ const titles = {
     const data: Record<string, any> = {};
     
     // Handle photos separately
-    const photoFiles = formData.getAll('photos') as File[];
+    const photoInput = form.querySelector('input[type="file"]') as HTMLInputElement;
+    const photoFiles = photoInput?.files ? Array.from(photoInput.files) : [];
     const photoPromises: Promise<string>[] = [];
     
+    console.log('[Form] Photos found:', photoFiles.length);
+    
     photoFiles.forEach(file => {
-      if (file.size > 0) {
+      if (file && file.size > 0) {
+        console.log('[Form] Processing photo:', file.name, file.size, 'bytes');
         photoPromises.push(
           new Promise((resolve) => {
             const reader = new FileReader();
-            reader.onload = (e) => resolve(e.target?.result as string);
+            reader.onload = (e) => {
+              console.log('[Form] Photo loaded:', file.name);
+              resolve(e.target?.result as string);
+            };
             reader.readAsDataURL(file);
           })
         );
