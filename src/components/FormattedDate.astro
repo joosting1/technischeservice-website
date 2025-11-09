@@ -1,9 +1,14 @@
 ---
 interface Props {
-	date: Date;
+	date: Date | undefined;
 }
 
 const { date } = Astro.props;
+
+// Don't render if date is undefined
+if (!date) {
+	return null;
+}
 ---
 
 <time datetime={date.toISOString()}>
