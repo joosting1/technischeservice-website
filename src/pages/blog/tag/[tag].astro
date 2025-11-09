@@ -5,6 +5,9 @@ import FormattedDate from '../../../components/FormattedDate.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import path from 'path';
 
+// Pre-render this page at build time (not SSR) to avoid Node.js dependencies on Cloudflare Workers
+export const prerender = true;
+
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   const tags = new Set<string>();

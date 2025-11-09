@@ -5,6 +5,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 
+// Pre-render this page at build time (not SSR) because fs operations don't work on Cloudflare Workers
+export const prerender = true;
+
 const portfolioDir = fileURLToPath(new URL("../../public/assets/portfolio/", import.meta.url));
 
 const isImage = (name: string) => /\.(jpg|jpeg|png|webp|avif)$/i.test(name);

@@ -5,6 +5,9 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import path from 'path';
 
+// Pre-render this page at build time (not SSR) to avoid Node.js dependencies on Cloudflare Workers
+export const prerender = true;
+
 const rawPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const widths = [480, 768, 1024, 1440];
