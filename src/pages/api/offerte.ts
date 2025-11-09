@@ -1,8 +1,7 @@
 import type { APIRoute } from 'astro';
-import { config } from 'dotenv';
 
-// Load environment variables from .env file
-config();
+// Note: Environment variables are available via process.env on Cloudflare Workers
+// No need for dotenv in production
 
 type OffertePayload = {
   voornaam: string;
