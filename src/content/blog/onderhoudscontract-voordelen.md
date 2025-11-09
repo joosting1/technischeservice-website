@@ -2,7 +2,7 @@
 title: 'Waarom een Onderhoudscontract? Bespaar Geld en Voorkom Storingen'
 description: 'Ontdek waarom een onderhoudscontract voor je airco, Quooker of waterontharder loont. Van €5 tot €7,50 per maand voor zorgeloos comfort.'
 pubDate: 'Nov 09 2025'
-heroImage: '/assets/afbeeldingupload/daikin-in bedrijfstelling-groningen.jpg'
+heroImage: '/assets/Daikin/PXL_20250703_163444107.jpg'
 tags: ['onderhoudscontract', 'onderhoud', 'besparen', 'preventief']
 author: 'Johan Oosting'
 readTime: '6 min'
