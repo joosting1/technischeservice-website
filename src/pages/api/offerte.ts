@@ -204,8 +204,17 @@ async function sendNotificationEmail(data: Record<string, any>) {
   `;
   const text = `Nieuwe Offerte Aanvraag\n\nNaam: ${data.voornaam} ${data.achternaam}\nTelefoon: ${data.telefoon}\nEmail: ${data.email}\nAdres: ${data.adres}, ${data.postcode} ${data.woonplaats}\nService: ${data.service}\nPersonen: ${data.personen || ''}\nGewenste datum: ${data.datum || ''}\nOpmerkingen:\n${data.opmerkingen || ''}`;
 
+  // Try multiple environment variable names for recipient
+  const recipient = process.env.SMTP_TO || 
+                   process.env.OFFERTE_TO_EMAIL || 
+                   process.env.SEND_TO_EMAIL ||
+                   process.env.TO_EMAIL ||
+                   'johan@technischeservice.nl'; // hardcoded fallback
+  
+  console.log('[Email] Recipient resolved to:', recipient);
+
   return await sendEmailViaProviders({
-    to: process.env.SMTP_TO || process.env.OFFERTE_TO_EMAIL || process.env.SEND_TO_EMAIL,
+    to: recipient,
     subject,
     html,
     text,
