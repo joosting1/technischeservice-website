@@ -12,9 +12,9 @@ const WORK_DIR = path.join(projectRoot, 'public', 'assets');
 const OUT_SUBDIR = 'responsive';
 const WIDTHS = [480, 768, 1024, 1440];
 const FORMATS = [
-  { ext: 'avif', options: (s) => s.avif({ quality: 65 }) },
-  { ext: 'webp', options: (s) => s.webp({ quality: 80 }) },
-  { ext: 'jpg', options: (s) => s.jpeg({ quality: 82, mozjpeg: true }) },
+  { ext: 'avif', options: (s) => s.avif({ quality: 55 }) },
+  { ext: 'webp', options: (s) => s.webp({ quality: 75 }) },
+  { ext: 'jpg', options: (s) => s.jpeg({ quality: 78, mozjpeg: true }) },
 ];
 
 const VALID_EXT = new Set(['.jpg', '.jpeg', '.png', '.webp', '.JPG', '.JPEG', '.PNG', '.WEBP']);
