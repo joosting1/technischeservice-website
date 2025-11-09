@@ -390,7 +390,35 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
     return { emailed: false, error: 'No recipient configured' };
   }
   
-  // Try SMTP first (e.g., Gmail)
+  // Try Resend first (works on Cloudflare Workers)
+  try {
+    const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.OFFERTE_FROM_EMAIL || 'onboarding@resend.dev';
+    console.log('[Email] Attempting Resend...', { apiKey: apiKey ? '***' : undefined, fromEmail });
+    
+    if (apiKey) {
+      const { Resend } = await import('resend');
+      const resend = new Resend(apiKey);
+      const { error } = await resend.emails.send({ 
+        to, 
+        from: fromEmail, 
+        subject, 
+        html, 
+        text, 
+        replyTo: replyTo 
+      });
+      if (error) throw error;
+      console.log('[Email] Resend success to:', to);
+      return { emailed: true, via: 'resend' };
+    } else {
+      console.log('[Email] Resend not configured, trying SMTP fallback...');
+    }
+  } catch (e) {
+    console.error('[Email] Resend failed:', e);
+    // fall through to SMTP
+  }
+
+  // Fallback to SMTP (only works locally, not on Cloudflare Workers)
   try {
     const host = process.env.SMTP_HOST;
     const port = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : undefined;
@@ -425,36 +453,10 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
     }
   } catch (e) {
     console.error('[Email] SMTP failed:', e);
-    // fall through to Resend
-  }
-
-  // Fallback to Resend if configured
-  try {
-    const apiKey = process.env.RESEND_API_KEY;
-    const fromEmail = process.env.OFFERTE_FROM_EMAIL || 'offerte@technischeservice.local';
-    console.log('[Email] Attempting Resend...', { apiKey: apiKey ? '***' : undefined, fromEmail });
-    
-    if (!apiKey) {
-      console.log('[Email] Resend not configured');
-      return { emailed: false };
-    }
-    const { Resend } = await import('resend');
-    const resend = new Resend(apiKey);
-    const { error } = await resend.emails.send({ 
-      to, 
-      from: fromEmail, 
-      subject, 
-      html, 
-      text, 
-      reply_to: replyTo 
-    });
-    if (error) throw error;
-    console.log('[Email] Resend success to:', to);
-    return { emailed: true, via: 'resend' };
-  } catch (e) {
-    console.error('[Email] Resend failed:', e);
     return { emailed: false, error: String(e) };
   }
+  
+  return { emailed: false, error: 'No email provider configured or all failed' };
 }
 
 export const prerender = false;
