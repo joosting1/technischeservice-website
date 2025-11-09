@@ -1,0 +1,281 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+---
+
+<Layout 
+  title="Premium Airco Calculator | Technische Service Assen" 
+  description="Bereken het benodigde vermogen voor uw airco of verwarming met onze wetenschappelijke calculator. Gratis en accuraat."
+>
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Airco Calculator' }]} />
+      
+      <div class="text-center mb-12">
+        <h1 class="hc-title">Premium Airco Calculator</h1>
+        <p class="hc-subtitle mt-4">De meest nauwkeurige airco vermogen calculator</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <!-- Waarom deze calculator -->
+        <div class="hc-block mb-8">
+          <span class="hc-accent-bar" aria-hidden="true"></span>
+          <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-200 mb-6">✅ Waarom kiezen voor onze calculator?</h2>
+            <ul class="space-y-3 text-slate-300">
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <span><strong>Wetenschappelijke formules:</strong> Gebaseerd op bewezen principes en alle relevante factoren</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <span><strong>Aangepast aan uw locatie:</strong> Ondersteuning voor verschillende landen en klimaten</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <span><strong>Eenvoudig te gebruiken:</strong> Vul een paar velden in en ontvang direct resultaat</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <span><strong>Professionele kwaliteit:</strong> Ontworpen door HVAC-experts</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Calculator Form -->
+        <div class="hc-block">
+          <span class="hc-accent-bar" aria-hidden="true"></span>
+          <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-200 mb-6">🌡️ Bereken uw benodigde vermogen</h2>
+            
+            <form id="airco-calculator" class="space-y-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label for="country" class="block text-sm font-medium text-slate-300 mb-2">
+                    Land
+                  </label>
+                  <select 
+                    id="country" 
+                    name="country"
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  >
+                    <option value="NL">Nederland</option>
+                    <option value="BE">België</option>
+                    <option value="DE">Duitsland</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="area" class="block text-sm font-medium text-slate-300 mb-2">
+                    Oppervlakte (m²) *
+                  </label>
+                  <input 
+                    type="number" 
+                    id="area" 
+                    name="area"
+                    min="1"
+                    step="0.1"
+                    required
+                    placeholder="bijv. 25"
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label for="height" class="block text-sm font-medium text-slate-300 mb-2">
+                    Hoogte (m) *
+                  </label>
+                  <input 
+                    type="number" 
+                    id="height" 
+                    name="height"
+                    min="2"
+                    max="5"
+                    step="0.1"
+                    value="2.5"
+                    required
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label for="insulation" class="block text-sm font-medium text-slate-300 mb-2">
+                    Isolatie
+                  </label>
+                  <select 
+                    id="insulation" 
+                    name="insulation"
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  >
+                    <option value="poor">Slecht (oude woning)</option>
+                    <option value="average" selected>Gemiddeld</option>
+                    <option value="good">Goed (moderne woning)</option>
+                    <option value="excellent">Uitstekend (nieuwbouw)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="people" class="block text-sm font-medium text-slate-300 mb-2">
+                    Aantal personen
+                  </label>
+                  <input 
+                    type="number" 
+                    id="people" 
+                    name="people"
+                    min="0"
+                    value="2"
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  />
+                </div>
+
+                <div>
+                  <label for="devices" class="block text-sm font-medium text-slate-300 mb-2">
+                    Aantal warmtebronnen (apparaten)
+                  </label>
+                  <input 
+                    type="number" 
+                    id="devices" 
+                    name="devices"
+                    min="0"
+                    value="3"
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  />
+                </div>
+
+                <div class="md:col-span-2">
+                  <label for="tempDiff" class="block text-sm font-medium text-slate-300 mb-2">
+                    Temperatuurverschil (°C)
+                  </label>
+                  <input 
+                    type="number" 
+                    id="tempDiff" 
+                    name="tempDiff"
+                    min="1"
+                    max="40"
+                    value="10"
+                    class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  />
+                  <p class="text-sm text-slate-400 mt-2">
+                    Verschil tussen gewenste binnentemperatuur en buitentemperatuur
+                  </p>
+                </div>
+              </div>
+
+              <button 
+                type="submit"
+                class="btn btn-primary w-full text-lg"
+              >
+                🔍 Bereken Vermogen
+              </button>
+            </form>
+
+            <!-- Result -->
+            <div id="result" class="mt-8 hidden">
+              <div class="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border-2 border-orange-400 rounded-lg p-6 text-center">
+                <h3 class="text-xl font-semibold text-slate-200 mb-2">
+                  Benodigd Vermogen:
+                </h3>
+                <p class="text-5xl font-bold text-orange-400 mb-4">
+                  <span id="result-value">0</span> kW
+                </p>
+                <p class="text-sm text-slate-300">
+                  Dit is een indicatie. Voor een exacte berekening adviseren wij een persoonlijke meting.
+                </p>
+                <a href="/offerte" class="btn btn-primary mt-6 inline-block">
+                  Vraag Gratis Offerte Aan
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hoe werkt het -->
+        <div class="hc-block mt-8">
+          <span class="hc-accent-bar" aria-hidden="true"></span>
+          <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-200 mb-6">📐 Hoe werkt de calculator?</h2>
+            <p class="text-slate-300 mb-4">Onze calculator houdt rekening met:</p>
+            <ul class="space-y-3 text-slate-300">
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400">📏</span>
+                <span>De grootte van uw ruimte (oppervlakte en hoogte)</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400">🏠</span>
+                <span>De isolatie van uw woning of gebouw</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400">👥</span>
+                <span>Het aantal personen dat de ruimte gebruikt</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400">💻</span>
+                <span>Het aantal warmtebronnen (apparaten) in de ruimte</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400">🌡️</span>
+                <span>Het temperatuurverschil tussen binnen en buiten</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Airco calculator logic
+  document.getElementById('airco-calculator')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = e.target as HTMLFormElement;
+    const area = parseFloat((form.elements.namedItem('area') as HTMLInputElement).value);
+    const height = parseFloat((form.elements.namedItem('height') as HTMLInputElement).value);
+    const insulation = (form.elements.namedItem('insulation') as HTMLSelectElement).value;
+    const people = parseInt((form.elements.namedItem('people') as HTMLInputElement).value);
+    const devices = parseInt((form.elements.namedItem('devices') as HTMLInputElement).value);
+    const tempDiff = parseFloat((form.elements.namedItem('tempDiff') as HTMLInputElement).value);
+    
+    // Insulation factor
+    const insulationFactors: Record<string, number> = {
+      poor: 1.4,
+      average: 1.2,
+      good: 1.0,
+      excellent: 0.8
+    };
+    
+    const insulationFactor = insulationFactors[insulation] || 1.2;
+    
+    // Calculate volume
+    const volume = area * height;
+    
+    // Base calculation: ~35W per m³ with insulation factor
+    let power = volume * 35 * insulationFactor;
+    
+    // Add heat from people (~100W per person)
+    power += people * 100;
+    
+    // Add heat from devices (~75W per device)
+    power += devices * 75;
+    
+    // Adjust for temperature difference (10°C is baseline)
+    power = power * (tempDiff / 10);
+    
+    // Convert to kW
+    const powerKW = (power / 1000).toFixed(2);
+    
+    // Show result
+    const resultDiv = document.getElementById('result');
+    const resultValue = document.getElementById('result-value');
+    
+    if (resultDiv && resultValue) {
+      resultValue.textContent = powerKW;
+      resultDiv.classList.remove('hidden');
+      
+      // Smooth scroll to result
+      resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+</script>

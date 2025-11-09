@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ContractForm from '../components/ContractForm.astro';
+---
+
+<Layout 
+  title="Waterontharder Onderhoudscontract | €7,50 per maand | Technische Service Assen" 
+  description="Houd uw waterontharder in topvorm met ons onderhoudscontract vanaf €7,50/maand. Professioneel onderhoud en zoutaanvulling."
+>
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
+      <Breadcrumbs items={[
+        { name: 'Home', href: '/' }, 
+        { name: 'Waterontharder', href: '/waterontharder' },
+        { name: 'Onderhoudscontract' }
+      ]} />
+      
+      <div class="text-center mb-12">
+        <h1 class="hc-title">Waterontharder Onderhoudscontract</h1>
+        <p class="hc-subtitle mt-4">Altijd zacht water zonder zorgen</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <!-- Pricing Card -->
+        <div class="hc-block mb-8">
+          <span class="hc-accent-bar" aria-hidden="true"></span>
+          <div class="p-8 text-center">
+            <div class="inline-block bg-linear-to-r from-orange-500/20 to-orange-600/20 border-2 border-orange-400 rounded-2xl p-8 mb-6">
+              <p class="text-slate-300 text-sm uppercase tracking-wide mb-2">Onderhoudscontract</p>
+              <p class="text-6xl font-bold text-orange-400 mb-2">€7,50</p>
+              <p class="text-slate-400">per maand</p>
+            </div>
+            <p class="text-slate-300 mb-6">Jaarlijks opzegbaar • Inclusief zoutaanvulling • Voorrang bij storingen</p>
+            <a href="/offerte" class="btn btn-primary text-lg">
+              📝 Direct Afsluiten
+            </a>
+          </div>
+        </div>
+
+        <!-- Wat is inbegrepen -->
+        <div class="hc-block mb-8">
+          <span class="hc-accent-bar" aria-hidden="true"></span>
+          <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-200 mb-6">✅ Wat is inbegrepen?</h2>
+            <ul class="space-y-4 text-slate-300">
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <div>
+                  <strong class="text-slate-200">Jaarlijkse onderhoudsbeurt</strong>
+                  <p class="text-sm text-slate-400 mt-1">Complete inspectie en service van uw waterontharder</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <div>
+                  <strong class="text-slate-200">Zoutaanvulling</strong>
+                  <p class="text-sm text-slate-400 mt-1">Wij vullen het zout aan bij elk bezoek (zout inclusief)</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <div>
+                  <strong class="text-slate-200">Harsbed reiniging</strong>
+                  <p class="text-sm text-slate-400 mt-1">Professionele reiniging voor optimale werking</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <div>
+                  <strong class="text-slate-200">Waterhardheid meting</strong>
+                  <p class="text-sm text-slate-400 mt-1">Check en bijstelling voor perfect zacht water</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <div>
+                  <strong class="text-slate-200">Ventielcontrole</strong>
+                  <p class="text-sm text-slate-400 mt-1">Controle van regeneratiecyclus en ventielfunctie</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-orange-400 text-xl">✓</span>
+                <div>
+                  <strong class="text-slate-200">Voorrang bij storingen</strong>
+                  <p class="text-sm text-slate-400 mt-1">Contracthouders krijgen voorrang bij reparaties</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Waarom regelmatig onderhoud -->
+        <div class="hc-block mb-8">
+          <span class="hc-accent-bar" aria-hidden="true"></span>
+          <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-200 mb-6">💧 Waarom waterontharder onderhoud?</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-slate-800/50 rounded-lg p-6">
+                <div class="text-3xl mb-3">💰</div>
+                <h3 class="text-lg font-semibold text-slate-200 mb-2">Bespaar op energie</h3>
+                <p class="text-sm text-slate-400">Zacht water bespaart tot 15% op verwarmingskosten</p>
+              </div>
+              <div class="bg-slate-800/50 rounded-lg p-6">
+                <div class="text-3xl mb-3">🧼</div>
+                <h3 class="text-lg font-semibold text-slate-200 mb-2">Minder schoonmaakmiddel</h3>
+                <p class="text-sm text-slate-400">Gebruik tot 50% minder zeep en wasmiddel</p>
+              </div>
+              <div class="bg-slate-800/50 rounded-lg p-6">
+                <div class="text-3xl mb-3">🚿</div>
+                <h3 class="text-lg font-semibold text-slate-200 mb-2">Geen kalkaanslag</h3>
+                <p class="text-sm text-slate-400">Bescherm kranen, tegels en apparatuur</p>
+              </div>
+              <div class="bg-slate-800/50 rounded-lg p-6">
+                <div class="text-3xl mb-3">⏱️</div>
+                <h3 class="text-lg font-semibold text-slate-200 mb-2">Langere levensduur</h3>
+                <p class="text-sm text-slate-400">Waterontharder gaat jaren langer mee</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delta Waterontharders -->
+        <div class="hc-block mb-8">
+          <span class="hc-accent-bar" aria-hidden="true"></span>
+          <div class="p-8">
+            <h2 class="text-2xl font-bold text-slate-200 mb-6">🇧🇪 Delta Waterontharders</h2>
+            <div class="flex flex-col md:flex-row gap-6 items-center">
+              <div class="flex-1">
+                <p class="text-slate-300 mb-4">
+                  Wij zijn specialist in <strong class="text-slate-200">Delta waterontharders</strong> - Belgische topkwaliteit 
+                  met 50+ jaar ervaring. Delta staat bekend om:
+                </p>
+                <ul class="space-y-2 text-slate-300">
+                  <li class="flex items-start gap-3">
+                    <span class="text-orange-400">✓</span>
+                    <span>Robuuste Belgische kwaliteit</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-orange-400">✓</span>
+                    <span>10 jaar garantie op harsen</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-orange-400">✓</span>
+                    <span>Zeer zuinig zoutverbruik</span>
+                  </li>
+                  <li class="flex items-start gap-3">
+                    <span class="text-orange-400">✓</span>
+                    <span>Fluisterstil in gebruik</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="flex-shrink-0">
+                <a href="/waterontharder" class="text-orange-400 hover:text-orange-300 underline">
+                  Meer over Delta waterontharders →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center bg-linear-to-r from-slate-800 to-slate-700 rounded-lg p-8">
+          <h2 class="text-2xl font-bold text-slate-200 mb-4">
+            Altijd zacht water, zonder zorgen
+          </h2>
+          <p class="text-slate-300 mb-6">
+            Voor €7,50 per maand houden wij uw waterontharder in topconditie
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contract-form" class="btn btn-primary">
+              📝 Direct Aanvragen
+            </a>
+            <a href="tel:0658980933" class="btn btn-secondary">
+              📞 Bel Direct: 06-58980933
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contract Form -->
+      <ContractForm 
+        type="waterontharder"
+        pricePerUnit="€7,50"
+        unitLabel="Aantal waterontharders"
+      />
+
+    </div>
+  </section>
+</Layout>

@@ -67,6 +67,26 @@ async function maybeSendEmail(data: Record<string, any>) {
 
 async function sendNotificationEmail(data: Record<string, any>) {
   const subject = `🔔 Nieuwe offerte aanvraag – ${data.voornaam} ${data.achternaam}`;
+  
+  console.log('[Email] Received data.photos:', data.photos?.length || 0, 'photos');
+  
+  // Convert base64 photos to attachments
+  const attachments: Array<{ filename: string; content: string }> = [];
+  if (data.photos && Array.isArray(data.photos)) {
+    console.log('[Email] Processing', data.photos.length, 'photos for attachments');
+    data.photos.forEach((photo: string, index: number) => {
+      // Extract base64 data (remove data:image/...;base64, prefix)
+      const base64Data = photo.split(',')[1] || photo;
+      console.log('[Email] Photo', index + 1, 'base64 length:', base64Data.length);
+      attachments.push({
+        filename: `installatie-foto-${index + 1}.jpg`,
+        content: base64Data
+      });
+    });
+  }
+  
+  console.log('[Email] Total attachments prepared:', attachments.length);
+  
   const html = `
     <!DOCTYPE html>
     <html>
@@ -176,6 +196,22 @@ async function sendNotificationEmail(data: Record<string, any>) {
                     </tr>
                     ` : ''}
                     
+                    ${attachments.length > 0 ? `
+                    <!-- Bijlagen -->
+                    <tr>
+                      <td style="padding-bottom: 25px;">
+                        <h2 style="margin: 0 0 15px 0; color: #2d3748; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                          📎 Bijgevoegde foto's
+                        </h2>
+                        <div style="background-color: #f0f9ff; padding: 15px 20px; border-radius: 6px; border: 1px solid #bfdbfe;">
+                          <p style="margin: 0; color: #1e40af; font-size: 14px;">
+                            ${attachments.length} foto${attachments.length > 1 ? "'s" : ''} van de installatie bijgevoegd als bijlage${attachments.length > 1 ? 'n' : ''}.
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                    ` : ''}
+                    
                     <!-- Call to Action -->
                     <tr>
                       <td style="padding-top: 20px; text-align: center;">
@@ -219,12 +255,70 @@ async function sendNotificationEmail(data: Record<string, any>) {
     subject,
     html,
     text,
-    replyTo: data.email
+    replyTo: data.email,
+    attachments
   });
 }
 
 async function sendConfirmationEmail(data: Record<string, any>) {
-  const subject = `✅ Bevestiging offerte aanvraag - Technische Service Assen`;
+  const isContract = data.service && data.service.includes('Onderhoudscontract');
+  const subject = isContract 
+    ? `✅ Bevestiging onderhoudscontract aanvraag - Technische Service Assen`
+    : `✅ Bevestiging offerte aanvraag - Technische Service Assen`;
+    
+  // Calculate monthly price for contracts
+  let monthlyPrice = 0;
+  let priceBreakdown = '';
+  
+  if (isContract) {
+    if (data.service.includes('Airco')) {
+      const outdoorUnits = parseInt(data.units) || 0;
+      const indoorUnits = parseInt(data['indoor-units']) || 0;
+      const distanceSurcharge = data['distance-surcharge'] ? 3.50 : 0;
+      
+      monthlyPrice = (outdoorUnits * 7.50) + (indoorUnits * 2.50) + distanceSurcharge;
+      priceBreakdown = `
+        <tr>
+          <td style="color: #6c757d; font-size: 14px; padding: 8px;">Buitenunits:</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right;">${outdoorUnits} × €7,50</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right; font-weight: 600;">€${(outdoorUnits * 7.50).toFixed(2)}</td>
+        </tr>
+        <tr>
+          <td style="color: #6c757d; font-size: 14px; padding: 8px;">Binnenunits:</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right;">${indoorUnits} × €2,50</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right; font-weight: 600;">€${(indoorUnits * 2.50).toFixed(2)}</td>
+        </tr>
+        ${distanceSurcharge > 0 ? `
+        <tr>
+          <td style="color: #6c757d; font-size: 14px; padding: 8px;">Afstandstoeslag (>25km):</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right;">1 × €3,50</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right; font-weight: 600;">€3,50</td>
+        </tr>
+        ` : ''}
+      `;
+    } else if (data.service.includes('Quooker')) {
+      const units = parseInt(data.units) || 1;
+      monthlyPrice = units * 5.00;
+      priceBreakdown = `
+        <tr>
+          <td style="color: #6c757d; font-size: 14px; padding: 8px;">Quooker kranen:</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right;">${units} × €5,00</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right; font-weight: 600;">€${monthlyPrice.toFixed(2)}</td>
+        </tr>
+      `;
+    } else if (data.service.includes('Waterontharder')) {
+      const units = parseInt(data.units) || 1;
+      monthlyPrice = units * 7.50;
+      priceBreakdown = `
+        <tr>
+          <td style="color: #6c757d; font-size: 14px; padding: 8px;">Waterontharders:</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right;">${units} × €7,50</td>
+          <td style="color: #2d3748; font-size: 14px; padding: 8px; text-align: right; font-weight: 600;">€${monthlyPrice.toFixed(2)}</td>
+        </tr>
+      `;
+    }
+  }
+  
   const html = `
     <!DOCTYPE html>
     <html>
@@ -261,6 +355,46 @@ async function sendConfirmationEmail(data: Record<string, any>) {
                         </p>
                       </td>
                     </tr>
+                    
+                    ${isContract && monthlyPrice > 0 ? `
+                    <!-- Contract Pricing -->
+                    <tr>
+                      <td style="padding-bottom: 25px;">
+                        <h2 style="margin: 0 0 15px 0; color: #2d3748; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                          💰 Maandelijkse Kosten
+                        </h2>
+                        <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9fa; border-radius: 6px; overflow: hidden;">
+                          ${priceBreakdown}
+                          <tr style="border-top: 2px solid #10b981; background-color: #e6f7f1;">
+                            <td colspan="2" style="color: #2d3748; font-size: 16px; padding: 12px; font-weight: 600;">Totaal per maand:</td>
+                            <td style="color: #10b981; font-size: 18px; padding: 12px; text-align: right; font-weight: 700;">€${monthlyPrice.toFixed(2)}</td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    
+                    <!-- Incasso Info -->
+                    <tr>
+                      <td style="padding-bottom: 25px;">
+                        <div style="background-color: #eff6ff; border-left: 4px solid #3b82f6; padding: 20px; border-radius: 6px;">
+                          <h3 style="margin: 0 0 12px 0; color: #1e40af; font-size: 16px; font-weight: 600;">
+                            🏦 Automatische Incasso
+                          </h3>
+                          <p style="margin: 0 0 10px 0; color: #2d3748; font-size: 14px; line-height: 1.6;">
+                            Het maandelijkse bedrag van <strong>€${monthlyPrice.toFixed(2)}</strong> wordt automatisch geïncasseerd van rekening:
+                          </p>
+                          <p style="margin: 0 0 10px 0; color: #2d3748; font-size: 14px; font-weight: 600;">
+                            ${data.iban} t.n.v. ${data['account-holder']}
+                          </p>
+                          <p style="margin: 0; color: #6c757d; font-size: 13px; line-height: 1.5;">
+                            <strong>Incassant:</strong> Stichting Paypro namens Technische Service Assen<br>
+                            <strong>Machtiging:</strong> Eenmalig, doorlopend<br>
+                            <strong>Opzeggen:</strong> Maandelijks mogelijk, zonder kosten
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                    ` : ''}
                     
                     <!-- Success Box -->
                     <tr>
@@ -313,14 +447,29 @@ async function sendConfirmationEmail(data: Record<string, any>) {
                           ` : ''}
                           ${data.datum ? `
                           <tr style="border-top: 1px solid #e2e8f0;">
-                            <td style="color: #6c757d; font-size: 14px; font-weight: 500; padding: 12px;">Gewenste datum:</td>
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500; padding: 12px;">Gewenste ${isContract ? 'start' : ''}datum:</td>
                             <td style="color: #2d3748; font-size: 14px; padding: 12px;">${data.datum}</td>
+                          </tr>
+                          ` : ''}
+                          ${isContract && data.units ? `
+                          <tr style="border-top: 1px solid #e2e8f0;">
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500; padding: 12px;">Aantal units:</td>
+                            <td style="color: #2d3748; font-size: 14px; padding: 12px;">
+                              ${data.units} ${data.service.includes('Airco') ? 'buitenunit(s)' : data.service.includes('Quooker') ? 'kraan/kranen' : 'waterontharder(s)'}
+                              ${data['indoor-units'] ? `<br/>${data['indoor-units']} binnenunit(s)` : ''}
+                            </td>
+                          </tr>
+                          ` : ''}
+                          ${isContract && data.model ? `
+                          <tr style="border-top: 1px solid #e2e8f0;">
+                            <td style="color: #6c757d; font-size: 14px; font-weight: 500; padding: 12px;">Type:</td>
+                            <td style="color: #2d3748; font-size: 14px; padding: 12px;">${data.model}</td>
                           </tr>
                           ` : ''}
                           ${data.opmerkingen ? `
                           <tr style="border-top: 1px solid #e2e8f0;">
                             <td colspan="2" style="padding: 12px;">
-                              <div style="color: #6c757d; font-size: 14px; font-weight: 500; margin-bottom: 8px;">Uw opmerkingen:</div>
+                              <div style="color: #6c757d; font-size: 14px; font-weight: 500; margin-bottom: 8px;">Opmerkingen:</div>
                               <div style="color: #2d3748; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${data.opmerkingen}</div>
                             </td>
                           </tr>
@@ -387,17 +536,27 @@ async function sendConfirmationEmail(data: Record<string, any>) {
   });
 }
 
-async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
+async function sendEmailViaProviders({ 
+  to, 
+  subject, 
+  html, 
+  text, 
+  replyTo,
+  attachments = []
+}: {
   to: string | undefined;
   subject: string;
   html: string;
   text: string;
   replyTo?: string;
+  attachments?: Array<{ filename: string; content: string }>;
 }) {
   if (!to) {
     console.log('[Email] No recipient configured');
     return { emailed: false, error: 'No recipient configured' };
   }
+  
+  console.log('[Email] sendEmailViaProviders called with:', { to, subject, hasAttachments: attachments.length > 0 });
   
   // Try SMTP first (Gmail works on Cloudflare Workers via fetch)
   try {
@@ -463,15 +622,23 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
     const { Resend } = await import('resend');
     const resend = new Resend(apiKey);
     
-    console.log('[Email] Calling Resend API...');
-    const result = await resend.emails.send({ 
+    console.log('[Email] Calling Resend API with', attachments.length, 'attachments...');
+    
+    const emailPayload: any = { 
       to, 
       from: fromEmail, 
       subject, 
       html, 
       text, 
-      replyTo: replyTo 
-    });
+      replyTo: replyTo
+    };
+    
+    if (attachments.length > 0) {
+      emailPayload.attachments = attachments;
+      console.log('[Email] Attachments added to payload:', attachments.map(a => a.filename).join(', '));
+    }
+    
+    const result = await resend.emails.send(emailPayload);
     
     console.log('[Email] Resend raw result:', JSON.stringify(result, null, 2));
     

@@ -1,0 +1,462 @@
+---
+interface Props {
+  type: 'airco' | 'quooker' | 'waterontharder';
+  pricePerUnit: string;
+  unitLabel: string;
+}
+
+const { type, pricePerUnit, unitLabel } = Astro.props;
+
+const titles = {
+  airco: 'Airco Onderhoudscontract Aanvraag',
+  quooker: 'Quooker Onderhoudscontract Aanvraag',
+  waterontharder: 'Waterontharder Onderhoudscontract Aanvraag'
+};
+---
+
+<div class="hc-block mt-8">
+  <span class="hc-accent-bar" aria-hidden="true"></span>
+  <div class="p-8">
+    <h2 class="text-2xl font-bold text-slate-200 mb-6">
+      📝 {titles[type]}
+    </h2>
+    
+    <form id="contract-form" class="space-y-6">
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="md:col-span-2">
+          <label for="date" class="block text-sm font-medium text-slate-300 mb-2">
+            Gewenste startdatum *
+          </label>
+          <input 
+            type="date" 
+            id="date" 
+            name="date"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="name" class="block text-sm font-medium text-slate-300 mb-2">
+            Naam *
+          </label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-slate-300 mb-2">
+            Email *
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="address" class="block text-sm font-medium text-slate-300 mb-2">
+            Straat en nummer *
+          </label>
+          <input 
+            type="text" 
+            id="address" 
+            name="address"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="postal" class="block text-sm font-medium text-slate-300 mb-2">
+            Postcode *
+          </label>
+          <input 
+            type="text" 
+            id="postal" 
+            name="postal"
+            required
+            pattern="[0-9]{4}\s?[A-Za-z]{2}"
+            placeholder="1234 AB"
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="city" class="block text-sm font-medium text-slate-300 mb-2">
+            Plaats *
+          </label>
+          <input 
+            type="text" 
+            id="city" 
+            name="city"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-medium text-slate-300 mb-2">
+            Telefoon *
+          </label>
+          <input 
+            type="tel" 
+            id="phone" 
+            name="phone"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="units" class="block text-sm font-medium text-slate-300 mb-2">
+            {unitLabel} *
+          </label>
+          <input 
+            type="number" 
+            id="units" 
+            name="units"
+            min="1"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+          <p class="text-sm text-slate-400 mt-2">{pricePerUnit} per unit per maand</p>
+        </div>
+
+        {type === 'airco' && (
+          <>
+            <div>
+              <label for="indoor-units" class="block text-sm font-medium text-slate-300 mb-2">
+                Aantal binnenunits *
+              </label>
+              <input 
+                type="number" 
+                id="indoor-units" 
+                name="indoor-units"
+                min="1"
+                required
+                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+              />
+              <p class="text-sm text-slate-400 mt-2">€2,50 per unit per maand</p>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="flex items-center gap-3 text-slate-300">
+                <input 
+                  type="checkbox" 
+                  id="distance-surcharge" 
+                  name="distance-surcharge"
+                  class="w-5 h-5 bg-slate-800 border-slate-700 rounded text-orange-400 focus:ring-2 focus:ring-orange-400"
+                />
+                <span>>25km van centrum Assen (toeslag €3,50/mnd)</span>
+              </label>
+            </div>
+
+            <div class="md:col-span-2">
+              <label class="flex items-center gap-3 text-slate-300">
+                <input 
+                  type="checkbox" 
+                  id="accessible" 
+                  name="accessible"
+                  class="w-5 h-5 bg-slate-800 border-slate-700 rounded text-orange-400 focus:ring-2 focus:ring-orange-400"
+                />
+                <span>De unit is goed bereikbaar (beneden 3 meter)</span>
+              </label>
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="photos" class="block text-sm font-medium text-slate-300 mb-2">
+                📸 Foto's van de installatie
+              </label>
+              <input 
+                type="file" 
+                id="photos" 
+                name="photos"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                multiple
+                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-400 file:text-slate-900 hover:file:bg-orange-500 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+              />
+              <p class="text-sm text-slate-400 mt-2">
+                Max 10MB per foto. Meerdere foto's mogelijk (buiten- en binnenunits)
+              </p>
+              <div id="photo-preview" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            </div>
+          </>
+        )}
+
+        {type === 'quooker' && (
+          <>
+            <div class="md:col-span-2">
+              <label for="model" class="block text-sm font-medium text-slate-300 mb-2">
+                Type reservoir en kraan (indien bekend)
+              </label>
+              <input 
+                type="text" 
+                id="model" 
+                name="model"
+                placeholder="bijv. Quooker Flex met Pro3 reservoir"
+                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+              />
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="photos" class="block text-sm font-medium text-slate-300 mb-2">
+                📸 Foto's van de installatie (optioneel)
+              </label>
+              <input 
+                type="file" 
+                id="photos" 
+                name="photos"
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                multiple
+                class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-400 file:text-slate-900 hover:file:bg-orange-500 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+              />
+              <p class="text-sm text-slate-400 mt-2">
+                Max 10MB per foto. Meerdere foto's mogelijk
+              </p>
+              <div id="photo-preview" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+            </div>
+          </>
+        )}
+
+        {type === 'waterontharder' && (
+          <div class="md:col-span-2">
+            <label for="photos" class="block text-sm font-medium text-slate-300 mb-2">
+              📸 Foto's van de installatie (optioneel)
+            </label>
+            <input 
+              type="file" 
+              id="photos" 
+              name="photos"
+              accept="image/jpeg,image/jpg,image/png,image/webp"
+              multiple
+              class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-400 file:text-slate-900 hover:file:bg-orange-500 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+            />
+            <p class="text-sm text-slate-400 mt-2">
+              Max 10MB per foto. Meerdere foto's mogelijk
+            </p>
+            <div id="photo-preview" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+          </div>
+        )}
+
+        <div class="md:col-span-2">
+          <label for="notes" class="block text-sm font-medium text-slate-300 mb-2">
+            Extra informatie
+          </label>
+          <textarea 
+            id="notes" 
+            name="notes"
+            rows="4"
+            placeholder="Bijv. bijzonderheden over locatie, eerdere storingen, etc."
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          ></textarea>
+        </div>
+
+        <div>
+          <label for="iban" class="block text-sm font-medium text-slate-300 mb-2">
+            IBAN voor automatische incasso *
+          </label>
+          <input 
+            type="text" 
+            id="iban" 
+            name="iban"
+            required
+            placeholder="NL12 ABNA 0123 4567 89"
+            pattern="[A-Z]{2}[0-9]{2}[A-Z0-9 ]+"
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div>
+          <label for="account-holder" class="block text-sm font-medium text-slate-300 mb-2">
+            Rekeninghouder *
+          </label>
+          <input 
+            type="text" 
+            id="account-holder" 
+            name="account-holder"
+            required
+            class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-slate-200 focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+          />
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="flex items-start gap-3 text-slate-300">
+            <input 
+              type="checkbox" 
+              id="terms" 
+              name="terms"
+              required
+              class="w-5 h-5 mt-1 bg-slate-800 border-slate-700 rounded text-orange-400 focus:ring-2 focus:ring-orange-400"
+            />
+            <span class="text-sm">
+              Ik ga akkoord met de <a href="/algemene-voorwaarden-en-privacy" target="_blank" class="text-orange-400 hover:text-orange-300 underline">algemene voorwaarden</a> 
+              en geef toestemming voor automatische incasso. Het contract is maandelijks opzegbaar. *
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div id="form-message" class="hidden p-4 rounded-lg"></div>
+
+      <button 
+        type="submit"
+        class="btn btn-primary w-full text-lg"
+      >
+        📄 Contract Aanvragen
+      </button>
+
+      <p class="text-sm text-slate-400 text-center">
+        We nemen binnen 1 werkdag contact met u op om het onderhoud in te plannen
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Photo preview functionality
+  const photoInput = document.getElementById('photos') as HTMLInputElement;
+  const photoPreview = document.getElementById('photo-preview');
+  
+  if (photoInput && photoPreview) {
+    photoInput.addEventListener('change', function(e) {
+      photoPreview.innerHTML = '';
+      const files = (e.target as HTMLInputElement).files;
+      
+      if (files) {
+        Array.from(files).forEach((file, index) => {
+          if (file.size > 10 * 1024 * 1024) {
+            alert(`Foto ${file.name} is te groot (max 10MB)`);
+            return;
+          }
+          
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const div = document.createElement('div');
+            div.className = 'relative group';
+            div.innerHTML = `
+              <img src="${e.target?.result}" alt="Preview ${index + 1}" class="w-full h-32 object-cover rounded-lg border-2 border-slate-700">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                <span class="text-white text-sm">${file.name}</span>
+              </div>
+            `;
+            photoPreview.appendChild(div);
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+    });
+  }
+
+  // Form submission
+  document.getElementById('contract-form')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target as HTMLFormElement;
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const messageDiv = document.getElementById('form-message');
+    
+    // Disable submit button
+    submitButton.disabled = true;
+    submitButton.textContent = '⏳ Versturen...';
+    
+    // Collect form data
+    const formData = new FormData(form);
+    const data: Record<string, any> = {};
+    
+    // Handle photos separately
+    const photoFiles = formData.getAll('photos') as File[];
+    const photoPromises: Promise<string>[] = [];
+    
+    photoFiles.forEach(file => {
+      if (file.size > 0) {
+        photoPromises.push(
+          new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target?.result as string);
+            reader.readAsDataURL(file);
+          })
+        );
+      }
+    });
+    
+    const photoData = await Promise.all(photoPromises);
+    
+    console.log('[Form] Photos collected:', photoData.length);
+    
+    // Collect other form data
+    formData.forEach((value, key) => {
+      if (key !== 'photos') {
+        data[key] = value;
+      }
+    });
+    
+    try {
+      const requestBody = {
+        ...data,
+        service: 'Onderhoudscontract - ' + data.service || 'Onbekend',
+        voornaam: data.name?.split(' ')[0] || '',
+        achternaam: data.name?.split(' ').slice(1).join(' ') || '',
+        telefoon: data.phone,
+        adres: data.address,
+        postcode: data.postal,
+        woonplaats: data.city,
+        photos: photoData,
+        opmerkingen: `
+Startdatum: ${data.date}
+Aantal units: ${data.units}
+${data['indoor-units'] ? `Aantal binnenunits: ${data['indoor-units']}` : ''}
+${data['distance-surcharge'] ? 'Toeslag >25km: Ja' : ''}
+${data['accessible'] ? 'Bereikbaarheid: Goed bereikbaar' : ''}
+${data.model ? `Type: ${data.model}` : ''}
+IBAN: ${data.iban}
+Rekeninghouder: ${data['account-holder']}
+${photoData.length > 0 ? `\nAantal foto's bijgevoegd: ${photoData.length}` : ''}
+${data.notes ? `\nExtra info: ${data.notes}` : ''}
+        `.trim(),
+        privacy: true
+      };
+      
+      console.log('[Form] Sending request with photos:', requestBody.photos?.length || 0);
+      
+      const response = await fetch('/api/offerte', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+      
+      const result = await response.json();
+      
+      if (messageDiv) {
+        if (result.ok) {
+          messageDiv.className = 'p-4 rounded-lg bg-green-500/20 border-2 border-green-400 text-green-300';
+          messageDiv.textContent = '✅ Uw aanvraag is verzonden! We nemen spoedig contact met u op.';
+          messageDiv.classList.remove('hidden');
+          form.reset();
+          if (photoPreview) photoPreview.innerHTML = '';
+        } else {
+          throw new Error(result.message || 'Er is iets misgegaan');
+        }
+      }
+    } catch (error) {
+      if (messageDiv) {
+        messageDiv.className = 'p-4 rounded-lg bg-red-500/20 border-2 border-red-400 text-red-300';
+        messageDiv.textContent = '❌ Er is een fout opgetreden. Probeer het opnieuw of neem telefonisch contact op.';
+        messageDiv.classList.remove('hidden');
+      }
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = '📄 Contract Aanvragen';
+    }
+  });
+</script>
