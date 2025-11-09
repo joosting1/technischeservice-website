@@ -518,6 +518,7 @@ const titles = {
         adres: data.address,
         postcode: data.postal,
         woonplaats: data.city,
+        datum: data.date,
         photos: photoData,
         units: data.units,
         'indoor-units': data['indoor-units'],
@@ -526,18 +527,7 @@ const titles = {
         model: data.model,
         iban: data.iban,
         'account-holder': data['account-holder'],
-        opmerkingen: `
-Startdatum: ${data.date}
-Aantal units: ${data.units}
-${data['indoor-units'] ? `Aantal binnenunits: ${data['indoor-units']}` : ''}
-${data['distance-surcharge'] ? 'Toeslag >25km: Ja' : ''}
-${data['accessible'] ? 'Bereikbaarheid: Goed bereikbaar' : ''}
-${data.model ? `Type: ${data.model}` : ''}
-IBAN: ${data.iban}
-Rekeninghouder: ${data['account-holder']}
-${photoData.length > 0 ? `\nAantal foto's bijgevoegd: ${photoData.length}` : ''}
-${data.notes ? `\nExtra info: ${data.notes}` : ''}
-        `.trim(),
+        opmerkingen: data.notes || '',
         privacy: true
       };
       

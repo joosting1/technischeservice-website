@@ -301,12 +301,12 @@ async function sendNotificationEmail(data: Record<string, any>) {
                     </tr>
                     ` : ''}
                     
-                    ${data.opmerkingen ? `
-                    <!-- Opmerkingen -->
+                    ${data.opmerkingen && data.opmerkingen.trim() ? `
+                    <!-- Extra Opmerkingen -->
                     <tr>
                       <td style="padding-bottom: 25px;">
                         <h2 style="margin: 0 0 15px 0; color: #2d3748; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
-                          💬 Opmerkingen
+                          💬 Extra Opmerkingen
                         </h2>
                         <div style="background-color: #f8f9fa; padding: 15px 20px; border-radius: 6px; border: 1px solid #e2e8f0;">
                           <p style="margin: 0; color: #2d3748; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${data.opmerkingen}</p>
