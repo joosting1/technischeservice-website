@@ -443,10 +443,10 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
                    process.env.RESEND_KEY || 
                    're_GCEWZ6s5_7oozqF8FXXyunM17FZggNmHu'; // hardcoded fallback
     
-    // Use onboarding@resend.dev temporarily until domain is verified
+    // Use verified domain now that DKIM is active
     const fromEmail = process.env.OFFERTE_FROM_EMAIL || 
                       process.env.FROM_EMAIL || 
-                      'onboarding@resend.dev';  // Resend's test email that always works
+                      'noreply@technischeservice.nl';  // Domain verified ✅
     
     console.log('[Email] Attempting Resend...', { 
       apiKey: apiKey ? 'SET' : 'MISSING', 
