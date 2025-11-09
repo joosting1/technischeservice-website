@@ -534,6 +534,14 @@ export const POST: APIRoute = async ({ request }) => {
       confirmation: emailed.confirmation
     }), { status: 200, headers: { 'content-type': 'application/json' } });
   } catch (e) {
-    return new Response(JSON.stringify({ ok: false, message: 'Serverfout', error: String(e) }), { status: 500, headers: { 'content-type': 'application/json' } });
+    console.error('[Offerte API] Fatal error:', e);
+    const errorMessage = e instanceof Error ? e.message : String(e);
+    const errorStack = e instanceof Error ? e.stack : undefined;
+    return new Response(JSON.stringify({ 
+      ok: false, 
+      message: 'Serverfout', 
+      error: errorMessage,
+      stack: errorStack
+    }), { status: 500, headers: { 'content-type': 'application/json' } });
   }
 };
