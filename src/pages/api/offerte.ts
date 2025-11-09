@@ -51,16 +51,16 @@ async function maybeStoreSupabase(data: Record<string, any>) {
 }
 
 async function maybeSendEmail(data: Record<string, any>) {
-  // Send notification email to business
+  // For now, only send notification email to business (not confirmation to customer)
+  // Confirmation emails require domain verification with Resend
   const notificationResult = await sendNotificationEmail(data);
   
-  // Send confirmation email to submitter
-  const confirmationResult = await sendConfirmationEmail(data);
+  console.log('[Email] Notification result:', JSON.stringify(notificationResult, null, 2));
   
   return {
-    emailed: notificationResult.emailed || confirmationResult.emailed,
+    emailed: notificationResult.emailed,
     notification: notificationResult,
-    confirmation: confirmationResult
+    confirmation: { skipped: true, reason: 'Domain verification required for customer emails' }
   };
 }
 
@@ -389,35 +389,7 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
     return { emailed: false, error: 'No recipient configured' };
   }
   
-  // Try Resend first (works on Cloudflare Workers)
-  try {
-    const apiKey = process.env.RESEND_API_KEY;
-    const fromEmail = process.env.OFFERTE_FROM_EMAIL || 'onboarding@resend.dev';
-    console.log('[Email] Attempting Resend...', { apiKey: apiKey ? '***' : undefined, fromEmail });
-    
-    if (apiKey) {
-      const { Resend } = await import('resend');
-      const resend = new Resend(apiKey);
-      const { error } = await resend.emails.send({ 
-        to, 
-        from: fromEmail, 
-        subject, 
-        html, 
-        text, 
-        replyTo: replyTo 
-      });
-      if (error) throw error;
-      console.log('[Email] Resend success to:', to);
-      return { emailed: true, via: 'resend' };
-    } else {
-      console.log('[Email] Resend not configured, trying SMTP fallback...');
-    }
-  } catch (e) {
-    console.error('[Email] Resend failed:', e);
-    // fall through to SMTP
-  }
-
-  // Fallback to SMTP (only works locally, not on Cloudflare Workers)
+  // Try SMTP first (Gmail works on Cloudflare Workers via fetch)
   try {
     const host = process.env.SMTP_HOST;
     const port = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT, 10) : undefined;
@@ -425,14 +397,16 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
     const pass = process.env.SMTP_PASS;
     const from = process.env.SMTP_FROM || user || 'no-reply@localhost';
     
-    console.log('[Email] Attempting SMTP...', { host, port, user: user ? '***' : undefined, from });
+    console.log('[Email] Attempting SMTP...', { host, port, user: user ? '***' : undefined, from, to });
     
     if (host && port && user && pass) {
+      // Use Cloudflare Email Workers API or fetch-based SMTP
+      // For now, we'll use nodemailer (works locally, may not work on Workers)
       const { createTransport } = await import('nodemailer');
       const transporter = createTransport({
         host,
         port,
-        secure: port === 465, // Gmail SSL uses 465
+        secure: port === 465,
         auth: { user, pass },
       });
       await transporter.sendMail({
@@ -446,17 +420,58 @@ async function sendEmailViaProviders({ to, subject, html, text, replyTo }: {
       console.log('[Email] SMTP success to:', to);
       return { emailed: true, via: 'smtp' };
     } else {
-      console.log('[Email] SMTP not configured, missing:', { 
-        host: !host, port: !port, user: !user, pass: !pass 
-      });
+      console.log('[Email] SMTP not configured, trying Resend...');
     }
   } catch (e) {
     console.error('[Email] SMTP failed:', e);
-    return { emailed: false, error: String(e) };
+    // fall through to Resend
   }
   
-  return { emailed: false, error: 'No email provider configured or all failed' };
-}
+  // Fallback to Resend (requires domain verification)
+  try {
+    const apiKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.OFFERTE_FROM_EMAIL || 'onboarding@resend.dev';
+    console.log('[Email] Attempting Resend...', { 
+      apiKey: apiKey ? 'SET' : 'MISSING', 
+      fromEmail, 
+      to 
+    });
+    
+    if (!apiKey) {
+      console.error('[Email] RESEND_API_KEY not set!');
+      return { emailed: false, error: 'RESEND_API_KEY not configured' };
+    }
+    
+    const { Resend } = await import('resend');
+    const resend = new Resend(apiKey);
+    
+    console.log('[Email] Calling Resend API...');
+    const result = await resend.emails.send({ 
+      to, 
+      from: fromEmail, 
+      subject, 
+      html, 
+      text, 
+      replyTo: replyTo 
+    });
+    
+    console.log('[Email] Resend raw result:', JSON.stringify(result, null, 2));
+    
+    if (result.error) {
+      console.error('[Email] Resend API error:', result.error);
+      return { 
+        emailed: false, 
+        error: result.error,
+        via: 'resend'
+      };
+    }
+    
+    console.log('[Email] Resend success:', { to, id: result.data?.id });
+    return { emailed: true, via: 'resend', id: result.data?.id };
+  } catch (e) {
+    console.error('[Email] Resend failed:', e);
+    return { emailed: false, error: String(e) };
+  }
 
 export const prerender = false;
 
@@ -523,14 +538,16 @@ export const POST: APIRoute = async ({ request }) => {
     
     // Email (Resend if configured)
     const emailed = await maybeSendEmail(data);
-    console.log('[Offerte API] Email result:', emailed);
+    console.log('[Offerte API] Email result:', JSON.stringify(emailed, null, 2));
 
     return new Response(JSON.stringify({ 
       ok: true, 
       stored: stored.stored === true, 
       emailed: emailed.emailed === true,
-      notification: emailed.notification,
-      confirmation: emailed.confirmation
+      emailDetails: {
+        notification: emailed.notification,
+        confirmation: emailed.confirmation
+      }
     }), { status: 200, headers: { 'content-type': 'application/json' } });
   } catch (e) {
     console.error('[Offerte API] Fatal error:', e);
