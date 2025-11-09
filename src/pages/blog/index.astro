@@ -92,10 +92,10 @@ const allTags = Array.from(tagSet).sort();
 											<source type="image/avif" srcset={post.heroVariants.avif.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
 											<source type="image/webp" srcset={post.heroVariants.webp.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
 											<source type="image/jpeg" srcset={post.heroVariants.jpg.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
-											<img src={post.resolvedHero} alt={post.data.title} loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
+											<img src={post.resolvedHero} alt={post.data.title} loading={index === 0 ? "eager" : "lazy"} fetchpriority={index === 0 ? "high" : undefined} decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
 										</picture>
 									) : (
-										<img src={post.resolvedHero} alt={post.data.title} loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
+										<img src={post.resolvedHero} alt={post.data.title} loading={index === 0 ? "eager" : "lazy"} fetchpriority={index === 0 ? "high" : undefined} decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
 									)}
 									<div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow">{post.data.tags?.[0] || 'Algemeen'}</div>
 								</div>
