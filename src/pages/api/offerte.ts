@@ -69,6 +69,13 @@ async function sendNotificationEmail(data: Record<string, any>) {
   const subject = `🔔 Nieuwe offerte aanvraag – ${data.voornaam} ${data.achternaam}`;
   
   console.log('[Email] Received data.photos:', data.photos?.length || 0, 'photos');
+  console.log('[Email] Data check:', { 
+    service: data.service, 
+    units: data.units, 
+    indoorUnits: data['indoor-units'],
+    hasContract: data.service?.includes('Onderhoudscontract'),
+    hasUnits: !!data.units
+  });
   
   // Convert base64 photos to attachments
   const attachments: Array<{ filename: string; content: string }> = [];
