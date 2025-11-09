@@ -1,0 +1,152 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/homepage-glass.css';
+---
+
+<Layout title="Technische Service Assen - Glass Variant Test" withOverlay>
+  <Fragment slot="head">
+    <link rel="preload" as="image" imagesrcset="/assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-480w.jpg 480w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-768w.jpg 768w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1024w.jpg 1024w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1440w.jpg 1440w" imagesizes="(max-width: 1024px) 92vw, 640px" />
+  </Fragment>
+
+  <!-- Glass Hero -->
+  <section class="home-glass-hero">
+    <div class="hc-container hero-grid">
+      <div class="glx-card">
+        <div class="hero-badge">EXPERIMENT</div>
+        <h1 class="glx-title">Technische Service Assen</h1>
+        <p class="glx-sub">Professionele installatie van airco, Quooker en waterontharders. BRL gecertificeerd met 15+ jaar ervaring. Dit is een experimentele glassmorphism variant van de homepage.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte" class="glx-btn-primary">Gratis Offerte</a>
+          <a href="tel:0658980933" class="glx-btn-primary" style="background:linear-gradient(90deg,#38bdf8,#0ea5e9);color:#0f172a;">📞 Bellen</a>
+        </div>
+      </div>
+      <div class="glx-img-wrap">
+        <picture>
+          <source type="image/avif" srcset="/assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-480w.avif 480w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-768w.avif 768w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1024w.avif 1024w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1440w.avif 1440w" sizes="(max-width: 1024px) 92vw, 640px" />
+          <source type="image/webp" srcset="/assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-480w.webp 480w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-768w.webp 768w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1024w.webp 1024w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1440w.webp 1440w" sizes="(max-width: 1024px) 92vw, 640px" />
+          <source type="image/jpeg" srcset="/assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-480w.jpg 480w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-768w.jpg 768w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1024w.jpg 1024w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1440w.jpg 1440w" sizes="(max-width: 1024px) 92vw, 640px" />
+          <img src="/assets/quooker-flex-square/2788-fxsgme-gunmetal-kurkuma.jpg" alt="Quooker Flex Square Gunmetal" loading="lazy" decoding="async" />
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Glass Grid -->
+  <section class="glx-services-section">
+    <div class="hc-container">
+      <div class="glx-section-head">
+        <h2 class="hc-title mb-3">Onze Services (Glass)</h2>
+        <p class="hc-subtitle mx-auto">Experimentele weergave van serviceblokken met transparantie en blur.</p>
+      </div>
+      <div class="glx-services-grid">
+        <div class="glx-service">
+          <div class="text-3xl">❄️</div>
+          <h3>Airco Installatie</h3>
+          <p>Split & multi-split airco. Daikin, Mitsubishi Heavy en Sinclair.</p>
+          <ul>
+            <li>✓ Gratis advies & offerte</li>
+            <li>✓ 2 jaar installatiegarantie</li>
+            <li>✓ Koeling én verwarming</li>
+          </ul>
+          <a href="/airco-installatie" class="glx-btn-primary">Meer info</a>
+        </div>
+        <div class="glx-service">
+          <div class="text-3xl">💧</div>
+          <h3>Quooker Installatie</h3>
+          <p>Alle modellen inclusief Flex & Cube uitbreiding voor bruisend water.</p>
+          <ul>
+            <li>✓ 20+ jaar ervaring</li>
+            <li>✓ Alle modellen beschikbaar</li>
+            <li>✓ Cube uitbreiding</li>
+          </ul>
+          <a href="/quooker-installatie" class="glx-btn-primary">Meer info</a>
+        </div>
+        <div class="glx-service">
+          <div class="text-3xl">💎</div>
+          <h3>Waterontharder</h3>
+          <p>Delta Europese kwaliteit voor zachter water en minder kalk.</p>
+          <ul>
+            <li>✓ Gratis watertest</li>
+            <li>✓ Europese kwaliteit</li>
+            <li>✓ Minder zeep nodig</li>
+          </ul>
+          <a href="/waterontharder" class="glx-btn-primary">Meer info</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Glass Panel -->
+  <section class="space-top">
+    <div class="hc-container">
+      <div class="glx-cta">
+        <h2>Klaar voor uw installatie?</h2>
+        <p>Dit is een proefversie van een meer moderne en transparante visuele stijl. Geef feedback voordat we dit eventueel breed inzetten.</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte" class="glx-btn-primary">Gratis Offerte</a>
+          <a href="tel:0658980933" class="glx-btn-primary" style="background:linear-gradient(90deg,#38bdf8,#0ea5e9);color:#0f172a;">📞 Bellen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Glass Section -->
+  <section class="glx-why">
+    <div class="hc-container">
+      <div class="glx-section-head">
+        <h2 class="hc-title mb-3">Waarom Technische Service Assen?</h2>
+        <p class="hc-subtitle mx-auto">Glas-geïnspireerde variant van onze kernkwaliteiten.</p>
+      </div>
+      <div class="glx-why-grid">
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">🛡️</span></div>
+          <h3>BRL Gecertificeerd</h3>
+          <p>BRL-100 voor kwaliteit & vakmanschap.</p>
+        </div>
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">⭐</span></div>
+          <h3>15+ Jaar Ervaring</h3>
+          <p>Ruime ervaring met gerenommeerde merken.</p>
+        </div>
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">🔧</span></div>
+          <h3>Professionele Service</h3>
+          <p>Advies, installatie & nazorg uit één hand.</p>
+        </div>
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">💰</span></div>
+          <h3>Scherpe Prijzen</h3>
+          <p>Eerlijk & transparant zonder verrassingen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Glass Section -->
+  <section class="glx-contact">
+    <div class="hc-container">
+      <div class="glx-section-head">
+        <h2 class="hc-title mb-3">Contact & Gegevens</h2>
+        <p class="hc-subtitle mx-auto">Bereik ons direct of vraag een vrijblijvende offerte.</p>
+      </div>
+      <div class="glx-contact-grid">
+        <div class="glx-contact-card">
+          <h3>📍 Adres</h3>
+          <p>Groenkampen 31<br/>9407 RJ Assen</p>
+        </div>
+        <div class="glx-contact-card">
+          <h3>📞 Contact</h3>
+          <p><a href="tel:0658980933">06-58980933</a><br/><a href="mailto:info@technischeservice.nl">info@technischeservice.nl</a></p>
+        </div>
+        <div class="glx-contact-card">
+          <h3>🏢 Bedrijfsgegevens</h3>
+          <p>KvK: 83742638<br/>BRL-100 Gecertificeerd</p>
+        </div>
+        <div class="glx-contact-card">
+          <h3>➡ Actie</h3>
+          <p><a href="/offerte">Vraag gratis offerte aan</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

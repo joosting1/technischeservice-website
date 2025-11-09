@@ -1,63 +1,132 @@
 ---
 import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<Layout title="Over Ons - Technische Service Assen" withOverlay background="/assets/portfolio/responsive/sinclair-vries-1440w.jpg">
+	<!-- Hero -->
+	<section class="page-hero-glass">
+		<div class="hc-container">
+			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Over ons' }]} />
+			<div class="hero-grid">
+				<div class="glx-card">
+					<h1 class="glx-title">Over ons</h1>
+					<p class="glx-sub">Vakmanschap en betrouwbaarheid. 15+ jaar ervaring in installatie van airco, Quooker en waterontharders in Noord-Nederland.</p>
+				</div>
+				<div class="glx-img-wrap">
+					<img src={(AboutHeroImage as any).src} alt="Technische Service Assen" loading="lazy" decoding="async" />
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+	<!-- Over Technische Service Assen -->
+	<section class="hc-section">
+		<div class="hc-container">
+			<div class="text-center mb-12">
+				<h2 class="hc-title mb-3">Wie wij zijn</h2>
+				<p class="hc-subtitle mx-auto">Vakmanschap, korte lijnen en afspraak is afspraak. Wij helpen particulieren en bedrijven in Noord‑Nederland met betrouwbare installatie en service.</p>
+			</div>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+			<div class="hc-block">
+				<h3 class="hc-block-title mb-4">15+ jaar ervaring in installatiewerk</h3>
+				<p class="text-slate-300 mb-4">Technische Service Assen is specialist in airco’s, Quooker en waterontharders. We combineren degelijk vakwerk met heldere communicatie: u heeft één aanspreekpunt van advies tot nazorg.</p>
+				<ul class="text-slate-300 space-y-2">
+					<li>• BRL-100 gecertificeerde werkwijze</li>
+					<li>• Netjes, veilig en volgens de geldende normen</li>
+					<li>• Transparante offertes zonder verrassingen</li>
+					<li>• 2 jaar installatiegarantie op ons werk</li>
+				</ul>
+			</div>
+		</div>
+	</section>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+	<!-- Kernwaarden -->
+	<section class="hc-section hc-section-light">
+		<div class="hc-container">
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div class="hc-block text-center">
+					<div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"><span class="text-white text-2xl">🛠️</span></div>
+					<h3 class="hc-block-title mb-2">Vakmanschap</h3>
+					<p class="text-slate-300">We werken met A‑merken en doordachte materialen, zodat u jaren zorgeloos geniet.</p>
+				</div>
+				<div class="hc-block text-center">
+					<div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"><span class="text-white text-2xl">🤝</span></div>
+					<h3 class="hc-block-title mb-2">Betrouwbaarheid</h3>
+					<p class="text-slate-300">Heldere afspraken, duidelijke planning en we laten alles schoon achter.</p>
+				</div>
+				<div class="hc-block text-center">
+					<div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"><span class="text-white text-2xl">🔍</span></div>
+					<h3 class="hc-block-title mb-2">Transparantie</h3>
+					<p class="text-slate-300">Eerlijke prijzen en duidelijk advies – u weet precies waar u aan toe bent.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+	<!-- Merken & Werkgebied -->
+	<section class="hc-section">
+		<div class="hc-container">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+				<div class="hc-block">
+					<h3 class="hc-block-title mb-3">Onze merken</h3>
+					<ul class="text-slate-300 space-y-2">
+						<li>• Airco: Daikin, Mitsubishi Heavy, Sinclair</li>
+						<li>• Keuken: Quooker (incl. Flex & Cube)</li>
+						<li>• Water: Delta waterontharders (Europese kwaliteit)</li>
+					</ul>
+				</div>
+				<div class="hc-block">
+					<h3 class="hc-block-title mb-3">Werkgebied</h3>
+					<p class="text-slate-300 mb-2">We werken dagelijks in Assen en omgeving:</p>
+					<p class="text-slate-300">Assen, Kloosterveen, Vries, Tynaarlo, Gieten, Groningen en omliggende dorpen in Drenthe en Groningen.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Onze werkwijze -->
+	<section class="hc-section hc-section-light">
+		<div class="hc-container">
+			<div class="text-center mb-10">
+				<h2 class="hc-title mb-3">Onze werkwijze</h2>
+				<p class="hc-subtitle mx-auto">Snel, zorgvuldig en zonder verrassingen.</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+				<div class="hc-block text-center">
+					<div class="w-12 h-12 bg-blue-600 rounded-full text-white font-bold flex items-center justify-center mx-auto mb-3">1</div>
+					<h3 class="hc-block-title mb-1">Intake & advies</h3>
+					<p class="text-slate-300 text-sm">We bespreken uw wensen en bekijken de situatie ter plaatse.</p>
+				</div>
+				<div class="hc-block text-center">
+					<div class="w-12 h-12 bg-blue-600 rounded-full text-white font-bold flex items-center justify-center mx-auto mb-3">2</div>
+					<h3 class="hc-block-title mb-1">Offerte op maat</h3>
+					<p class="text-slate-300 text-sm">Duidelijke prijs, planning en specificaties – geen kleine lettertjes.</p>
+				</div>
+				<div class="hc-block text-center">
+					<div class="w-12 h-12 bg-blue-600 rounded-full text-white font-bold flex items-center justify-center mx-auto mb-3">3</div>
+					<h3 class="hc-block-title mb-1">Installatie</h3>
+					<p class="text-slate-300 text-sm">Netjes gemonteerd, veilig getest en werkend opgeleverd.</p>
+				</div>
+				<div class="hc-block text-center">
+					<div class="w-12 h-12 bg-blue-600 rounded-full text-white font-bold flex items-center justify-center mx-auto mb-3">4</div>
+					<h3 class="hc-block-title mb-1">Instructie & nazorg</h3>
+					<p class="text-slate-300 text-sm">Uitleg, tips voor gebruik en snelle service bij vragen.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- CTA -->
+	<section class="hc-section">
+		<div class="hc-container text-center">
+			<h2 class="hc-title mb-3">Kennismaken of direct starten?</h2>
+			<p class="hc-subtitle mb-8">Vraag een gratis adviesgesprek aan of bel ons direct.</p>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a href="/offerte" class="btn btn-secondary px-8 py-4 text-lg">Gratis Offerte</a>
+				<a href="tel:0658980933" class="btn btn-outline px-8 py-4 text-lg">📞 06-58980933</a>
+			</div>
+		</div>
+	</section>
 </Layout>

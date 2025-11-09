@@ -1,0 +1,106 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '../styles/homepage-glass.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  background?: string;
+  noOverlay?: boolean;
+  withOverlay?: boolean;
+}
+
+const { title, description = "Professionele installatie van airco, Quooker en waterontharders. BRL gecertificeerd met 15+ jaar ervaring.", image, background, noOverlay = false, withOverlay = false } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <slot name="head" />
+  </head>
+
+  <body class={`hc-page ${noOverlay ? 'no-overlay' : ''} ${withOverlay ? 'with-overlay' : ''}`} style={background ? `--page-bg-image: url('${background}')` : undefined}>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    
+    <!-- Compact Cookie Consent Widget -->
+    <div id="cookie-widget" class="fixed bottom-4 right-4 z-50">
+      <div id="cookie-mini" class="flex items-center gap-2 bg-slate-800/90 backdrop-blur-sm text-slate-200 px-3 py-2 rounded-full shadow-lg text-xs cursor-pointer select-none">
+        <span>🍪 Cookies</span>
+        <button id="cookie-open" aria-label="Cookie instellingen" class="px-2 py-0.5 rounded bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs">Instellen</button>
+      </div>
+      <div id="cookie-panel" class="hidden mt-2 w-72 bg-slate-900/95 backdrop-blur-sm border border-slate-700 rounded-xl shadow-xl p-4 text-slate-200 text-xs">
+        <div class="flex items-start justify-between mb-2">
+          <h2 class="font-semibold text-sm">Cookie Instellingen</h2>
+          <button id="cookie-close" aria-label="Sluiten" class="text-slate-400 hover:text-slate-200">×</button>
+        </div>
+        <p class="text-slate-400 leading-relaxed mb-3">We gebruiken strikt noodzakelijke cookies. Sta analytics toe om de ervaring te verbeteren?</p>
+        <div class="space-y-2 mb-3">
+          <label class="flex items-center gap-2 text-slate-300">
+            <input type="checkbox" id="cookie-analytics" class="accent-orange-500" />
+            <span class="text-xs">Analytics inschakelen</span>
+          </label>
+        </div>
+        <div class="flex gap-2">
+          <button id="cookie-save" class="flex-1 btn btn-secondary text-xs py-2">Opslaan</button>
+          <button id="cookie-accept-all" class="flex-1 btn btn-primary text-xs py-2">Alles</button>
+        </div>
+        <div class="mt-3 text-[10px] text-slate-500">
+          <a href="/privacy" class="hover:text-orange-300 underline">Privacybeleid</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Simple cookie consent functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const widget = document.getElementById('cookie-widget');
+        const mini = document.getElementById('cookie-mini');
+        const panel = document.getElementById('cookie-panel');
+        const openBtn = document.getElementById('cookie-open');
+        const closeBtn = document.getElementById('cookie-close');
+        const saveBtn = document.getElementById('cookie-save');
+        const acceptAllBtn = document.getElementById('cookie-accept-all');
+        const analyticsChk = document.getElementById('cookie-analytics');
+        const analyticsInput = analyticsChk instanceof HTMLInputElement ? analyticsChk : null;
+
+        const CONSENT_KEY = 'cookie-consent';
+        const existing = localStorage.getItem(CONSENT_KEY);
+
+        // If consent already given hide mini if all & analytics accepted
+        if (existing === 'all') {
+          if (analyticsInput) analyticsInput.checked = true;
+          // keep minimal unobtrusive pill in case user wants to change
+        } else if (existing === 'necessary') {
+          if (analyticsInput) analyticsInput.checked = false;
+        }
+
+        function openPanel() { panel?.classList.remove('hidden'); mini?.classList.add('hidden'); }
+        function closePanel() { panel?.classList.add('hidden'); mini?.classList.remove('hidden'); }
+        openBtn?.addEventListener('click', openPanel);
+        mini?.addEventListener('click', e => { if (e.target === mini) openPanel(); });
+        closeBtn?.addEventListener('click', closePanel);
+        saveBtn?.addEventListener('click', () => {
+          localStorage.setItem(CONSENT_KEY, analyticsInput && analyticsInput.checked ? 'all' : 'necessary');
+          closePanel();
+        });
+        acceptAllBtn?.addEventListener('click', () => {
+          if (analyticsInput) analyticsInput.checked = true;
+          localStorage.setItem(CONSENT_KEY, 'all');
+          closePanel();
+        });
+      });
+    </script>
+  </body>
+</html>

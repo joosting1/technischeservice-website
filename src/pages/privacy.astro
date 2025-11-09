@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<Layout title="Privacybeleid - Technische Service Assen" withOverlay background="/assets/portfolio/responsive/sinclair-vries-1440w.jpg">
+	<section class="hc-section">
+		<div class="hc-container">
+			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Privacybeleid' }]} />
+			<div class="max-w-4xl mx-auto">
+				<h1 class="hc-title mb-8">Privacybeleid</h1>
+				<div class="hc-block">
+					<p class="text-slate-300 mb-6">Technische Service Assen respecteert uw privacy en gaat zorgvuldig om met uw persoonlijke gegevens.</p>
+					<h2 class="hc-block-title mt-8 mb-4">Welke gegevens verzamelen wij?</h2>
+					<ul class="text-slate-300 space-y-2">
+						<li>• Naam en contactgegevens</li>
+						<li>• Adresgegevens voor installaties</li>
+						<li>• Communicatie over onze diensten</li>
+					</ul>
+					<h2 class="hc-block-title mt-8 mb-4">Waarvoor gebruiken wij uw gegevens?</h2>
+					<ul class="text-slate-300 space-y-2">
+						<li>• Het versturen van offertes</li>
+						<li>• Planning en uitvoering van installaties</li>
+						<li>• Klantenservice en nazorg</li>
+					</ul>
+					<h2 class="hc-block-title mt-8 mb-4">Contact</h2>
+					<p class="text-slate-300">Voor vragen over dit privacybeleid kunt u contact opnemen via <a href="mailto:info@technischeservice.nl" class="text-orange-400 hover:underline">info@technischeservice.nl</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

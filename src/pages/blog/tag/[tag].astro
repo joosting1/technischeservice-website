@@ -1,0 +1,118 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import path from 'path';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const tags = new Set<string>();
+  for (const p of posts) (p.data.tags || []).forEach((t: string) => tags.add(t));
+  return Array.from(tags).map((tag) => ({ params: { tag }, props: { tag } }));
+}
+
+const { tag } = Astro.props as { tag: string };
+const allPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const widths = [480, 768, 1024, 1440];
+
+// Prepare posts filtered by tag and attach responsive variants for thumbnails
+type PostWithVariants = CollectionEntry<'blog'> & { resolvedHero: string | null; heroVariants: { avif: string[]; webp: string[]; jpg: string[] } | null };
+const posts: PostWithVariants[] = allPosts
+  .filter((p) => (p.data.tags || []).includes(tag))
+  .map((post) => {
+    const heroImage = post.data.heroImage;
+    let heroVariants: { avif: string[]; webp: string[]; jpg: string[] } | null = null;
+    let resolvedHero: string | null = typeof heroImage === 'string' ? heroImage : null;
+    if (typeof heroImage === 'string' && heroImage.startsWith('/assets/')) {
+      const relUnderAssets = heroImage.replace(/^\/assets\//, '');
+      const relDir = path.posix.dirname(relUnderAssets);
+      const baseName = path.basename(heroImage, path.extname(heroImage));
+      heroVariants = { avif: [], webp: [], jpg: [] };
+      for (const w of widths) {
+        heroVariants.avif.push(`/assets/${relDir}/responsive/${baseName}-${w}w.avif`);
+        heroVariants.webp.push(`/assets/${relDir}/responsive/${baseName}-${w}w.webp`);
+        heroVariants.jpg.push(`/assets/${relDir}/responsive/${baseName}-${w}w.jpg`);
+      }
+    }
+    return { ...post, resolvedHero, heroVariants } as PostWithVariants;
+  });
+
+const pageTitle = `Blog: ${tag}`;
+const pageDesc = `Artikelen gelabeld met ${tag}`;
+---
+
+<Layout title={pageTitle} description={pageDesc} withOverlay background="/assets/portfolio/responsive/sinclair-vries-1440w.jpg">
+  <Fragment slot="head">
+    {posts[0]?.heroVariants && (
+      <link
+        rel="preload"
+        as="image"
+        imagesrcset={widths.map((w,i)=> (posts[0].heroVariants!.avif?.[i] || posts[0].heroVariants!.webp?.[i] || posts[0].heroVariants!.jpg?.[i]) + ` ${w}w`).join(', ')}
+        imagesizes="(max-width: 768px) 92vw, 1000px"
+      />
+    )}
+    <script type="application/ld+json">{JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: pageTitle,
+      description: pageDesc,
+      url: Astro.url?.href,
+      hasPart: posts.slice(0, 12).map(p => ({ '@type': 'BlogPosting', headline: p.data.title, url: new URL(`/blog/${p.id}/`, Astro.url).href }))
+    })}</script>
+    <script type="application/ld+json">{JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.url).href },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.url).href },
+        { '@type': 'ListItem', position: 3, name: `Tag: ${tag}`, item: Astro.url?.href }
+      ]
+    })}</script>
+  </Fragment>
+
+  <section class="hc-section">
+    <div class="hc-container">
+      <Breadcrumbs items={[
+        { name: 'Home', href: '/' },
+        { name: 'Blog', href: '/blog/' },
+        { name: `Tag: ${tag}` }
+      ]} />
+
+      <h1 class="hc-title mb-2">Tag: {tag}</h1>
+      <p class="hc-subtitle mb-8">{posts.length} artikel(en) gevonden</p>
+
+      <div class="hc-grid" id="post-grid">
+        {posts.map((post, index) => (
+          <article class={`hc-block ${index === 0 ? 'md:col-span-2 lg:col-span-3' : ''}`}>
+            <a href={`/blog/${post.id}/`} class="block group">
+              {post.resolvedHero && (
+                <div class={`relative ${index === 0 ? 'h-64' : 'h-48'} mb-5`}>
+                  {post.heroVariants ? (
+                    <picture>
+                      <source type="image/avif" srcset={post.heroVariants.avif.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
+                      <source type="image/webp" srcset={post.heroVariants.webp.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
+                      <source type="image/jpeg" srcset={post.heroVariants.jpg.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
+                      <img src={post.resolvedHero} alt={post.data.title} loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
+                    </picture>
+                  ) : (
+                    <img src={post.resolvedHero} alt={post.data.title} loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
+                  )}
+                  <div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow">{post.data.tags?.[0] || 'Algemeen'}</div>
+                </div>
+              )}
+              <div class="text-sm flex flex-wrap items-center gap-3 mb-3 text-slate-400">
+                <FormattedDate date={post.data.pubDate} />
+                {post.data.readTime && <span>{post.data.readTime}</span>}
+                {post.data.author && <span>{post.data.author}</span>}
+              </div>
+              <h2 class={`hc-block-title mb-3 group-hover:text-orange-300 transition-colors ${index === 0 ? 'text-2xl' : 'text-xl'}`}>{post.data.title}</h2>
+              <p class="text-slate-300 text-sm leading-relaxed mb-4">{post.data.description}</p>
+              <span class="text-orange-300 font-semibold">Lees verder →</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

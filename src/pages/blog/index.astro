@@ -1,114 +1,125 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
+import Layout from '../../layouts/Layout.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import path from 'path';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const rawPosts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const widths = [480, 768, 1024, 1440];
+
+// Enrich posts with responsive variant paths for hero thumbnails
+const posts = rawPosts.map((post) => {
+	const heroImage = post.data.heroImage;
+	let heroVariants: { avif: string[]; webp: string[]; jpg: string[] } | null = null;
+	let resolvedHero: string | null = typeof heroImage === 'string' ? heroImage : null;
+	if (typeof heroImage === 'string' && heroImage.startsWith('/assets/')) {
+		const relUnderAssets = heroImage.replace(/^\/assets\//, '');
+		const relDir = path.posix.dirname(relUnderAssets);
+		const baseName = path.basename(heroImage, path.extname(heroImage));
+		heroVariants = { avif: [], webp: [], jpg: [] };
+		for (const w of widths) {
+			heroVariants.avif.push(`/assets/${relDir}/responsive/${baseName}-${w}w.avif`);
+			heroVariants.webp.push(`/assets/${relDir}/responsive/${baseName}-${w}w.webp`);
+			heroVariants.jpg.push(`/assets/${relDir}/responsive/${baseName}-${w}w.jpg`);
+		}
+	}
+	return { ...post, resolvedHero, heroVariants };
+});
+
+// Derive tag list (unique) from posts
+const tagSet = new Set<string>();
+for (const p of posts) {
+	(p.data.tags || []).forEach((t: string) => tagSet.add(t));
+}
+const allTags = Array.from(tagSet).sort();
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
+<Layout title="Blog & Advies - Technische Service Assen" description="Praktische tips en professioneel advies van de experts bij Technische Service Assen. Alles over airco, Quooker en waterontharders." withOverlay background="/assets/portfolio/responsive/sinclair-vries-1440w.jpg">
+	<Fragment slot="head">
+		{posts[0]?.heroVariants && (
+			<link
+				rel="preload"
+				as="image"
+				imagesrcset={widths.map((w,i)=> (posts[0].heroVariants!.avif?.[i] || posts[0].heroVariants!.webp?.[i] || posts[0].heroVariants!.jpg?.[i]) + ` ${w}w`).join(', ')}
+				imagesizes="(max-width: 768px) 92vw, 1000px"
+			/>
+		)}
+		<script type="application/ld+json">{JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'BreadcrumbList',
+			itemListElement: [
+				{ '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.url).href },
+				{ '@type': 'ListItem', position: 2, name: 'Blog', item: Astro.url?.href }
+			]
+		})}</script>
+	</Fragment>
+	<section class="hc-section">
+		<div class="hc-container">
+			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Blog' }]} />
+			<div class="text-center mb-16">
+				<h1 class="hc-title mb-3">Blog & Advies</h1>
+				<p class="hc-subtitle mx-auto">Praktische tips en professioneel advies van onze experts</p>
+			</div>
+
+			<!-- Dynamic Tag Filter (horizontal scroll on mobile) -->
+			<div class="category-scroll flex gap-3 mb-12 overflow-x-auto whitespace-nowrap sm:flex-wrap sm:justify-center px-1 -mx-1" aria-label="Tags" id="tag-filter">
+				<a href="/blog/" class="hc-outline inline-block shrink-0 px-5 py-2 rounded-full text-sm text-slate-200">Alle ({posts.length})</a>
+				{allTags.map(tag => (
+					<a href={`/blog/tag/${encodeURIComponent(tag)}/`} class="hc-outline inline-block shrink-0 px-5 py-2 rounded-full text-sm text-slate-400">{tag}</a>
+				))}
+			</div>
+			<style>
+				@media (max-width: 640px) {
+					.category-scroll { -ms-overflow-style: none; scrollbar-width: none; -webkit-overflow-scrolling: touch; scroll-snap-type: x proximity; }
+					.category-scroll::-webkit-scrollbar { display: none; }
+					.category-scroll > * { scroll-snap-align: start; }
 				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+			</style>
+
+			<div class="hc-grid" id="post-grid">
+				{posts.map((post, index) => (
+					<article class={`hc-block ${index === 0 ? 'md:col-span-2 lg:col-span-3' : ''}`} data-tags={(post.data.tags||[]).join(',')}> 
+						<a href={`/blog/${post.id}/`} class="block group">
+							{post.resolvedHero && (
+								<div class={`relative ${index === 0 ? 'h-64' : 'h-48'} mb-5`}>
+									{post.heroVariants ? (
+										<picture>
+											<source type="image/avif" srcset={post.heroVariants.avif.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
+											<source type="image/webp" srcset={post.heroVariants.webp.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
+											<source type="image/jpeg" srcset={post.heroVariants.jpg.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes={index === 0 ? '(max-width: 768px) 92vw, 1000px' : '(max-width: 768px) 92vw, 400px'} />
+											<img src={post.resolvedHero} alt={post.data.title} loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
+										</picture>
+									) : (
+										<img src={post.resolvedHero} alt={post.data.title} loading="lazy" decoding="async" class="w-full h-full object-cover rounded-lg hc-outline" />
 									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+									<div class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow">{post.data.tags?.[0] || 'Algemeen'}</div>
+								</div>
+							)}
+							<div class="text-sm flex flex-wrap items-center gap-3 mb-3 text-slate-400">
+								<FormattedDate date={post.data.pubDate} />
+								{post.data.readTime && <span>{post.data.readTime}</span>}
+								{post.data.author && <span>{post.data.author}</span>}
+							</div>
+							<h2 class={`hc-block-title mb-3 group-hover:text-orange-300 transition-colors ${index === 0 ? 'text-2xl' : 'text-xl'}`}>{post.data.title}</h2>
+							<p class="text-slate-300 text-sm leading-relaxed mb-4">{post.data.description}</p>
+							<span class="text-orange-300 font-semibold">Lees verder →</span>
+						</a>
+					</article>
+				))}
+			</div>
+
+			<!-- Client-side filtering replaced by SEO-friendly tag pages (/blog/tag/<tag>/) -->
+
+			<div class="hc-block text-center mt-20">
+				<h2 class="hc-block-title mb-4">Hulp Nodig bij je Project?</h2>
+				<p class="text-slate-300 mb-6">Onze experts staan klaar voor vragen over airco, Quooker of waterontharders.</p>
+				<div class="flex flex-col sm:flex-row gap-4 justify-center">
+					<a href="/offerte" class="btn btn-secondary px-8 py-4 text-lg">Gratis Offerte Aanvragen</a>
+					<a href="tel:0658980933" class="btn btn-outline px-8 py-4 text-lg">📞 06-58980933</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

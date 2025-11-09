@@ -4,15 +4,24 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/gen-responsive.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.9",
     "@astrojs/rss": "^4.0.13",
     "@astrojs/sitemap": "^3.6.0",
+    "@supabase/supabase-js": "^2.47.10",
+    "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.3",
-    "sharp": "^0.34.3"
+    "dotenv": "^17.2.3",
+    "nodemailer": "^6.9.13",
+    "resend": "^4.0.0",
+    "sharp": "^0.34.3",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@astrojs/cloudflare": "^12.6.10"
   }
 }

@@ -1,0 +1,201 @@
+---
+import Layout from "../layouts/Layout.astro";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+const portfolioDir = fileURLToPath(new URL("../../public/assets/portfolio/", import.meta.url));
+
+const isImage = (name: string) => /\.(jpg|jpeg|png|webp|avif)$/i.test(name);
+const widths = [480, 768, 1024, 1440];
+
+const files = fs.existsSync(portfolioDir) ? fs.readdirSync(portfolioDir).filter(isImage) : [];
+
+const humanize = (filename: string) => {
+  const base = filename.replace(/\.[^.]+$/, "");
+  // Normalize common misspellings and glued words before casing
+  let norm = base.toLowerCase()
+    .replace(/sincalair/g, "sinclair")
+    .replace(/daikind/g, "daikin")
+    .replace(/aircocover/g, "airco cover");
+
+  // Replace dashes/underscores with spaces, fix common place names
+  let text = norm
+    .replace(/[\-_]+/g, " ")
+    .replace(/\bassen\b/gi, "Assen")
+    .replace(/\bklooste?r?veen\b/gi, "Kloosterveen")
+    .replace(/\bvries\b/gi, "Vries")
+    .replace(/\bgroningen\b/gi, "Groningen")
+    .replace(/\bgieten\b/gi, "Gieten")
+    .replace(/\btynaarlo\b/gi, "Tynaarlo")
+    .trim();
+
+  // Title-case words, keeping some brand names capitalized
+  const keepCaps = new Set(["Daikin", "Mitsubishi", "Quooker", "Delta", "Sinclair", "BRL"]);
+  text = text
+    .split(" ")
+    .map((w) => {
+      const lw = w.toLowerCase();
+      const normalized = lw.charAt(0).toUpperCase() + lw.slice(1);
+      for (const k of keepCaps) {
+        if (lw === k.toLowerCase()) return k;
+      }
+      return normalized;
+    })
+    .join(" ");
+
+  return text;
+};
+
+const items = files.map((name) => {
+  const title = humanize(name);
+  const url = `/assets/portfolio/${name}`;
+  const alt = `${title}`;
+  const caption = `${title}`;
+
+  // Build responsive variants when available under /public/assets/portfolio/responsive
+  const base = name.replace(/\.[^.]+$/, "");
+  const responsiveDir = path.join(portfolioDir, 'responsive');
+  const hasResponsive = fs.existsSync(responsiveDir);
+  const avifSet: string[] = [];
+  const webpSet: string[] = [];
+  const jpgSet: string[] = [];
+  if (hasResponsive) {
+    for (const w of widths) {
+      const avifPath = path.join(responsiveDir, `${base}-${w}w.avif`);
+      const webpPath = path.join(responsiveDir, `${base}-${w}w.webp`);
+      const jpgPath = path.join(responsiveDir, `${base}-${w}w.jpg`);
+      if (fs.existsSync(avifPath)) avifSet.push(`/assets/portfolio/responsive/${base}-${w}w.avif`);
+      if (fs.existsSync(webpPath)) webpSet.push(`/assets/portfolio/responsive/${base}-${w}w.webp`);
+      if (fs.existsSync(jpgPath)) jpgSet.push(`/assets/portfolio/responsive/${base}-${w}w.jpg`);
+    }
+  }
+
+  const variants = (avifSet.length + webpSet.length + jpgSet.length) > 0 ? { avif: avifSet, webp: webpSet, jpg: jpgSet } : null;
+
+  return { name, url, title, alt, caption, variants };
+});
+
+// Sort newest first by filesystem mtime
+items.sort((a, b) => {
+  const aTime = fs.statSync(path.join(portfolioDir, a.name)).mtimeMs;
+  const bTime = fs.statSync(path.join(portfolioDir, b.name)).mtimeMs;
+  return bTime - aTime;
+});
+---
+
+<Layout title="Afbeeldingen van recent werk | Technische Service Assen" description="Afbeeldingen van recent werk: airco-installaties, Quooker en waterontharders in Noord-Nederland." image="/assets/portfolio/sinclair-vries.jpg" background="/assets/portfolio/responsive/sinclair-vries-1440w.jpg" withOverlay>
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Afbeeldingen van recent werk' }]} />
+      <h1 class="hc-title">Afbeeldingen van recent werk</h1>
+      <p class="hc-subtitle mt-4">Een selectie van recente installaties met extra focus op beeldkwaliteit en contrast.</p>
+    </div>
+  </section>
+
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
+      {items.length === 0 ? (
+        <div class="text-center text-gray-300 py-16">
+          <p>Geen foto's gevonden in <code>/public/assets/portfolio</code>.</p>
+        </div>
+      ) : (
+        <div class="hc-grid">
+          {items.map((item, idx) => (
+            <figure class="group hc-block cursor-pointer" data-lightbox-index={idx} data-full={item.url} data-title={item.title}>
+              <span class="hc-accent-bar" aria-hidden="true"></span>
+              <div class="hc-block-img-wrapper">
+                {item.variants ? (
+                  <picture>
+                    {item.variants.avif?.length > 0 && (
+                      <source type="image/avif" srcset={item.variants.avif.map((p,i)=>`${p} ${widths[i] ?? ''}w`).join(', ')} sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 30vw" />
+                    )}
+                    {item.variants.webp?.length > 0 && (
+                      <source type="image/webp" srcset={item.variants.webp.map((p,i)=>`${p} ${widths[i] ?? ''}w`).join(', ')} sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 30vw" />
+                    )}
+                    {item.variants.jpg?.length > 0 && (
+                      <source type="image/jpeg" srcset={item.variants.jpg.map((p,i)=>`${p} ${widths[i] ?? ''}w`).join(', ')} sizes="(max-width: 640px) 92vw, (max-width: 1024px) 45vw, 30vw" />
+                    )}
+                    <img src={item.url} alt={item.alt} loading="lazy" decoding="async" />
+                  </picture>
+                ) : (
+                  <img src={item.url} alt={item.alt} loading="lazy" decoding="async" />
+                )}
+              </div>
+              <figcaption>
+                <h3 class="hc-block-title">{item.title}</h3>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
+      
+    </div>
+  </section>
+</Layout>
+
+<script type="application/ld+json">
+{JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'ImageGallery',
+  'name': 'Afbeeldingen van recent werk | Technische Service Assen',
+  'description': 'Recent uitgevoerde installaties: airco, warmtepomp, Quooker en waterontharder in Noord-Nederland.',
+  'publisher': {
+    '@type': 'Organization',
+    'name': 'Technische Service Assen',
+    'url': Astro.site?.origin || '',
+    'logo': {
+      '@type': 'ImageObject',
+      'url': (Astro.site?.origin || '') + '/favicon.svg'
+    }
+  },
+  'image': items.slice(0, 30).map(i => ({
+    '@type': 'ImageObject',
+    'contentUrl': (Astro.site?.origin || '') + i.url,
+    'name': i.title,
+    'caption': i.title
+  }))
+})}
+</script>
+
+<script type="application/ld+json">
+{JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {
+      '@type': 'ListItem',
+      'position': 1,
+      'name': 'Home',
+      'item': new URL('/', Astro.site).toString()
+    },
+    {
+      '@type': 'ListItem',
+      'position': 2,
+      'name': 'Afbeeldingen van recent werk',
+      'item': new URL(Astro.url.pathname, Astro.site).toString()
+    }
+  ]
+})}
+</script>
+
+<!-- Lightbox Overlay -->
+<div id="lightbox" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+  <div class="absolute inset-0 flex flex-col">
+    <div class="flex items-start justify-end p-4">
+      <button id="lightbox-close" aria-label="Sluiten" class="text-gray-300 hover:text-white transition-colors text-2xl font-semibold">×</button>
+    </div>
+    <div class="flex-1 flex items-center justify-center px-4 pb-10">
+      <button id="lightbox-prev" aria-label="Vorige" class="hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white mr-4 select-none">‹</button>
+      <div class="max-w-5xl w-full text-center">
+        <img id="lightbox-image" src="" alt="" class="mx-auto max-h-[70vh] w-auto rounded-lg shadow-lg" />
+        <div id="lightbox-caption" class="mt-4 text-gray-200 text-sm"></div>
+      </div>
+      <button id="lightbox-next" aria-label="Volgende" class="hidden md:flex h-12 w-12 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white ml-4 select-none">›</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline src="/js/lightbox.js"></script>

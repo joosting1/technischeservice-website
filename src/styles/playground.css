@@ -1,0 +1,147 @@
+/* Design playground experimental styles */
+
+.play-bg-wrapper {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(120deg, rgba(15,23,42,0.95), rgba(30,58,138,0.85)), url('/assets/portfolio/responsive/placeholder-1024w.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+.play-bg-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(2px);
+  background: radial-gradient(circle at 35% 30%, rgba(245,158,11,0.25), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(56,189,248,0.25), transparent 60%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: 0 12px 40px -10px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15);
+  border-radius: 1.2rem;
+  padding: 2.25rem 2rem;
+  max-width: 560px;
+  width: 100%;
+  color: #f1f5f9;
+  overflow: hidden;
+}
+
+.glass-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(245,158,11,0.35), rgba(56,189,248,0.25));
+  opacity: 0;
+  transition: opacity .5s ease;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.glass-card:hover::after { opacity: 1; }
+
+.glass-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, var(--hc-accent), var(--hc-accent-alt));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-text { line-height: 1.75; font-size: 1.05rem; color: var(--hc-muted); }
+
+.glass-actions { margin-top: 1.75rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+
+.glass-btn {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: .85rem 1.1rem;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  border-radius: .85rem;
+  backdrop-filter: blur(6px);
+  transition: background .3s, transform .3s, box-shadow .3s;
+}
+.glass-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-3px); box-shadow: 0 8px 24px -6px rgba(0,0,0,0.55); }
+
+/* Toggle panel for switching effects */
+.play-controls {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.play-controls button {
+  background: rgba(15,23,42,0.65);
+  color: #e2e8f0;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: .55rem .9rem;
+  font-size: .75rem;
+  border-radius: .6rem;
+  backdrop-filter: blur(10px);
+  transition: background .25s;
+}
+.play-controls button:hover { background: rgba(30,58,138,0.7); }
+
+/* Alternative glass theme background */
+.alt-bg {
+  background: linear-gradient(140deg, #0f172a, #1e3a8a 75%);
+}
+.alt-bg.decor::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 8px, transparent 8px 16px);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Animated gradient border experiment */
+.gradient-border {
+  position: relative;
+  padding: 2px;
+  border-radius: 1.3rem;
+  background: linear-gradient(120deg, var(--hc-accent), var(--hc-accent-alt), #f59e0b);
+  background-size: 300% 300%;
+  animation: borderShift 8s ease infinite;
+}
+.gradient-border .inner {
+  background: rgba(15,23,42,0.85);
+  backdrop-filter: blur(12px);
+  border-radius: 1.15rem;
+  padding: 1.75rem 1.5rem;
+}
+@keyframes borderShift {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Utility for spacing between demo sections */
+.play-section { padding: 4rem 1.5rem; position: relative; }
+.play-section + .play-section { border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* Accessibility focus ring override for demo */
+.glass-btn:focus-visible { outline: 3px solid var(--hc-accent-alt); outline-offset: 2px; }

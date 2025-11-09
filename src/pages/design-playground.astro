@@ -1,0 +1,95 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/playground.css';
+---
+
+<Layout title="Design Playground - Experimentele UI" withOverlay>
+  <section class="play-bg-wrapper">
+    <div class="glass-card" id="main-glass">
+      <h1 class="glass-title">Design Playground</h1>
+      <p class="glass-text">Experimentele transparantie, glassmorphism, geanimeerde randen en achtergrond overlays. Gebruik de knoppen rechtsboven om effecten te wisselen zonder bestaande pagina's te beïnvloeden.</p>
+      <div class="glass-actions">
+        <button class="glass-btn" data-action="toggle-alt">Alternatieve achtergrond</button>
+        <button class="glass-btn" data-action="toggle-decor">Decorlaag</button>
+        <button class="glass-btn" data-action="toggle-gradient-border">Gradient Rand</button>
+        <button class="glass-btn" data-action="toggle-intensity">Intensiteit</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="play-section alt-showcase">
+    <div class="gradient-border">
+      <div class="inner">
+        <h2 class="glass-title" style="font-size:2rem">Gradient Border + Blur</h2>
+        <p class="glass-text">Dit blok demonstreert een geanimeerde gradient rand die potentieel gebruikt kan worden voor premium callouts of hero componenten. Blur + semi-transparante achtergrond houden focus op content.</p>
+        <div class="glass-actions">
+          <button class="glass-btn" data-action="pulse-border">Pulse</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="play-section">
+    <div class="glass-card" style="max-width:720px;margin:0 auto;">
+      <h2 class="glass-title" style="font-size:2rem">Glassmorphism Variant</h2>
+      <p class="glass-text">Lichtere variant met hogere saturation, geschikt voor overlay panelen of modals. Test of dit leesbaarheid behoudt in combinatie met bestaande high-contrast kleuren.</p>
+      <div class="glass-actions">
+        <button class="glass-btn" data-action="raise">Verhoog Elevation</button>
+        <button class="glass-btn" data-action="lower">Verlaag Elevation</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="play-section">
+    <div class="glass-card" style="max-width:680px;margin:0 auto;">
+      <h2 class="glass-title" style="font-size:2rem">Achtergrond Overlay Ideeën</h2>
+      <p class="glass-text">We kunnen adaptieve overlays toevoegen op basis van themakleur of content type (service vs. blog). De radial gradients kunnen subtiel brand accent tonen.</p>
+      <ul class="glass-text" style="margin-top:1rem;">
+        <li>Radial brand accent bubbles</li>
+        <li>Geanimeerde lichte randen bij hover</li>
+        <li>Decor-mask voor technische sfeer</li>
+      </ul>
+    </div>
+  </section>
+
+    <script>
+      // @ts-nocheck
+    // Interactive toggles for playground
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.querySelector('.play-bg-wrapper');
+      const glass = document.getElementById('main-glass');
+      const buttons = document.querySelectorAll('[data-action]');
+      const gradientBorder = document.querySelector('.gradient-border');
+
+      let alt = false; let decor = false; let gradient = false; let intense = false; let pulse = false;
+
+      function update() {
+        if (alt) root?.classList.add('alt-bg'); else root?.classList.remove('alt-bg');
+        if (decor) root?.classList.add('decor'); else root?.classList.remove('decor');
+        if (gradient) glass?.classList.add('gradient-border-active'); else glass?.classList.remove('gradient-border-active');
+        if (intense) glass?.style.setProperty('backdrop-filter', 'blur(22px) saturate(180%)'); else glass?.style.setProperty('backdrop-filter', 'blur(14px) saturate(150%)');
+        if (pulse) gradientBorder?.classList.add('pulse'); else gradientBorder?.classList.remove('pulse');
+      }
+
+        function setBoxShadow(v) {
+        if (glass instanceof HTMLElement) glass.style.boxShadow = v;
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const action = btn.getAttribute('data-action');
+          switch(action) {
+            case 'toggle-alt': alt = !alt; break;
+            case 'toggle-decor': decor = !decor; break;
+            case 'toggle-gradient-border': gradient = !gradient; break;
+            case 'toggle-intensity': intense = !intense; break;
+            case 'pulse-border': pulse = !pulse; break;
+            case 'raise': setBoxShadow('0 18px 50px -12px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.2)'); break;
+            case 'lower': setBoxShadow('0 12px 40px -10px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15)'); break;
+          }
+          update();
+        });
+      });
+    });
+  </script>
+</Layout>

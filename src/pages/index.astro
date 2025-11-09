@@ -1,49 +1,141 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Layout from '../layouts/Layout.astro';
+import '../styles/homepage-glass.css';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title="Technische Service Assen - Professionele Installaties" background="/assets/homepage/mitsubishi.jpg" withOverlay>
+  <Fragment slot="head">
+    <link rel="preload" as="image" imagesrcset="/assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-480w.jpg 480w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-768w.jpg 768w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1024w.jpg 1024w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1440w.jpg 1440w" imagesizes="(max-width: 1024px) 92vw, 640px" />
+  </Fragment>
+
+  <!-- Gestandaardiseerde Hero -->
+  <section class="hc-hero hero-left">
+    <div class="hc-container">
+      <div class="hero-stack max-w-3xl">
+        <span class="hero-eyebrow">Installatie & Service</span>
+        <h1 class="hc-title">Technische Service Assen</h1>
+        <p class="hero-subtitle">Professionele installatie van airco, Quooker en waterontharders. BRL-100 gecertificeerd met 15+ jaar ervaring voor betrouwbare kwaliteit.</p>
+        <div class="hero-actions">
+          <a href="/offerte" class="btn btn-primary">Gratis Offerte</a>
+          <a href="https://wa.me/31658980933" target="_blank" rel="noopener" class="btn btn-outline">� WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Glass Grid (no section overlay) -->
+  <section class="glx-services-section">
+    <div class="hc-container">
+      <div class="glx-section-head">
+        <h2 class="hc-title mb-3">Onze Services</h2>
+      </div>
+      <div class="glx-services-grid">
+        <div class="glx-service">
+          <div class="text-3xl">❄️</div>
+          <h3>Airco Installatie</h3>
+          <p>Split & multi-split airco. Daikin, Mitsubishi Heavy en Sinclair.</p>
+          <ul>
+            <li>✓ Gratis advies & offerte</li>
+            <li>✓ 2 jaar installatiegarantie</li>
+            <li>✓ Koeling én verwarming</li>
+          </ul>
+          <a href="/airco-installatie" class="glx-btn-primary">Meer info</a>
+        </div>
+        <div class="glx-service">
+          <div class="text-3xl">💧</div>
+          <h3>Quooker Installatie</h3>
+          <p>Alle modellen inclusief Flex & Cube uitbreiding voor bruisend water.</p>
+          <ul>
+            <li>✓ 20+ jaar ervaring</li>
+            <li>✓ Alle modellen beschikbaar</li>
+            <li>✓ Cube uitbreiding</li>
+          </ul>
+          <a href="/quooker-installatie" class="glx-btn-primary">Meer info</a>
+        </div>
+        <div class="glx-service">
+          <div class="text-3xl">💎</div>
+          <h3>Waterontharder</h3>
+          <p>Delta Europese kwaliteit voor zachter water en minder kalk.</p>
+          <ul>
+            <li>✓ Gratis watertest</li>
+            <li>✓ Europese kwaliteit</li>
+            <li>✓ Minder zeep nodig</li>
+          </ul>
+          <a href="/waterontharder" class="glx-btn-primary">Meer info</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Glass Panel -->
+  <section class="space-top">
+    <div class="hc-container">
+      <div class="glx-cta">
+        <h2>Klaar voor uw installatie?</h2>
+        <div class="flex flex-wrap gap-4">
+          <a href="/offerte" class="glx-btn-primary">Gratis Offerte</a>
+          <a href="https://wa.me/31658980933" target="_blank" rel="noopener" class="glx-btn-primary" style="background:linear-gradient(90deg,#25d366,#128c7e);color:#fff;">� WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why (reasons) glass section (dark variant) -->
+  <section class="glx-why hc-section">
+    <div class="hc-container">
+      <div class="glx-section-head">
+        <h2 class="hc-title mb-3">Waarom Technische Service Assen?</h2>
+      </div>
+      <div class="glx-why-grid">
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">🛡️</span></div>
+          <h3>BRL Gecertificeerd</h3>
+          <p>BRL-100 voor kwaliteit & vakmanschap.</p>
+        </div>
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">⭐</span></div>
+          <h3>15+ Jaar Ervaring</h3>
+          <p>Ruime ervaring met gerenommeerde merken.</p>
+        </div>
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">🔧</span></div>
+          <h3>Professionele Service</h3>
+          <p>Advies, installatie & nazorg uit één hand.</p>
+        </div>
+        <div class="glx-why-item">
+          <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg"><span class="text-white text-2xl">💰</span></div>
+          <h3>Scherpe Prijzen</h3>
+          <p>Eerlijk & transparant zonder verrassingen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Glass Section -->
+  <section class="glx-contact">
+    <div class="hc-container">
+      <div class="glx-section-head">
+        <h2 class="hc-title mb-3">Contact & Gegevens</h2>
+        <p class="hc-subtitle mx-auto">Bereik ons direct of vraag een vrijblijvende offerte.</p>
+      </div>
+      <div class="glx-contact-grid">
+        <div class="glx-contact-card">
+          <h3>📍 Adres</h3>
+          <p>Groenkampen 31<br/>9407 RJ Assen</p>
+        </div>
+        <div class="glx-contact-card">
+          <h3>📞 Contact</h3>
+          <p><a href="tel:0658980933">06-58980933</a><br/><a href="mailto:info@technischeservice.nl">info@technischeservice.nl</a></p>
+        </div>
+        <div class="glx-contact-card">
+          <h3>🏢 Bedrijfsgegevens</h3>
+          <p>KvK: 83742638<br/>BRL-100 Gecertificeerd</p>
+        </div>
+        <div class="glx-contact-card">
+          <h3>➡ Actie</h3>
+          <p><a href="/offerte">Vraag gratis offerte aan</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

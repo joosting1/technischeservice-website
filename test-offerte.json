@@ -1,0 +1,14 @@
+{
+  "voornaam": "Jan",
+  "achternaam": "Joosting",
+  "telefoon": "06-12345678",
+  "email": "joosting1@gmail.com",
+  "adres": "Teststraat 123",
+  "postcode": "9400 AA",
+  "woonplaats": "Assen",
+  "service": "airco",
+  "personen": "3-4",
+  "datum": "2025-11-15",
+  "opmerkingen": "Test aanvraag voor airco installatie. Graag contact voor adviesgesprek.",
+  "privacy": "on"
+}

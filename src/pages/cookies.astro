@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<Layout title="Cookiebeleid - Technische Service Assen" withOverlay background="/assets/portfolio/responsive/sinclair-vries-1440w.jpg">
+	<section class="hc-section">
+		<div class="hc-container">
+			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Cookiebeleid' }]} />
+			<div class="max-w-4xl mx-auto">
+				<h1 class="hc-title mb-8">Cookiebeleid</h1>
+				<div class="hc-block">
+					<p class="text-slate-300 mb-6">Deze website gebruikt cookies om de gebruikerservaring te verbeteren.</p>
+					<h2 class="hc-block-title mt-8 mb-4">Functionele Cookies</h2>
+					<p class="text-slate-300">Deze cookies zijn noodzakelijk voor het goed functioneren van de website.</p>
+					<h2 class="hc-block-title mt-8 mb-4">Analytics Cookies</h2>
+					<p class="text-slate-300">Met uw toestemming gebruiken we analytics cookies om de website te verbeteren.</p>
+					<h2 class="hc-block-title mt-8 mb-4">Contact</h2>
+					<p class="text-slate-300">Voor vragen over cookies kunt u contact opnemen via <a href="mailto:info@technischeservice.nl" class="text-orange-400 hover:underline">info@technischeservice.nl</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

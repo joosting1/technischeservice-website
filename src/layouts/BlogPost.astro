@@ -1,86 +1,171 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
+import Layout from './Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
+import path from 'path';
+import { promises as fs } from 'fs';
+import { fileURLToPath } from 'url';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags, author, readTime } = Astro.props;
+
+// Build-time responsive variants discovery for heroImage (if string path under /assets/...)
+let heroVariants: { avif: string[]; webp: string[]; jpg: string[] } | null = null;
+let resolvedHero: string | null = typeof heroImage === 'string' ? heroImage : null;
+const widths = [480, 768, 1024, 1440];
+if (typeof heroImage === 'string' && heroImage.startsWith('/assets/')) {
+  try {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const projectRoot = path.resolve(__dirname, '..');
+    let relativeUnderPublic = heroImage.replace(/^\//, '');
+    let absoluteSource = path.join(projectRoot, 'public', relativeUnderPublic);
+
+    const exists = await fs.stat(absoluteSource).then(()=>true).catch(()=>false);
+    if (!exists) {
+      const fileName = path.basename(relativeUnderPublic);
+      const tryDirs = ['assets/portfolio', 'assets/Daikin', 'assets/delta', 'assets/Mitsubishi', 'assets/Sinclair'];
+      for (const d of tryDirs) {
+        const p = path.join(projectRoot, 'public', d, fileName);
+        /* eslint-disable no-await-in-loop */
+        if (await fs.stat(p).then(()=>true).catch(()=>false)) {
+          relativeUnderPublic = path.join(d, fileName);
+          absoluteSource = p;
+          resolvedHero = `/${relativeUnderPublic.replace(/\\/g, '/')}`;
+          break;
+        }
+      }
+    }
+    heroVariants = { avif: [], webp: [], jpg: [] };
+    const relUnderAssets = (resolvedHero ?? heroImage).replace(/^\/assets\//, '');
+    const relDir = path.posix.dirname(relUnderAssets);
+    const baseName = path.basename(absoluteSource, path.extname(absoluteSource));
+    for (const w of widths) {
+      heroVariants.avif.push(`/assets/${relDir}/responsive/${baseName}-${w}w.avif`);
+      heroVariants.webp.push(`/assets/${relDir}/responsive/${baseName}-${w}w.webp`);
+      heroVariants.jpg.push(`/assets/${relDir}/responsive/${baseName}-${w}w.jpg`);
+    }
+  } catch (e) {
+    heroVariants = null;
+  }
+}
+
+const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<Layout title={title} description={description} image={ogImage}>
+  {heroVariants && (
+    <Fragment slot="head">
+      <link
+        rel="preload"
+        as="image"
+        imagesrcset={widths.map((w,i)=> (heroVariants!.avif?.[i] || heroVariants!.webp?.[i] || heroVariants!.jpg?.[i]) + ` ${w}w`).join(', ')}
+        imagesizes="(max-width: 768px) 92vw, 1000px"
+      />
+      <script type="application/ld+json">{JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description: description,
+        datePublished: pubDate?.toISOString?.() ?? pubDate,
+        dateModified: (updatedDate && (updatedDate as any)?.toISOString?.()) || undefined,
+        author: author ? { '@type': 'Person', name: author } : undefined,
+        image: (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined,
+        keywords: Array.isArray(tags) ? tags.join(', ') : undefined,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': Astro.url?.href },
+        url: Astro.url?.href,
+        publisher: { '@type': 'Organization', name: 'Technische Service Assen' }
+      })}</script>
+      <script type="application/ld+json">{JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: new URL('/', Astro.url).href },
+          { '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.url).href },
+          { '@type': 'ListItem', position: 3, name: title, item: Astro.url?.href }
+        ]
+      })}</script>
+    </Fragment>
+  )}
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+  <section class="hc-section">
+    <div class="hc-container">
+      <Breadcrumbs items={[
+        { name: 'Home', href: '/' },
+        { name: 'Blog', href: '/blog/' },
+        { name: title }
+      ]} />
+
+      <div class="flex flex-wrap gap-4 items-center text-slate-400 text-sm mb-4">
+        <div class="flex items-center gap-2"><span>📅</span><FormattedDate date={pubDate} /></div>
+        {author && (<div class="flex items-center gap-2"><span>👤</span><span>{author}</span></div>)}
+        {readTime && (<div class="flex items-center gap-2"><span>⏱️</span><span>{readTime}</span></div>)}
+      </div>
+
+      <h1 class="hc-title mb-2">{title}</h1>
+      <p class="hc-subtitle max-w-3xl mb-4">{description}</p>
+
+      {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-8">
+          {tags.map((tag: string) => (
+            <span class="hc-outline px-3 py-1 rounded-full text-xs text-slate-300">#{tag}</span>
+          ))}
+        </div>
+      )}
+
+      {resolvedHero && (
+        <div class="mb-10">
+          {heroVariants ? (
+            <picture>
+              <source type="image/avif" srcset={heroVariants.avif.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, 1000px" />
+              <source type="image/webp" srcset={heroVariants.webp.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, 1000px" />
+              <source type="image/jpeg" srcset={heroVariants.jpg.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, 1000px" />
+              <img src={resolvedHero} alt={title} loading="lazy" decoding="async" class="w-full rounded-lg hc-outline object-cover" />
+            </picture>
+          ) : (
+            <img src={resolvedHero} alt={title} loading="lazy" decoding="async" class="w-full rounded-lg hc-outline object-cover" />
+          )}
+        </div>
+      )}
+
+      <div class="hc-block">
+        <article class="blog-prose">
+          <slot />
+        </article>
+        {updatedDate && (
+          <div class="mt-6 text-slate-400 text-sm italic text-center">
+            <em>Laatst bijgewerkt op <FormattedDate date={updatedDate} /></em>
+          </div>
+        )}
+      </div>
+
+      {author && (
+        <div class="hc-block mt-10">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-900 text-white font-bold flex items-center justify-center">{author.charAt(0).toUpperCase()}</div>
+            <div>
+              <h3 class="hc-block-title mb-1">{author}</h3>
+              <p class="text-slate-300 text-sm">BRL gecertificeerd installateur met 20+ jaar ervaring in Assen en omgeving. Specialist in airconditioning, Quooker en waterontharders.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div class="hc-block mt-10">
+        <h3 class="hc-block-title mb-3">Meer lezen</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <a href="/blog" class="hc-outline rounded-lg p-4 hover:bg-slate-800 transition-colors">
+            <div class="text-xs text-slate-400 uppercase tracking-wide mb-1">← Terug naar</div>
+            <div class="text-slate-200 font-semibold">Alle Blog Artikelen</div>
+          </a>
+          <a href="/offerte" class="hc-outline rounded-lg p-4 hover:bg-slate-800 transition-colors">
+            <div class="text-xs text-slate-400 uppercase tracking-wide mb-1">Interesse? →</div>
+            <div class="text-slate-200 font-semibold">Vraag Offerte Aan</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
