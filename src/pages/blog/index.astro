@@ -84,7 +84,7 @@ const allTags = Array.from(tagSet).sort();
 			<div class="hc-grid" id="post-grid">
 				{posts.map((post, index) => (
 					<article class={`hc-block ${index === 0 ? 'md:col-span-2 lg:col-span-3' : ''}`} data-tags={(post.data.tags||[]).join(',')}> 
-						<a href={`/blog/${post.id}/`} class="block group">
+						<a href={`/blog/${post.slug}/`} class="block group">
 							{post.resolvedHero && (
 								<div class={`relative ${index === 0 ? 'h-64' : 'h-48'} mb-5`}>
 									{post.heroVariants ? (
