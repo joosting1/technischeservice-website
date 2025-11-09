@@ -51,16 +51,17 @@ async function maybeStoreSupabase(data: Record<string, any>) {
 }
 
 async function maybeSendEmail(data: Record<string, any>) {
-  // For now, only send notification email to business (not confirmation to customer)
-  // Confirmation emails require domain verification with Resend
+  // Send both notification to business and confirmation to customer
   const notificationResult = await sendNotificationEmail(data);
+  const confirmationResult = await sendConfirmationEmail(data);
   
   console.log('[Email] Notification result:', JSON.stringify(notificationResult, null, 2));
+  console.log('[Email] Confirmation result:', JSON.stringify(confirmationResult, null, 2));
   
   return {
-    emailed: notificationResult.emailed,
+    emailed: notificationResult.emailed || confirmationResult.emailed,
     notification: notificationResult,
-    confirmation: { skipped: true, reason: 'Domain verification required for customer emails' }
+    confirmation: confirmationResult
   };
 }
 
