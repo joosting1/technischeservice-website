@@ -90,45 +90,52 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
     </Fragment>
   )}
 
-  <section class="hc-section">
+  <!-- Hero Section -->
+  <section class="hc-hero hero-left hero-spacious">
     <div class="hc-container">
       <Breadcrumbs items={[
         { name: 'Home', href: '/' },
         { name: 'Blog', href: '/blog/' },
         { name: title }
       ]} />
-
-      <div class="flex flex-wrap gap-4 items-center text-slate-400 text-sm mb-4">
-        <div class="flex items-center gap-2"><span>📅</span><FormattedDate date={pubDate} /></div>
-        {author && (<div class="flex items-center gap-2"><span>👤</span><span>{author}</span></div>)}
-        {readTime && (<div class="flex items-center gap-2"><span>⏱️</span><span>{readTime}</span></div>)}
-      </div>
-
-      <h1 class="hc-title mb-2">{title}</h1>
-      <p class="hc-subtitle max-w-3xl mb-4">{description}</p>
-
-      {tags && tags.length > 0 && (
-        <div class="flex flex-wrap gap-2 mb-8">
-          {tags.map((tag: string) => (
-            <span class="hc-outline px-3 py-1 rounded-full text-xs text-slate-300">#{tag}</span>
-          ))}
-        </div>
-      )}
-
-      {resolvedHero && (
-        <div class="mb-10">
-          {heroVariants ? (
-            <picture>
-              <source type="image/avif" srcset={heroVariants.avif.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, 1000px" />
-              <source type="image/webp" srcset={heroVariants.webp.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, 1000px" />
-              <source type="image/jpeg" srcset={heroVariants.jpg.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, 1000px" />
-              <img src={resolvedHero} alt={title} loading="lazy" decoding="async" class="w-full rounded-lg hc-outline object-cover" />
-            </picture>
-          ) : (
-            <img src={resolvedHero} alt={title} loading="lazy" decoding="async" class="w-full rounded-lg hc-outline object-cover" />
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="flex flex-wrap gap-4 items-center text-slate-400 text-sm mb-4">
+            <div class="flex items-center gap-2"><span>📅</span><FormattedDate date={pubDate} /></div>
+            {author && (<div class="flex items-center gap-2"><span>👤</span><span>{author}</span></div>)}
+            {readTime && (<div class="flex items-center gap-2"><span>⏱️</span><span>{readTime}</span></div>)}
+          </div>
+          <h1 class="hc-title">{title}</h1>
+          <p class="hero-subtitle">{description}</p>
+          {tags && tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {tags.map((tag: string) => (
+                <span class="hc-outline px-3 py-1 rounded-full text-xs text-slate-300">#{tag}</span>
+              ))}
+            </div>
           )}
         </div>
-      )}
+        {resolvedHero && (
+          <div class="hero-image">
+            {heroVariants ? (
+              <picture>
+                <source type="image/avif" srcset={heroVariants.avif.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+                <source type="image/webp" srcset={heroVariants.webp.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+                <source type="image/jpeg" srcset={heroVariants.jpg.map((p,i)=>`${p} ${widths[i]}w`).join(', ')} sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+                <img src={resolvedHero} alt={title} loading="eager" decoding="async" />
+              </picture>
+            ) : (
+              <img src={resolvedHero} alt={title} loading="eager" decoding="async" />
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content -->
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
 
       <div class="hc-block">
         <article class="blog-prose">
