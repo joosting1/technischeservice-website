@@ -35,15 +35,23 @@
 }
 
 /* Base styles for better typography */
+html {
+	height: 100%;
+	overflow-y: scroll;
+}
+
 body {
 	font-family: 'Inter', system-ui, -apple-system, sans-serif;
 	margin: 0;
 	padding: 0;
+	padding-top: 64px; /* Space for fixed header */
 	text-align: left;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
 	color: rgb(var(--gray-dark));
 	line-height: 1.6;
+	min-height: 100%;
+	position: relative;
 }
 
 /* Responsive container */
@@ -169,7 +177,8 @@ body {
 /* Allow per-page disabling of the global overlay */
 .no-overlay.hc-page::before { background: none !important; }
 
-body.hc-page > * { position:relative; z-index:1; }
+body.hc-page > *:not(.hc-header) { position:relative; z-index:1; }
+body.hc-page > .hc-header { position: fixed !important; z-index:1000 !important; }
 
 .hc-hero {
 	position: relative;
@@ -181,6 +190,20 @@ body.hc-page > * { position:relative; z-index:1; }
 	background-size: cover;
 	background-position: center;
 }
+
+/* Hero als compacte banner in het midden van viewport */
+.hc-hero.hero-spacious {
+	min-height: calc(100vh - 64px); /* Volledige viewport minus header */
+	display: flex;
+	align-items: center; /* Verticaal centreren */
+	justify-content: center; /* Horizontaal centreren */
+	padding: 0;
+}
+
+.hc-hero.hero-spacious .hc-container {
+	padding: 3rem 0; /* Ruimte binnen de banner zelf */
+}
+
 .hc-hero::before { content:''; position:absolute; inset:0; backdrop-filter: blur(4px) brightness(0.96); }
 .hc-hero > .hc-container { position: relative; }
 
@@ -196,6 +219,23 @@ body.hc-page > * { position:relative; z-index:1; }
 .hero-actions { display:flex; gap:.75rem; flex-wrap: wrap; margin-top: clamp(1rem,2.5vw,1.5rem); justify-content: flex-start; }
 .hero-center .hero-actions { justify-content: center; }
 .hero-right .hero-actions { justify-content: flex-end; }
+
+/* Handgeschreven handtekening styling */
+.signature-container {
+	margin-top: 2rem;
+	padding-top: 1rem;
+	text-align: right;
+}
+
+.signature {
+	font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
+	font-size: 2rem;
+	color: #f59e0b;
+	font-style: italic;
+	display: inline-block;
+	transform: rotate(-3deg);
+	opacity: 0.9;
+}
 
 .hc-section {
 	padding: var(--section-y) 0;
@@ -367,17 +407,25 @@ main {
 
 /* --- Header improvements --- */
 .hc-header {
-	position: sticky;
+	position: fixed;
 	top: 0;
-	z-index: 60;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	width: 100%;
 	background:
 		linear-gradient(135deg, rgba(15,23,42,0.90), rgba(18,30,51,0.86)),
 		radial-gradient(circle at 8% 12%, rgba(245,158,11,0.35), transparent 60%),
 		radial-gradient(circle at 92% 82%, rgba(56,189,248,0.28), transparent 58%);
 	backdrop-filter: blur(14px) saturate(160%);
 	-webkit-backdrop-filter: blur(14px) saturate(160%);
-	border-bottom: 1px solid rgba(255,255,255,0.10);
+	border-bottom: 2px solid rgba(255,255,255,0.25);
 	box-shadow: 0 6px 22px -8px rgba(0,0,0,0.55);
+}
+
+/* Add padding to main to compensate for fixed header */
+main {
+	padding-top: 0;
 }
 .hc-header .nav-link {
 	color: #e2e8f0;

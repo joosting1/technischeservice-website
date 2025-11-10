@@ -1,15 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
 import '../styles/homepage-glass.css';
 ---
 
-<Layout title="Technische Service Assen - Professionele Installaties" background="/assets/homepage/responsive/mitsubishi-1440w.avif" withOverlay>
+<Layout 
+  title="Technische Service Assen - Professionele Installaties" 
+  description="Professionele installatie van airco, Quooker en waterontharders in Assen en omgeving. BRL-100 gecertificeerd met 15+ jaar ervaring. Gratis offerte en advies."
+  background="/assets/homepage/responsive/mitsubishi-1440w.avif" 
+  withOverlay
+>
   <Fragment slot="head">
     <link rel="preload" as="image" imagesrcset="/assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-480w.jpg 480w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-768w.jpg 768w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1024w.jpg 1024w, /assets/quooker-flex-square/responsive/2788-fxsgme-gunmetal-kurkuma-1440w.jpg 1440w" imagesizes="(max-width: 1024px) 92vw, 640px" />
   </Fragment>
 
   <!-- Gestandaardiseerde Hero -->
-  <section class="hc-hero hero-left">
+  <section class="hc-hero hero-left hero-spacious">
     <div class="hc-container">
       <div class="hero-stack max-w-3xl">
         <span class="hero-eyebrow">Installatie & Service</span>
@@ -17,7 +23,7 @@ import '../styles/homepage-glass.css';
         <p class="hero-subtitle">Professionele installatie van airco, Quooker en waterontharders. BRL-100 gecertificeerd met 15+ jaar ervaring voor betrouwbare kwaliteit.</p>
         <div class="hero-actions">
           <a href="/offerte" class="btn btn-primary">Gratis Offerte</a>
-          <a href="https://wa.me/31658980933" target="_blank" rel="noopener" class="btn btn-outline">� WhatsApp</a>
+          <a href="https://wa.me/31658980933" target="_blank" rel="noopener" class="btn btn-outline">📱 WhatsApp</a>
         </div>
       </div>
     </div>
@@ -158,6 +164,9 @@ import '../styles/homepage-glass.css';
       </div>
     </div>
   </section>
+
+  <!-- Google Reviews Widget -->
+  <GoogleReviews />
 
   <!-- Contact Glass Section -->
   <section class="glx-contact">

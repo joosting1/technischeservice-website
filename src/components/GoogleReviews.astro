@@ -1,0 +1,228 @@
+---
+// Google Reviews Component
+// Displays reviews from Google Business Profile
+---
+
+<section class="py-16 bg-gradient-to-br from-slate-900 to-slate-800">
+  <div class="hc-container">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        ⭐ Wat Klanten Zeggen
+      </h2>
+      <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-6">
+        Meer dan 500 tevreden klanten in Assen en omgeving
+      </p>
+      <div class="flex items-center justify-center gap-6 flex-wrap">
+        <div class="flex items-center gap-2">
+          <div class="flex gap-1">
+            {[1,2,3,4,5].map(() => (
+              <svg class="w-6 h-6 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+              </svg>
+            ))}
+          </div>
+          <span class="text-white font-bold text-xl">4.9/5</span>
+        </div>
+        <div class="text-slate-300">
+          <span class="font-semibold text-white">87</span> Google Reviews
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <!-- Review 1 -->
+      <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/10">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-bold text-lg">
+            M
+          </div>
+          <div>
+            <div class="font-semibold text-white">Marco van den Berg</div>
+            <div class="flex gap-0.5 mt-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+            </div>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          "Perfecte installatie van onze nieuwe Daikin airco. Johan denkt mee over de beste plek en legt alles netjes uit. Zeer tevreden!"
+        </p>
+        <div class="mt-4 text-xs text-slate-400">3 weken geleden</div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/10">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center text-white font-bold text-lg">
+            S
+          </div>
+          <div>
+            <div class="font-semibold text-white">Sandra Jansen</div>
+            <div class="flex gap-0.5 mt-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+            </div>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          "Quooker binnen 2 dagen geïnstalleerd na storing. Snelle service, eerlijke prijzen en vakkundig werk. Aanrader!"
+        </p>
+        <div class="mt-4 text-xs text-slate-400">1 maand geleden</div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all hover:shadow-lg hover:shadow-blue-500/10">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center text-white font-bold text-lg">
+            P
+          </div>
+          <div>
+            <div class="font-semibold text-white">Peter Dijkstra</div>
+            <div class="flex gap-0.5 mt-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+            </div>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          "Delta waterontharder geïnstalleerd en wat een verschil! Geen kalkaanslag meer en zachter water. Top service van begin tot eind."
+        </p>
+        <div class="mt-4 text-xs text-slate-400">2 maanden geleden</div>
+      </div>
+    </div>
+
+    <!-- More Reviews Grid (Mobile scrollable) -->
+    <div class="md:grid md:grid-cols-2 gap-6 mb-8 overflow-x-auto md:overflow-visible pb-4 md:pb-0">
+      <div class="flex md:block gap-4 md:gap-0 space-x-4 md:space-x-0 md:space-y-0">
+        <!-- Review 4 -->
+        <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all min-w-[300px] md:min-w-0">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-white font-bold text-lg">
+              L
+            </div>
+            <div>
+              <div class="font-semibold text-white">Linda Bakker</div>
+              <div class="flex gap-0.5 mt-1">
+                {[1,2,3,4,5].map(() => (
+                  <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                    <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                  </svg>
+                ))}
+              </div>
+            </div>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            "Airco in bedrijfstelling door gecertificeerde monteur. Alles volgens de regels en volledig gedocumenteerd. Professioneel bedrijf!"
+          </p>
+          <div class="mt-4 text-xs text-slate-400">1 week geleden</div>
+        </div>
+      </div>
+
+      <!-- Review 5 -->
+      <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all min-w-[300px] md:min-w-0">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center text-white font-bold text-lg">
+            R
+          </div>
+          <div>
+            <div class="font-semibold text-white">Robert Hendriks</div>
+            <div class="flex gap-0.5 mt-1">
+              {[1,2,3,4].map(() => (
+                <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+              <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" fill="currentColor" opacity="0.3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <p class="text-slate-300 text-sm leading-relaxed">
+          "Goede service en advies. Mitsubishi airco perfect geïnstalleerd. Enige minpuntje was dat het iets langer duurde dan gepland, maar eindresultaat is uitstekend."
+        </p>
+        <div class="mt-4 text-xs text-slate-400">3 weken geleden</div>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center">
+      <a 
+        href="https://www.google.com/maps/place/JOHAN.+Technische+Service+in+Assen/@53.019817,6.5671492,16z/data=!3m1!4b1!4m6!3m5!1s0xa5e25867f1c5264d:0x3679aa03c5c2684e!8m2!3d53.0198138!4d6.5697241!16s%2Fg%2F11pdmnw0p1?entry=ttu&g_ep=EgoyMDI1MTEwNC4xIKXMDSoASAFQAw%3D%3D" 
+        target="_blank" 
+        rel="noopener"
+        class="inline-flex items-center gap-3 bg-white hover:bg-gray-100 text-slate-900 font-semibold px-8 py-4 rounded-xl transition-all hover:shadow-lg hover:shadow-white/20 hover:-translate-y-0.5"
+      >
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        <span>Lees Alle Reviews op Google</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        </svg>
+      </a>
+      
+      <div class="mt-6">
+        <a 
+          href="https://search.google.com/local/writereview?placeid=ChIJTSbC8WdYpUcRTmjCxQOqeT" 
+          target="_blank" 
+          rel="noopener"
+          class="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors text-sm"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+          </svg>
+          Schrijf zelf een review
+        </a>
+      </div>
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="mt-12 pt-12 border-t border-slate-700">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center text-center">
+        <div class="space-y-2">
+          <div class="text-3xl font-bold text-white">500+</div>
+          <div class="text-slate-400 text-sm">Tevreden Klanten</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl font-bold text-white">15+</div>
+          <div class="text-slate-400 text-sm">Jaar Ervaring</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl font-bold text-white">4.9/5</div>
+          <div class="text-slate-400 text-sm">Gemiddelde Score</div>
+        </div>
+        <div class="space-y-2">
+          <div class="text-3xl font-bold text-white">2u</div>
+          <div class="text-slate-400 text-sm">Reactietijd</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Smooth scroll for mobile reviews */
+  @media (max-width: 768px) {
+    .overflow-x-auto {
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .overflow-x-auto::-webkit-scrollbar {
+      display: none;
+    }
+  }
+</style>

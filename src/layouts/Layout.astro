@@ -25,6 +25,149 @@ const { title, description = "Professionele installatie van airco, Quooker en wa
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Schema.org LocalBusiness Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://www.technischeserviceassen.nl/#organization",
+        "name": "Technische Service Assen",
+        "alternateName": "Johan Oosting Technische Installaties",
+        "description": "Professionele installatie van airco's, Quooker kokendwaterkranen en Delta waterontharders in Assen en omgeving. BRL-100 gecertificeerd met 15+ jaar ervaring.",
+        "url": "https://www.technischeserviceassen.nl",
+        "logo": "https://www.technischeserviceassen.nl/logo.png",
+        "image": "https://www.technischeserviceassen.nl/assets/homepage/responsive/mitsubishi-1440w.avif",
+        "telephone": "+31658980933",
+        "email": "info@technischeserviceassen.nl",
+        "priceRange": "€€",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "",
+          "addressLocality": "Assen",
+          "addressRegion": "Drenthe",
+          "postalCode": "",
+          "addressCountry": "NL"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "52.9925",
+          "longitude": "6.5649"
+        },
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Assen"
+          },
+          {
+            "@type": "State",
+            "name": "Drenthe"
+          },
+          {
+            "@type": "City",
+            "name": "Groningen"
+          }
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/technischeserviceassen",
+          "https://www.linkedin.com/company/technische-service-assen"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Diensten",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Airco Installatie",
+                "description": "Professionele installatie van airconditioning systemen. Daikin, Mitsubishi Heavy en Sinclair. BRL-100 gecertificeerd.",
+                "provider": {
+                  "@id": "https://www.technischeserviceassen.nl/#organization"
+                },
+                "areaServed": "Assen, Drenthe, Groningen"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Quooker Installatie",
+                "description": "Professionele installatie van Quooker kokendwaterkranen. Alle modellen inclusief Flex en Cube.",
+                "provider": {
+                  "@id": "https://www.technischeserviceassen.nl/#organization"
+                },
+                "areaServed": "Assen, Drenthe, Groningen"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Waterontharder Installatie",
+                "description": "Professionele installatie van Delta waterontharders. Belgische topkwaliteit en duurzaam.",
+                "provider": {
+                  "@id": "https://www.technischeserviceassen.nl/#organization"
+                },
+                "areaServed": "Assen, Drenthe, Groningen"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "In Bedrijfstelling Airco",
+                "description": "Professionele in bedrijfstelling van airco's en warmtepompen volgens F-gassen regelgeving.",
+                "provider": {
+                  "@id": "https://www.technischeserviceassen.nl/#organization"
+                },
+                "areaServed": "Assen, Drenthe, Groningen"
+              }
+            }
+          ]
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Johan Oosting",
+          "jobTitle": "Eigenaar"
+        },
+        "numberOfEmployees": {
+          "@type": "QuantitativeValue",
+          "value": "3"
+        },
+        "slogan": "Professionele installaties met 15+ jaar ervaring",
+        "knowsAbout": [
+          "Airconditioning installatie",
+          "Quooker installatie",
+          "Waterontharder installatie",
+          "F-gassen certificering",
+          "BRL-100 certificering",
+          "Daikin airco",
+          "Mitsubishi Heavy airco",
+          "Sinclair airco",
+          "Delta waterontharders",
+          "Warmtepomp installatie"
+        ],
+        "paymentAccepted": ["Cash", "Bank Transfer", "iDEAL"],
+        "currenciesAccepted": "EUR"
+      }
+    </script>
+    
     <slot name="head" />
   </head>
 
@@ -34,6 +177,13 @@ const { title, description = "Professionele installatie van airco, Quooker en wa
       <slot />
     </main>
     <Footer />
+    
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" style="position: fixed; bottom: 5rem; right: 1rem;" class="z-40 opacity-0 pointer-events-none duration-300 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all" aria-label="Scroll naar boven">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+      </svg>
+    </button>
     
     <!-- Compact Cookie Consent Widget -->
     <div id="cookie-widget" class="fixed bottom-4 right-4 z-50">
@@ -100,6 +250,28 @@ const { title, description = "Professionele installatie van airco, Quooker en wa
           if (analyticsInput) analyticsInput.checked = true;
           localStorage.setItem(CONSENT_KEY, 'all');
           closePanel();
+        });
+
+        // Scroll to Top Button
+        const scrollBtn = document.getElementById('scroll-to-top');
+        
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 300) {
+            scrollBtn?.classList.remove('opacity-0', 'pointer-events-none');
+            scrollBtn?.classList.add('opacity-100');
+          } else {
+            scrollBtn?.classList.add('opacity-0', 'pointer-events-none');
+            scrollBtn?.classList.remove('opacity-100');
+          }
+        });
+        
+        // Scroll to top when clicked
+        scrollBtn?.addEventListener('click', () => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         });
       });
     </script>

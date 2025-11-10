@@ -238,6 +238,131 @@ async function sendNotificationEmail(data: Record<string, any>) {
                       </td>
                     </tr>
                     
+                    ${data.configuration && data.configuration.model ? `
+                    <!-- Quooker Configuratie -->
+                    <tr>
+                      <td style="padding-bottom: 25px;">
+                        <h2 style="margin: 0 0 15px 0; color: #2d3748; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                          🚰 Quooker Configuratie
+                        </h2>
+                        <div style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                          <table width="100%" cellpadding="8" cellspacing="0">
+                            <tr>
+                              <td width="140" style="color: #ffffff; font-size: 14px; font-weight: 500;">Model:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">${data.configuration.model}</td>
+                            </tr>
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px; font-weight: 500;">Kraan kleur:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">${data.configuration.tap}</td>
+                            </tr>
+                          </table>
+                        </div>
+                        
+                        ${data.configuration.extensions && data.configuration.extensions.length > 0 ? `
+                        <div style="background-color: #f8f9fa; border: 2px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                          <p style="margin: 0 0 10px 0; color: #6c757d; font-size: 14px; font-weight: 600;">Uitbreidingen:</p>
+                          <ul style="margin: 0; padding: 0 0 0 20px; color: #2d3748; font-size: 14px;">
+                            ${data.configuration.extensions.map(ext => `<li style="margin: 5px 0;">${ext}</li>`).join('')}
+                          </ul>
+                        </div>
+                        ` : ''}
+                        
+                        <div style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); padding: 20px; border-radius: 8px; text-align: center;">
+                          <p style="margin: 0 0 8px 0; color: #ffffff; font-size: 14px; font-weight: 500;">Totale Richtprijs (incl. BTW):</p>
+                          <p style="margin: 0; color: #ffffff; font-size: 32px; font-weight: 700;">€${data.configuration.totalPrice},-</p>
+                          <p style="margin: 10px 0 0 0; color: #dbeafe; font-size: 12px;">* Indicatieve prijs, definitieve offerte volgt per mail</p>
+                        </div>
+                      </td>
+                    </tr>
+                    ` : ''}
+                    
+                    ${data.configuration && data.configuration.distance ? `
+                    <!-- Airco Aansluitpakket Bestelling -->
+                    <tr>
+                      <td style="padding-bottom: 25px;">
+                        <h2 style="margin: 0 0 15px 0; color: #2d3748; font-size: 18px; font-weight: 600; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">
+                          🛒 Airco Aansluitpakket Bestelling
+                        </h2>
+                        <div style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+                          <table width="100%" cellpadding="8" cellspacing="0">
+                            <tr>
+                              <td width="140" style="color: #ffffff; font-size: 14px; font-weight: 500;">Pakket:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">${data.configuration.distance}</td>
+                            </tr>
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px; font-weight: 500;">Leidingmaat:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">${data.configuration.pipeSize}</td>
+                            </tr>
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px; font-weight: 500;">Kabelgoot:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">${data.configuration.kabelgoot}</td>
+                            </tr>
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px; font-weight: 500;">Montage:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">${data.configuration.beugel}</td>
+                            </tr>
+                            ${data.configuration.multisplitUnits > 0 ? `
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px; font-weight: 500;">Multisplit:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">${data.configuration.multisplitUnits}x extra unit (+€${data.configuration.multisplitUnits * 175},-)</td>
+                            </tr>
+                            ` : ''}
+                            ${data.configuration.inbedrijfstelling ? `
+                            <tr>
+                              <td style="color: #ffffff; font-size: 14px; font-weight: 500;">In Bedrijfstelling:</td>
+                              <td style="color: #ffffff; font-size: 16px; font-weight: 700;">Professioneel (+€200,-)</td>
+                            </tr>
+                            ` : ''}
+                          </table>
+                        </div>
+                        
+                        <div style="background-color: #f0f9ff; border: 2px solid #bae6fd; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                          <p style="margin: 0 0 10px 0; color: #0369a1; font-size: 14px; font-weight: 600;">✅ Standaard Inbegrepen:</p>
+                          <ul style="margin: 0; padding: 0 0 0 20px; color: #0c4a6e; font-size: 13px; line-height: 1.6;">
+                            <li>Koelleiding (gekozen maat)</li>
+                            <li>Kabelgoot met eindkap</li>
+                            <li>Muurbeugel of Big Foot</li>
+                            <li>Communicatiekabel</li>
+                            <li>Elektrakabel</li>
+                            <li>Werkschakelaar</li>
+                          </ul>
+                          ${data.configuration.inbedrijfstelling ? `
+                          <p style="margin: 10px 0 0 0; color: #059669; font-size: 13px; font-weight: 600;">
+                            ✓ Professionele In Bedrijfstelling (vacuümpomp, lekkagetest, eerste opstart)
+                          </p>
+                          ` : `
+                          <p style="margin: 10px 0 0 0; color: #dc2626; font-size: 13px;">
+                            ⚠️ In bedrijfstelling niet geselecteerd - moet apart worden uitgevoerd
+                          </p>
+                          `}
+                        </div>
+                        
+                        <div style="background-color: #fff; border: 2px solid #e5e7eb; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                          <table width="100%" cellpadding="6" cellspacing="0">
+                            <tr>
+                              <td style="color: #374151; font-size: 14px;">Subtotaal pakket:</td>
+                              <td style="color: #374151; font-size: 16px; font-weight: 600; text-align: right;">€${data.configuration.subtotal},-</td>
+                            </tr>
+                            <tr>
+                              <td style="color: #374151; font-size: 14px;">Verzendkosten:</td>
+                              <td style="color: #374151; font-size: 16px; font-weight: 600; text-align: right;">€${data.configuration.shipping},-</td>
+                            </tr>
+                            <tr style="border-top: 2px solid #e5e7eb;">
+                              <td style="color: #111827; font-size: 16px; font-weight: 700; padding-top: 10px;">Totaal (incl. BTW):</td>
+                              <td style="color: #10b981; font-size: 20px; font-weight: 700; text-align: right; padding-top: 10px;">€${data.configuration.totalPrice},-</td>
+                            </tr>
+                          </table>
+                        </div>
+                        
+                        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 15px; border-radius: 8px; text-align: center;">
+                          <p style="margin: 0; color: #ffffff; font-size: 14px; font-weight: 600;">
+                            ✅ Bestelling Ontvangen - We nemen binnen 24 uur contact op voor levering en planning!
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                    ` : ''}
+                    
                     ${data.service && data.service.includes('Onderhoudscontract') && data.units ? `
                     <!-- Maandelijkse Kosten -->
                     <tr>
@@ -836,14 +961,17 @@ export const POST: APIRoute = async ({ request }) => {
       model: sanitize(body.model ?? '', 100),
       iban: sanitize(body.iban ?? '', 34),
       'account-holder': sanitize(body['account-holder'] ?? '', 100),
-      photos: body.photos || []
+      photos: body.photos || [],
+      // Quooker configuration from configurator
+      configuration: body.configuration || null
     };
     
     console.log('[Offerte API] Received data:', { 
       service: data.service,
       units: data.units, 
       indoorUnits: data['indoor-units'],
-      photos: data.photos?.length || 0
+      photos: data.photos?.length || 0,
+      configuration: data.configuration
     });
 
     const missing = ['voornaam','achternaam','telefoon','email','adres','postcode','woonplaats','service'].filter(k => !data[k]);

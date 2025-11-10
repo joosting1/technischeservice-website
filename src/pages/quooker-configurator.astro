@@ -1,0 +1,828 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<Layout 
+  title="Quooker Configurator - Stel Uw Quooker Samen | Technische Service Assen" 
+  description="Stel uw ideale Quooker samen met onze interactieve configurator. Kies uit alle modellen, kleuren en uitbreidingen. Direct offerte aanvragen."
+  background="/assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-1440w.avif" 
+  withOverlay
+>
+  <!-- Hero Section -->
+  <section class="page-hero-glass hc-hero">
+    <div class="hc-container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Quooker', href: '/quooker-installatie' }, { name: 'Configurator' }]} />
+      <div class="hero-grid">
+        <div class="glx-card max-w-2xl">
+          <h1 class="glx-title">Quooker Configurator</h1>
+          <p class="glx-sub">Stel uw ideale Quooker samen en ontvang direct een op maat gemaakte offerte. Kies uit alle modellen, kleuren en uitbreidingen.</p>
+          <div class="flex items-center gap-3 mt-4">
+            <div class="flex gap-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+            </div>
+            <span class="text-white text-sm">20+ jaar Quooker ervaring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator Section -->
+  <section class="py-16 bg-gradient-to-br from-slate-900 to-slate-800">
+    <div class="hc-container max-w-6xl">
+      
+      <!-- Progress Bar -->
+      <div class="mb-12">
+        <div class="flex items-center justify-between mb-4">
+          <div id="step-1" class="flex items-center gap-2 step-indicator active">
+            <div class="step-number">1</div>
+            <span class="step-label hidden sm:inline">Model</span>
+          </div>
+          <div class="flex-1 h-1 bg-slate-700 mx-2">
+            <div id="progress-1" class="h-full bg-blue-500 transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <div id="step-2" class="flex items-center gap-2 step-indicator">
+            <div class="step-number">2</div>
+            <span class="step-label hidden sm:inline">Kraan</span>
+          </div>
+          <div class="flex-1 h-1 bg-slate-700 mx-2">
+            <div id="progress-2" class="h-full bg-blue-500 transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <div id="step-3" class="flex items-center gap-2 step-indicator">
+            <div class="step-number">3</div>
+            <span class="step-label hidden sm:inline">Uitbreiding</span>
+          </div>
+          <div class="flex-1 h-1 bg-slate-700 mx-2">
+            <div id="progress-3" class="h-full bg-blue-500 transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <div id="step-4" class="flex items-center gap-2 step-indicator">
+            <div class="step-number">4</div>
+            <span class="step-label hidden sm:inline">Gegevens</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Configurator Card -->
+      <div class="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-6 md:p-10">
+        
+        <!-- Step 1: Model Selection -->
+        <div id="config-step-1" class="config-step active">
+          <h2 class="text-3xl font-bold text-white mb-6">Kies Uw Quooker Model</h2>
+          <p class="text-slate-300 mb-8">Selecteer het systeem dat bij uw keuken past</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Flex -->
+            <div class="config-option" data-value="flex" data-name="Quooker Flex">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">🔥</div>
+                <h3 class="text-xl font-bold text-white mb-2">Quooker Flex</h3>
+                <p class="text-slate-300 text-sm mb-4">Kokend, heet, warm én gefilterd koud water</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Alles-in-één kraan</li>
+                  <li>✓ Inclusief Combi+ reservoir (3L)</li>
+                  <li>✓ Vervangt keukenkraan</li>
+                  <li>✓ Meest gekozen model</li>
+                </ul>
+                <div class="font-semibold text-blue-400">Vanaf €1.495,-</div>
+              </div>
+            </div>
+
+            <!-- Fusion -->
+            <div class="config-option" data-value="fusion" data-name="Quooker Fusion">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">💎</div>
+                <h3 class="text-xl font-bold text-white mb-2">Quooker Fusion</h3>
+                <p class="text-slate-300 text-sm mb-4">Kokend, heet, warm én koud water (vierkant)</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Vierkant design</li>
+                  <li>✓ Inclusief Combi+ reservoir (3L)</li>
+                  <li>✓ Vervangt keukenkraan</li>
+                  <li>✓ Modern design</li>
+                </ul>
+                <div class="font-semibold text-blue-400">Vanaf €1.595,-</div>
+              </div>
+            </div>
+
+            <!-- Separate Kraan -->
+            <div class="config-option" data-value="separate" data-name="Quooker Losse Kraan">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">🚰</div>
+                <h3 class="text-xl font-bold text-white mb-2">Losse Quooker Kraan</h3>
+                <p class="text-slate-300 text-sm mb-4">Alleen kokend water, bestaande kraan blijft</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Aparte kraan naast bestaande</li>
+                  <li>✓ Inclusief PRO3-VAQ reservoir (3L)</li>
+                  <li>✓ Bestaande kraan blijft</li>
+                  <li>✓ Budget optie</li>
+                </ul>
+                <div class="font-semibold text-blue-400">Vanaf €1.195,-</div>
+              </div>
+            </div>
+
+            <!-- Nordic -->
+            <div class="config-option" data-value="nordic" data-name="Quooker Nordic">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">❄️</div>
+                <h3 class="text-xl font-bold text-white mb-2">Quooker Nordic</h3>
+                <p class="text-slate-300 text-sm mb-4">Kokend, heet, koud én gekoeld gefilterd water</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Inclusief CUBE voor gekoeld water</li>
+                  <li>✓ Luxe uitvoering</li>
+                  <li>✓ Alle functies in één</li>
+                  <li>✓ Premium keuze</li>
+                </ul>
+                <div class="font-semibold text-blue-400">Vanaf €2.295,-</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex justify-end">
+            <button id="next-step-1" class="btn-configurator disabled" disabled>
+              Volgende Stap →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Tap Selection -->
+        <div id="config-step-2" class="config-step">
+          <h2 class="text-3xl font-bold text-white mb-6">Kies Uw Kraan Uitvoering</h2>
+          <p class="text-slate-300 mb-8">Selecteer de kleur en afwerking</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="config-option" data-value="chroom" data-name="Chroom">
+              <div class="config-option-inner">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 mx-auto mb-4 border-4 border-slate-600"></div>
+                <h3 class="text-lg font-bold text-white mb-2">Chroom</h3>
+                <p class="text-slate-400 text-sm">Klassiek en tijdloos</p>
+                <div class="mt-3 font-semibold text-blue-400">Standaard</div>
+              </div>
+            </div>
+
+            <div class="config-option" data-value="rvs" data-name="RVS">
+              <div class="config-option-inner">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 mx-auto mb-4 border-4 border-slate-600"></div>
+                <h3 class="text-lg font-bold text-white mb-2">RVS</h3>
+                <p class="text-slate-400 text-sm">Modern en robuust</p>
+                <div class="mt-3 font-semibold text-blue-400">+€150,-</div>
+              </div>
+            </div>
+
+            <div class="config-option" data-value="zwart" data-name="Zwart">
+              <div class="config-option-inner">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-gray-800 to-black mx-auto mb-4 border-4 border-slate-600"></div>
+                <h3 class="text-lg font-bold text-white mb-2">Zwart</h3>
+                <p class="text-slate-400 text-sm">Stijlvol en eigentijds</p>
+                <div class="mt-3 font-semibold text-blue-400">+€350,-</div>
+              </div>
+            </div>
+
+            <div class="config-option" data-value="wit" data-name="Wit">
+              <div class="config-option-inner">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-gray-100 to-white mx-auto mb-4 border-4 border-slate-600"></div>
+                <h3 class="text-lg font-bold text-white mb-2">Wit</h3>
+                <p class="text-slate-400 text-sm">Fris en clean</p>
+                <div class="mt-3 font-semibold text-blue-400">+€350,-</div>
+              </div>
+            </div>
+
+            <div class="config-option" data-value="gunmetal" data-name="Gunmetal">
+              <div class="config-option-inner">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-gray-600 to-gray-700 mx-auto mb-4 border-4 border-slate-600"></div>
+                <h3 class="text-lg font-bold text-white mb-2">Gunmetal</h3>
+                <p class="text-slate-400 text-sm">Luxe en exclusief</p>
+                <div class="mt-3 font-semibold text-blue-400">+€350,-</div>
+              </div>
+            </div>
+
+            <div class="config-option" data-value="rose-koper" data-name="Rosé Koper">
+              <div class="config-option-inner">
+                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-rose-400 to-amber-600 mx-auto mb-4 border-4 border-slate-600"></div>
+                <h3 class="text-lg font-bold text-white mb-2">Rosé Koper</h3>
+                <p class="text-slate-400 text-sm">Ultiem luxe</p>
+                <div class="mt-3 font-semibold text-blue-400">+€350,-</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex justify-between">
+            <button id="prev-step-2" class="btn-configurator-outline">
+              ← Vorige
+            </button>
+            <button id="next-step-2" class="btn-configurator disabled" disabled>
+              Volgende Stap →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Extensions -->
+        <div id="config-step-3" class="config-step">
+          <h2 class="text-3xl font-bold text-white mb-6">Uitbreidingen (Optioneel)</h2>
+          <p class="text-slate-300 mb-8">Maak uw Quooker compleet met deze opties</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="config-option-checkbox" data-value="cube" data-name="CUBE" data-price="1100">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">🧊</div>
+                <h3 class="text-xl font-bold text-white mb-2">CUBE</h3>
+                <p class="text-slate-300 text-sm mb-4">Gefilterd, gekoeld én bruisend water</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Gekoeld gefilterd water (8°C)</li>
+                  <li>✓ Bruisend water op knopdruk</li>
+                  <li>✓ Vervangt waterfilter én SodaStream</li>
+                  <li>✓ Bespaart plastic flessen</li>
+                </ul>
+                <div class="font-semibold text-blue-400">+€1.100,-</div>
+              </div>
+            </div>
+
+            <div class="config-option-checkbox" data-value="combi" data-name="Combi+ Upgrade" data-price="300">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">⚡</div>
+                <h3 class="text-xl font-bold text-white mb-2">Combi+ Upgrade</h3>
+                <p class="text-slate-300 text-sm mb-4">Van 3 liter naar 7 liter reservoir</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Grotere voorraad kokend water</li>
+                  <li>✓ Ideaal voor groot gezin</li>
+                  <li>✓ Perfect bij veel gasten</li>
+                  <li>✓ Nooit meer wachten</li>
+                </ul>
+                <div class="font-semibold text-blue-400">+€300,-</div>
+              </div>
+            </div>
+
+            <div class="config-option-checkbox" data-value="kalkfilter" data-name="Extra Kalkfilter" data-price="45">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">💧</div>
+                <h3 class="text-xl font-bold text-white mb-2">Extra Kalkfilter</h3>
+                <p class="text-slate-300 text-sm mb-4">Set van 2 extra HiTAC filters</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Beschermt tegen kalk</li>
+                  <li>✓ Verlengt levensduur</li>
+                  <li>✓ Jaarvoorraad filters</li>
+                  <li>✓ Gemakkelijk te vervangen</li>
+                </ul>
+                <div class="font-semibold text-blue-400">+€45,-</div>
+              </div>
+            </div>
+
+            <div class="config-option-checkbox" data-value="installatie" data-name="Montage Service" data-price="199">
+              <div class="config-option-inner">
+                <div class="text-4xl mb-4">🔧</div>
+                <h3 class="text-xl font-bold text-white mb-2">Professionele Montage</h3>
+                <p class="text-slate-300 text-sm mb-4">Wij regelen alles voor u</p>
+                <ul class="text-sm text-slate-400 space-y-2 mb-4">
+                  <li>✓ Volledige montage door specialist</li>
+                  <li>✓ Oude kraan demonteren (indien nodig)</li>
+                  <li>✓ In bedrijfstelling en uitleg</li>
+                  <li>✓ 2 jaar montage garantie</li>
+                </ul>
+                <div class="font-semibold text-blue-400">+€199,-</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex justify-between">
+            <button id="prev-step-3" class="btn-configurator-outline">
+              ← Vorige
+            </button>
+            <button id="next-step-3" class="btn-configurator">
+              Volgende Stap →
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Contact Form -->
+        <div id="config-step-4" class="config-step">
+          <h2 class="text-3xl font-bold text-white mb-6">Uw Configuratie & Offerte</h2>
+          
+          <!-- Summary -->
+          <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/10 border border-blue-500/30 rounded-xl p-6 mb-8">
+            <h3 class="text-xl font-bold text-white mb-4">Uw Samenstelling:</h3>
+            <div id="configuration-summary" class="space-y-2 text-slate-300"></div>
+            <div class="border-t border-blue-500/30 mt-4 pt-4">
+              <div class="flex justify-between items-center text-xl font-bold text-white">
+                <span>Totale Richtprijs:</span>
+                <span id="total-price" class="text-blue-400">€0,-</span>
+              </div>
+              <p class="text-sm text-slate-400 mt-2">* Indicatieve prijs inclusief BTW, exclusief eventuele aanpassingen aan de installatie</p>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <form id="configurator-form" class="space-y-6">
+            <!-- Hidden service field for API -->
+            <input type="hidden" name="service" value="Quooker Installatie" />
+            
+            <div class="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4 text-sm text-orange-200">
+              <strong>📧 Ontvang direct uw offerte:</strong> Vul uw gegevens in en we sturen binnen 24 uur een gedetailleerde offerte op maat!
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Voornaam *</label>
+                <input 
+                  type="text" 
+                  name="voornaam" 
+                  required 
+                  class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Achternaam *</label>
+                <input 
+                  type="text" 
+                  name="achternaam" 
+                  required 
+                  class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Email *</label>
+                <input 
+                  type="email" 
+                  name="email" 
+                  required 
+                  class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Telefoon *</label>
+                <input 
+                  type="tel" 
+                  name="telefoon" 
+                  required 
+                  class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Adres *</label>
+                <input 
+                  type="text" 
+                  name="adres" 
+                  required 
+                  placeholder="Straat + huisnummer"
+                  class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-semibold text-slate-300 mb-2">Postcode *</label>
+                <input 
+                  type="text" 
+                  name="postcode" 
+                  required 
+                  placeholder="1234AB"
+                  class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Woonplaats *</label>
+              <input 
+                type="text" 
+                name="woonplaats" 
+                required 
+                class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-slate-300 mb-2">Opmerkingen / Vragen</label>
+              <textarea 
+                name="opmerkingen" 
+                rows="4" 
+                class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                placeholder="Bijvoorbeeld: Heeft u specifieke wensen of vragen over de installatie?"
+              ></textarea>
+            </div>
+
+            <div>
+              <label class="flex items-start gap-3 cursor-pointer">
+                <input 
+                  type="checkbox" 
+                  name="privacy" 
+                  required 
+                  class="w-5 h-5 mt-0.5 text-blue-600 rounded"
+                />
+                <span class="text-sm text-slate-300">
+                  Ik ga akkoord met de <a href="/privacy" class="text-blue-400 hover:text-blue-300 underline" target="_blank">privacyverklaring</a> en geef toestemming om contact met mij op te nemen. *
+                </span>
+              </label>
+            </div>
+
+            <div class="flex gap-4">
+              <button type="button" id="prev-step-4" class="btn-configurator-outline">
+                ← Vorige
+              </button>
+              <button 
+                type="submit"
+                class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50"
+              >
+                📧 Offerte Aanvragen
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Message -->
+          <div id="success-message" class="hidden text-center py-8">
+            <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Offerte Verzonden! ✅</h3>
+            <p class="text-slate-300 mb-6">
+              Bedankt voor uw configuratie. We nemen binnen 24 uur contact met u op met een gedetailleerde offerte.
+            </p>
+            <a href="/quooker-installatie" class="btn-configurator-outline inline-block">
+              Terug naar Quooker Info
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Info Box -->
+      <div class="mt-8 bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 text-center">
+        <p class="text-slate-300">
+          <strong class="text-white">💡 Tip:</strong> Niet zeker welk model bij u past? 
+          <a href="tel:0658980933" class="text-blue-400 hover:text-blue-300 underline">Bel ons op 06-58980933</a> 
+          voor persoonlijk advies!
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Quooker Official Link -->
+  <section class="hc-section bg-gradient-to-r from-orange-500/10 to-amber-500/10">
+    <div class="hc-container text-center">
+      <h2 class="text-2xl font-bold text-white mb-4">
+        🔍 Wilt U Meer Weten Over Quooker?
+      </h2>
+      <p class="text-slate-300 mb-6 max-w-2xl mx-auto">
+        Bekijk alle modellen, specificaties en mogelijkheden op de officiële Quooker website. Gebruik vervolgens onze configurator hierboven om uw keuze samen te stellen en een offerte aan te vragen.
+      </p>
+      <a 
+        href="https://www.quooker.nl/" 
+        target="_blank" 
+        rel="noopener"
+        class="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-slate-900 font-semibold px-8 py-4 rounded-xl transition-all hover:shadow-lg"
+      >
+        <span>Bezoek Quooker.nl</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <style>
+    .step-indicator {
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+
+    .step-indicator.active {
+      opacity: 1;
+    }
+
+    .step-indicator.completed {
+      opacity: 1;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgb(51 65 85);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .step-indicator.active .step-number {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .step-indicator.completed .step-number {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+
+    .config-step {
+      display: none;
+    }
+
+    .config-step.active {
+      display: block;
+      animation: fadeIn 0.3s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .config-option, .config-option-checkbox {
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .config-option-inner {
+      background: rgba(30, 41, 59, 0.5);
+      border: 2px solid rgb(51 65 85);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      height: 100%;
+      text-align: center;
+      transition: all 0.3s;
+    }
+
+    .config-option:hover .config-option-inner,
+    .config-option-checkbox:hover .config-option-inner {
+      border-color: rgb(59 130 246);
+      background: rgba(59, 130, 246, 0.1);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+    }
+
+    .config-option.selected .config-option-inner {
+      border-color: rgb(59 130 246);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.1));
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .config-option-checkbox.selected .config-option-inner {
+      border-color: rgb(16 185 129);
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1));
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+    }
+
+    .config-option-checkbox.selected .config-option-inner::after {
+      content: '✓';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 30px;
+      height: 30px;
+      background: rgb(16 185 129);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .config-option-inner {
+      position: relative;
+    }
+
+    .btn-configurator {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-configurator:hover:not(.disabled) {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-configurator.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-configurator-outline {
+      background: transparent;
+      color: white;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      border-radius: 0.75rem;
+      border: 2px solid rgb(71 85 105);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-configurator-outline:hover {
+      border-color: rgb(59 130 246);
+      background: rgba(59, 130, 246, 0.1);
+    }
+  </style>
+
+  <script>
+    // Configuration state
+    const config = {
+      model: null,
+      modelName: '',
+      tap: null,
+      tapName: '',
+      extensions: [],
+      basePrice: 0,
+      currentStep: 1
+    };
+
+    // Price mapping
+    const prices = {
+      flex: 1495,
+      fusion: 1595,
+      separate: 1195,
+      nordic: 2295,
+      chroom: 0,
+      rvs: 150,
+      zwart: 350,
+      wit: 350,
+      gunmetal: 350,
+      'rose-koper': 350
+    };
+
+    // Step navigation
+    function goToStep(step) {
+      // Hide all steps
+      document.querySelectorAll('.config-step').forEach(s => s.classList.remove('active'));
+      // Show target step
+      document.getElementById(`config-step-${step}`).classList.add('active');
+      
+      // Update progress indicators
+      document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
+        indicator.classList.remove('active', 'completed');
+        if (index + 1 < step) {
+          indicator.classList.add('completed');
+        } else if (index + 1 === step) {
+          indicator.classList.add('active');
+        }
+      });
+
+      // Update progress bars
+      for (let i = 1; i <= 3; i++) {
+        const bar = document.getElementById(`progress-${i}`);
+        if (bar) {
+          bar.style.width = i < step ? '100%' : '0%';
+        }
+      }
+
+      config.currentStep = step;
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Step 1: Model selection
+    document.querySelectorAll('#config-step-1 .config-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('#config-step-1 .config-option').forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        config.model = this.dataset.value;
+        config.modelName = this.dataset.name;
+        config.basePrice = prices[config.model];
+        
+        document.getElementById('next-step-1').classList.remove('disabled');
+        document.getElementById('next-step-1').disabled = false;
+      });
+    });
+
+    document.getElementById('next-step-1').addEventListener('click', () => {
+      if (config.model) goToStep(2);
+    });
+
+    // Step 2: Tap selection
+    document.querySelectorAll('#config-step-2 .config-option').forEach(option => {
+      option.addEventListener('click', function() {
+        document.querySelectorAll('#config-step-2 .config-option').forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        config.tap = this.dataset.value;
+        config.tapName = this.dataset.name;
+        
+        document.getElementById('next-step-2').classList.remove('disabled');
+        document.getElementById('next-step-2').disabled = false;
+      });
+    });
+
+    document.getElementById('prev-step-2').addEventListener('click', () => goToStep(1));
+    document.getElementById('next-step-2').addEventListener('click', () => {
+      if (config.tap) goToStep(3);
+    });
+
+    // Step 3: Extensions
+    document.querySelectorAll('#config-step-3 .config-option-checkbox').forEach(option => {
+      option.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        
+        const value = this.dataset.value;
+        const name = this.dataset.name;
+        const price = parseInt(this.dataset.price);
+        
+        const index = config.extensions.findIndex(ext => ext.value === value);
+        if (index > -1) {
+          config.extensions.splice(index, 1);
+        } else {
+          config.extensions.push({ value, name, price });
+        }
+      });
+    });
+
+    document.getElementById('prev-step-3').addEventListener('click', () => goToStep(2));
+    document.getElementById('next-step-3').addEventListener('click', () => {
+      updateSummary();
+      goToStep(4);
+    });
+
+    // Step 4: Summary and form
+    function updateSummary() {
+      const summary = document.getElementById('configuration-summary');
+      let totalPrice = config.basePrice + (prices[config.tap] || 0);
+      
+      let html = `
+        <div class="flex justify-between py-2">
+          <span>Model:</span>
+          <strong>${config.modelName}</strong>
+        </div>
+        <div class="flex justify-between py-2">
+          <span>Uitvoering:</span>
+          <strong>${config.tapName}</strong>
+        </div>
+      `;
+      
+      if (config.extensions.length > 0) {
+        html += `<div class="border-t border-blue-500/30 mt-2 pt-2"><strong>Uitbreidingen:</strong></div>`;
+        config.extensions.forEach(ext => {
+          html += `
+            <div class="flex justify-between py-1 pl-4">
+              <span>+ ${ext.name}</span>
+              <span>€${ext.price},-</span>
+            </div>
+          `;
+          totalPrice += ext.price;
+        });
+      }
+      
+      summary.innerHTML = html;
+      document.getElementById('total-price').textContent = `€${totalPrice},-`;
+    }
+
+    document.getElementById('prev-step-4').addEventListener('click', () => goToStep(3));
+
+    // Form submission
+    document.getElementById('configurator-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      
+      // Add configuration to data
+      data.configuration = {
+        model: config.modelName,
+        tap: config.tapName,
+        extensions: config.extensions.map(ext => ext.name),
+        totalPrice: config.basePrice + (prices[config.tap] || 0) + config.extensions.reduce((sum, ext) => sum + ext.price, 0)
+      };
+      
+      data.subject = `Quooker Configuratie: ${config.modelName} ${config.tapName}`;
+      data.type = 'quooker-configuratie';
+      
+      try {
+        const response = await fetch('/api/offerte', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        
+        if (response.ok) {
+          document.getElementById('configurator-form').style.display = 'none';
+          document.getElementById('configuration-summary').closest('.bg-gradient-to-br').style.display = 'none';
+          document.getElementById('success-message').classList.remove('hidden');
+        } else {
+          throw new Error('Failed to submit');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Er is een fout opgetreden. Bel ons direct op 06-58980933 of probeer het later opnieuw.');
+      }
+    });
+  </script>
+</Layout>

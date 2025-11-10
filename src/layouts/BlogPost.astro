@@ -168,4 +168,356 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
       </div>
     </div>
   </section>
+
+  <!-- Sticky CTA Button -->
+  <button 
+    id="sticky-appointment-btn"
+    class="fixed bottom-24 right-4 z-40 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-6 py-4 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 hover:scale-105 flex items-center gap-3 group"
+    aria-label="Maak een afspraak"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+    </svg>
+    <span class="hidden sm:inline">Maak Afspraak</span>
+    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+
+  <!-- Appointment Modal -->
+  <div 
+    id="appointment-modal" 
+    class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4"
+  >
+    <div class="bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-700">
+      <!-- Modal Header -->
+      <div class="sticky top-0 bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center justify-between">
+        <h3 class="text-2xl font-bold text-white">📅 Maak een Afspraak</h3>
+        <button 
+          id="close-modal-btn"
+          class="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-700 rounded-lg"
+          aria-label="Sluit formulier"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Content -->
+      <form id="appointment-form" class="p-6 space-y-6">
+        <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 text-sm text-blue-200">
+          <strong>⚡ Snelle service:</strong> We nemen binnen 24 uur contact met u op om de afspraak te bevestigen!
+        </div>
+
+        <!-- Service Type -->
+        <div>
+          <label class="block text-sm font-semibold text-slate-300 mb-2">Type Service *</label>
+          <select 
+            name="service" 
+            required 
+            class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="">Selecteer een service...</option>
+            <option value="quooker-reparatie">Quooker Reparatie</option>
+            <option value="quooker-onderhoud">Quooker Onderhoud</option>
+            <option value="quooker-installatie">Quooker Installatie</option>
+            <option value="airco-reparatie">Airco Reparatie</option>
+            <option value="airco-onderhoud">Airco Onderhoud</option>
+            <option value="airco-installatie">Airco Installatie</option>
+            <option value="waterontharder">Waterontharder Installatie</option>
+            <option value="anders">Anders / Advies</option>
+          </select>
+        </div>
+
+        <!-- Name & Phone -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Naam *</label>
+            <input 
+              type="text" 
+              name="name" 
+              required 
+              placeholder="Jan Jansen"
+              class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-500"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Telefoon *</label>
+            <input 
+              type="tel" 
+              name="phone" 
+              required 
+              placeholder="06 12345678"
+              class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-500"
+            />
+          </div>
+        </div>
+
+        <!-- Email & City -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Email *</label>
+            <input 
+              type="email" 
+              name="email" 
+              required 
+              placeholder="jan@voorbeeld.nl"
+              class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-500"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Plaats *</label>
+            <input 
+              type="text" 
+              name="city" 
+              required 
+              placeholder="Assen"
+              class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-500"
+            />
+          </div>
+        </div>
+
+        <!-- Preferred Date & Time -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Voorkeursdatum</label>
+            <input 
+              type="date" 
+              name="preferred_date" 
+              min={new Date().toISOString().split('T')[0]}
+              class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-300 mb-2">Voorkeurstijd</label>
+            <select 
+              name="preferred_time" 
+              class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">Geen voorkeur</option>
+              <option value="ochtend">Ochtend (8:00 - 12:00)</option>
+              <option value="middag">Middag (12:00 - 17:00)</option>
+              <option value="namiddag">Namiddag (17:00 - 19:00)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Problem Description -->
+        <div>
+          <label class="block text-sm font-semibold text-slate-300 mb-2">Beschrijving Probleem / Vraag</label>
+          <textarea 
+            name="description" 
+            rows="4" 
+            placeholder="Beschrijf hier kort uw probleem of vraag..."
+            class="w-full px-4 py-3 bg-slate-900 border border-slate-600 rounded-lg text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-500 resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Urgency -->
+        <div>
+          <label class="block text-sm font-semibold text-slate-300 mb-2">Urgentie</label>
+          <div class="space-y-2">
+            <label class="flex items-center gap-3 p-3 bg-slate-900 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+              <input type="radio" name="urgency" value="normaal" checked class="w-4 h-4 text-blue-600" />
+              <div>
+                <div class="text-white font-medium">Normaal</div>
+                <div class="text-slate-400 text-sm">Binnen 3-5 werkdagen</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-3 p-3 bg-slate-900 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
+              <input type="radio" name="urgency" value="spoed" class="w-4 h-4 text-orange-600" />
+              <div>
+                <div class="text-white font-medium">🚨 Spoed</div>
+                <div class="text-slate-400 text-sm">Binnen 24-48 uur (bijkomende kosten mogelijk)</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Privacy -->
+        <div>
+          <label class="flex items-start gap-3 cursor-pointer">
+            <input 
+              type="checkbox" 
+              name="privacy" 
+              required 
+              class="w-5 h-5 mt-0.5 text-blue-600 rounded"
+            />
+            <span class="text-sm text-slate-300">
+              Ik ga akkoord met de <a href="/privacy" class="text-blue-400 hover:text-blue-300 underline" target="_blank">privacyverklaring</a> en geef toestemming om contact met mij op te nemen. *
+            </span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex gap-4">
+          <button 
+            type="submit"
+            class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:-translate-y-0.5"
+          >
+            📅 Afspraak Aanvragen
+          </button>
+          <button 
+            type="button"
+            id="cancel-modal-btn"
+            class="px-8 py-4 bg-slate-700 hover:bg-slate-600 text-white font-semibold rounded-lg transition-colors"
+          >
+            Annuleren
+          </button>
+        </div>
+
+        <div class="text-xs text-slate-400 text-center">
+          * Verplichte velden
+        </div>
+      </form>
+
+      <!-- Success Message (hidden by default) -->
+      <div id="appointment-success" class="hidden p-6">
+        <div class="text-center py-8">
+          <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Afspraak Aangevraagd! ✅</h3>
+          <p class="text-slate-300 mb-6">
+            Bedankt voor uw aanvraag. We nemen binnen 24 uur contact met u op om de afspraak te bevestigen.
+          </p>
+          <button 
+            id="close-success-btn"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
+          >
+            Sluiten
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Modal functionality
+    const modal = document.getElementById('appointment-modal');
+    const stickyBtn = document.getElementById('sticky-appointment-btn');
+    const closeBtn = document.getElementById('close-modal-btn');
+    const cancelBtn = document.getElementById('cancel-modal-btn');
+    const closeSuccessBtn = document.getElementById('close-success-btn');
+    const form = document.getElementById('appointment-form');
+    const formContainer = form?.parentElement;
+    const successMsg = document.getElementById('appointment-success');
+
+    function openModal() {
+      modal?.classList.remove('hidden');
+      modal?.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal?.classList.add('hidden');
+      modal?.classList.remove('flex');
+      document.body.style.overflow = '';
+      // Reset form and show it again
+      form?.reset();
+      formContainer?.classList.remove('hidden');
+      successMsg?.classList.add('hidden');
+    }
+
+    stickyBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    cancelBtn?.addEventListener('click', closeModal);
+    closeSuccessBtn?.addEventListener('click', closeModal);
+    
+    // Close on backdrop click
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // Form submission
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn?.textContent;
+      
+      try {
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = '⏳ Verzenden...';
+        }
+
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        const response = await fetch('/api/offerte', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            ...data,
+            type: 'afspraak',
+            subject: `Afspraak aanvraag: ${data.service}`,
+          }),
+        });
+
+        if (response.ok) {
+          // Show success message
+          formContainer?.classList.add('hidden');
+          successMsg?.classList.remove('hidden');
+        } else {
+          throw new Error('Failed to submit');
+        }
+      } catch (error) {
+        console.error('Error submitting appointment:', error);
+        alert('Er is een fout opgetreden. Bel ons direct op 06 5898 0933 of probeer het later opnieuw.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText || '📅 Afspraak Aanvragen';
+        }
+      }
+    });
+  </script>
+
+  <style>
+    /* Smooth modal animation */
+    #appointment-modal {
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Custom scrollbar for modal */
+    #appointment-modal .overflow-y-auto::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    #appointment-modal .overflow-y-auto::-webkit-scrollbar-track {
+      background: rgb(30 41 59);
+      border-radius: 4px;
+    }
+
+    #appointment-modal .overflow-y-auto::-webkit-scrollbar-thumb {
+      background: rgb(71 85 105);
+      border-radius: 4px;
+    }
+
+    #appointment-modal .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+      background: rgb(100 116 139);
+    }
+  </style>
 </Layout>

@@ -1,9 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import GoogleReviews from '../components/GoogleReviews.astro';
 ---
 
-<Layout title="Waterontharder Assen - Delta Europese Kwaliteit" background="/assets/delta/responsive/delta_isera-1440w.avif" withOverlay>
+<Layout 
+  title="Waterontharder Assen - Delta Europese Kwaliteit" 
+  description="Professionele installatie van Delta waterontharders in Assen en omgeving. Belgische topkwaliteit, betrouwbaar en duurzaam. Gratis watertest en advies."
+  background="/assets/delta/responsive/delta_isera-1440w.avif" 
+  withOverlay
+>
 	<!-- Hero Section -->
 	<section class="page-hero-glass hc-hero">
 		<div class="hc-container">
@@ -433,6 +439,9 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 			</div>
 		</div>
 	</section>
+
+	<!-- Google Reviews Widget -->
+	<GoogleReviews />
 
 	<!-- CTA Section -->
 	<section class="hc-section">

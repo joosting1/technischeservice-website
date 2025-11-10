@@ -78,8 +78,9 @@
 .glx-service ul { margin:0 0 1rem; padding:0; list-style:none; font-size:.75rem; line-height:1.3; color:#cbd5e1; }
 .glx-service ul li { margin:.35rem 0; }
 
-.glx-btn-primary { display:inline-flex; justify-content:center; align-items:center; font-weight:600; font-size:.8rem; letter-spacing:.05em; gap:.5rem; padding:.85rem 1.1rem; border-radius:.75rem; background:linear-gradient(90deg,var(--hc-accent),var(--hc-accent-alt)); color:#0f172a; border:none; box-shadow:0 8px 24px -8px rgba(0,0,0,0.6); transition:transform .35s, box-shadow .35s; text-decoration:none; }
+.glx-btn-primary { display:inline-flex; justify-content:center; align-items:center; font-weight:600; font-size:.8rem; letter-spacing:.05em; gap:.5rem; padding:.85rem 1.1rem; border-radius:.75rem; background:linear-gradient(90deg,var(--hc-accent),var(--hc-accent-alt)); color:#0f172a; border:none; box-shadow:0 8px 24px -8px rgba(0,0,0,0.6); transition:transform .35s, box-shadow .35s; text-decoration:none; cursor:pointer; pointer-events:auto; }
 .glx-btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 32px -10px rgba(0,0,0,0.65); }
+.glx-btn-primary:active { transform:translateY(-1px); }
 
 /* Section headings reuse existing hc-title for consistency */
 .glx-section-head { text-align:center; margin:0 0 3.5rem; }
