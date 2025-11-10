@@ -8,29 +8,38 @@ import ContractForm from '../components/ContractForm.astro';
   title="Airco Onderhoudscontract | €7,50 per maand | Technische Service Assen" 
   description="Voorkom storingen en behoud optimale werking van uw airco. Onderhoudscontract vanaf €7,50/maand met professionele reiniging en check-ups."
 >
-  <section class="hc-section hc-section-light relative overflow-hidden">
-    <!-- Background Image -->
-    <div class="absolute inset-0 z-0">
-      <img 
-        src="/assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-1440w.webp"
-        alt="Airco onderhoud achtergrond"
-        class="w-full h-full object-cover opacity-[0.03]"
-        loading="eager"
-      />
-    </div>
-    
-    <div class="hc-container relative z-10">
+  <!-- Hero Section -->
+  <section class="hc-hero hero-left hero-spacious">
+    <div class="hc-container">
       <Breadcrumbs items={[
         { name: 'Home', href: '/' }, 
         { name: 'Airco Installatie', href: '/airco-installatie' },
         { name: 'Onderhoudscontract' }
       ]} />
-      
-      <div class="text-center mb-12">
-        <h1 class="hc-title">Airco Onderhoudscontract</h1>
-        <p class="hc-subtitle mt-4">Professioneel onderhoud voor optimale werking en energiezuinigheid</p>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Vanaf €7,50 per maand</span>
+          <h1 class="hc-title">Airco Onderhoudscontract</h1>
+          <p class="hero-subtitle">Professioneel onderhoud voor optimale werking en energiezuinigheid. Jaarlijks opzegbaar met voorrang bij storingen.</p>
+          <div class="hero-actions">
+            <a href="#contract-form" class="btn btn-primary">📝 Direct Afsluiten</a>
+            <a href="/airco-installatie" class="btn btn-outline">← Terug naar Airco</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <picture>
+            <source type="image/avif" srcset="/assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-480w.avif 480w, /assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-768w.avif 768w, /assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-1024w.avif 1024w, /assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-1440w.avif 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+            <source type="image/webp" srcset="/assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-480w.webp 480w, /assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-768w.webp 768w, /assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-1024w.webp 1024w, /assets/afbeeldingupload/responsive/Mitsubishi Heavy montage Emmen-1440w.webp 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+            <img src="/assets/afbeeldingupload/Mitsubishi Heavy montage Emmen.jpg" alt="Airco onderhoud" loading="eager" decoding="async" />
+          </picture>
+        </div>
       </div>
+    </div>
+  </section>
 
+  <!-- Content Section -->
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
       <div class="max-w-4xl mx-auto">
         <!-- Pricing Card -->
         <div class="hc-block mb-8">

@@ -3,12 +3,32 @@ import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
-<Layout title="Cookiebeleid - Technische Service Assen" withOverlay background="/assets/portfolio/responsive/sinclair-vries-1440w.avif">
-	<section class="hc-section">
+<Layout title="Cookiebeleid - Technische Service Assen">
+	<!-- Hero Section -->
+	<section class="hc-hero hero-left hero-spacious">
 		<div class="hc-container">
 			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Cookiebeleid' }]} />
+			<div class="hero-grid">
+				<div class="hero-content">
+					<span class="hero-eyebrow">Privacy & Cookies</span>
+					<h1 class="hc-title">Cookiebeleid</h1>
+					<p class="hero-subtitle">Transparant over hoe wij cookies gebruiken om uw gebruikerservaring te verbeteren.</p>
+				</div>
+				<div class="hero-image">
+					<picture>
+						<source type="image/avif" srcset="/assets/portfolio/responsive/sinclair-vries-480w.avif 480w, /assets/portfolio/responsive/sinclair-vries-768w.avif 768w, /assets/portfolio/responsive/sinclair-vries-1024w.avif 1024w, /assets/portfolio/responsive/sinclair-vries-1440w.avif 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+						<source type="image/webp" srcset="/assets/portfolio/responsive/sinclair-vries-480w.webp 480w, /assets/portfolio/responsive/sinclair-vries-768w.webp 768w, /assets/portfolio/responsive/sinclair-vries-1024w.webp 1024w, /assets/portfolio/responsive/sinclair-vries-1440w.webp 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+						<img src="/assets/portfolio/sinclair-vries.jpg" alt="Technische Service Assen" loading="eager" decoding="async" />
+					</picture>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Content Section -->
+	<section class="hc-section hc-section-light">
+		<div class="hc-container">
 			<div class="max-w-4xl mx-auto">
-				<h1 class="hc-title mb-8">Cookiebeleid</h1>
 				<div class="hc-block">
 					<p class="text-slate-300 mb-6">Deze website gebruikt cookies om de gebruikerservaring te verbeteren.</p>
 					<h2 class="hc-block-title mt-8 mb-4">Functionele Cookies</h2>

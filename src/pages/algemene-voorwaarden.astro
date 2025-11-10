@@ -7,16 +7,34 @@ const seoDescription = 'Algemene voorwaarden voor verkoop, installatie en servic
 ---
 
 <Layout title={seoTitle} description={seoDescription}>
-  <section class="hc-section">
+  <!-- Hero Section -->
+  <section class="hc-hero hero-left hero-spacious">
     <div class="hc-container">
       <Breadcrumbs items={[
         { name: 'Home', href: '/' },
         { name: 'Algemene Voorwaarden' }
       ]} />
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Voorwaarden & Garantie</span>
+          <h1 class="hc-title">Algemene Voorwaarden</h1>
+          <p class="hero-subtitle">Transparante afspraken over verkoop, installatie en service. KvK: 83742638</p>
+        </div>
+        <div class="hero-image">
+          <picture>
+            <source type="image/avif" srcset="/assets/portfolio/responsive/sinclair-vries-480w.avif 480w, /assets/portfolio/responsive/sinclair-vries-768w.avif 768w, /assets/portfolio/responsive/sinclair-vries-1024w.avif 1024w, /assets/portfolio/responsive/sinclair-vries-1440w.avif 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+            <source type="image/webp" srcset="/assets/portfolio/responsive/sinclair-vries-480w.webp 480w, /assets/portfolio/responsive/sinclair-vries-768w.webp 768w, /assets/portfolio/responsive/sinclair-vries-1024w.webp 1024w, /assets/portfolio/responsive/sinclair-vries-1440w.webp 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 600px" />
+            <img src="/assets/portfolio/sinclair-vries.jpg" alt="Technische Service Assen" loading="eager" decoding="async" />
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Content Section -->
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
       <div class="max-w-4xl mx-auto">
-        <h1 class="hc-title mb-6 text-center">Algemene Voorwaarden</h1>
-        <p class="text-center text-slate-400 mb-12">Technische Service Assen - KvK: 83742638</p>
 
         <div class="hc-block mb-8">
           <div class="p-8 space-y-8">
