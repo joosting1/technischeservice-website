@@ -1,0 +1,210 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Get query parameters from URL
+const url = new URL(Astro.request.url);
+const product = url.searchParams.get('product');
+const amount = url.searchParams.get('amount');
+const order = url.searchParams.get('order');
+---
+
+<Layout 
+  title="Betaling - Technische Service Assen"
+  description="Veilig betalen voor uw bestelling"
+>
+  <section class="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 py-16">
+    <div class="container mx-auto px-4 max-w-2xl">
+      
+      <div class="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+        
+        <!-- Loading State -->
+        <div id="loading-state" class="text-center">
+          <div class="mb-8">
+            <div class="inline-block">
+              <svg class="animate-spin h-16 w-16 text-blue-600" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Betaling voorbereiden...</h2>
+          <p class="text-gray-600 mb-8">U wordt doorgestuurd naar de beveiligde betaalomgeving.</p>
+          
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+            <h3 class="font-semibold text-gray-800 mb-4">Uw bestelling:</h3>
+            <div class="space-y-2 text-left">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Product:</span>
+                <strong class="text-gray-800" id="order-product">{order}</strong>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-600">Bedrag:</span>
+                <strong class="text-gray-800 text-xl">€{amount},-</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-sm text-gray-500">
+            <p class="mb-2">🔒 Beveiligde betaling via PayPro</p>
+            <p>Na betaling ontvangt u een bevestiging per e-mail.</p>
+          </div>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="hidden text-center">
+          <div class="mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full">
+              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Oeps, er ging iets mis</h2>
+          <p class="text-gray-600 mb-8">We konden de betaling niet starten. Geen zorgen, er is nog niets afgeschreven.</p>
+          
+          <div class="space-y-4">
+            <button onclick="window.location.reload()" class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+              Opnieuw proberen
+            </button>
+            <a href="/airco-aansluitpakket" class="block w-full bg-gray-200 text-gray-800 font-semibold py-3 px-6 rounded-lg hover:bg-gray-300 transition-colors">
+              Terug naar configurator
+            </a>
+            <a href="tel:0658980933" class="block text-blue-600 hover:underline">
+              Of bel ons: 06-58980933
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Security badges -->
+      <div class="mt-8 text-center">
+        <div class="flex items-center justify-center gap-4 text-white/70 text-sm">
+          <span>🔒 SSL Beveiligd</span>
+          <span>•</span>
+          <span>💳 Alle betaalmethoden</span>
+          <span>•</span>
+          <span>✓ Veilig betalen</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ product, amount, order }}>
+  // Wait for page load
+  document.addEventListener('DOMContentLoaded', async () => {
+    
+    // Get order data from sessionStorage
+    const orderData = sessionStorage.getItem('airco-order');
+    
+    if (!orderData) {
+      showError();
+      return;
+    }
+
+    const order = JSON.parse(orderData);
+    
+    // In a real implementation, you would:
+    // 1. Call your backend API to create a PayPro payment
+    // 2. Receive a payment URL from PayPro
+    // 3. Redirect to that URL
+    
+    // For now, we'll simulate this with a timeout and show instructions
+    setTimeout(() => {
+      // TODO: Replace this with actual PayPro API integration
+      // Example PayPro API call would look like:
+      /*
+      const response = await fetch('/api/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          amount: order.totalAmount,
+          description: order.orderType,
+          customer: {
+            name: order.customerName,
+            email: order.customerEmail,
+            phone: order.customerPhone
+          },
+          returnUrl: window.location.origin + '/betaling-success',
+          cancelUrl: window.location.origin + '/betaling-geannuleerd'
+        })
+      });
+      
+      const paymentData = await response.json();
+      if (paymentData.paymentUrl) {
+        window.location.href = paymentData.paymentUrl;
+      } else {
+        showError();
+      }
+      */
+      
+      // TEMPORARY: Show message that payment will be set up
+      document.getElementById('loading-state').innerHTML = `
+        <div class="text-center">
+          <div class="mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Bestelling Ontvangen!</h2>
+          <p class="text-gray-600 mb-6">Bedankt voor uw bestelling van <strong>${order.orderDetails.distance}</strong></p>
+          
+          <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8 text-left">
+            <h3 class="font-semibold text-gray-800 mb-4">Wat gebeurt er nu?</h3>
+            <ol class="space-y-3 text-gray-700">
+              <li class="flex gap-3">
+                <span class="font-bold text-blue-600">1.</span>
+                <span>U ontvangt een betaallink per e-mail op <strong>${order.customerEmail}</strong></span>
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-blue-600">2.</span>
+                <span>Betaal veilig via iDeal, creditcard of andere betaalmethoden</span>
+              </li>
+              <li class="flex gap-3">
+                <span class="font-bold text-blue-600">3.</span>
+                <span>Na betaling nemen wij contact op voor de levering en planning</span>
+              </li>
+            </ol>
+          </div>
+
+          <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-8">
+            <p class="text-sm text-gray-700">
+              <strong>💡 Tip:</strong> Check ook uw spam/ongewenste e-mail map als u binnen 10 minuten geen e-mail heeft ontvangen.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <a href="/" class="block w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+              Terug naar homepage
+            </a>
+            <p class="text-sm text-gray-600">
+              Vragen? Bel ons op <a href="tel:0658980933" class="text-blue-600 hover:underline font-semibold">06-58980933</a>
+            </p>
+          </div>
+        </div>
+      `;
+      
+      // Clear sessionStorage
+      sessionStorage.removeItem('airco-order');
+      
+    }, 2000);
+  });
+
+  function showError() {
+    document.getElementById('loading-state').classList.add('hidden');
+    document.getElementById('error-state').classList.remove('hidden');
+  }
+</script>
+
+<style>
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+</style>

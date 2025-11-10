@@ -134,7 +134,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
                   <li>✓ 3m koelleiding</li>
                   <li>✓ 3m kabelgoot</li>
                   <li>✓ Complete aansluitset</li>
-                  <li>✓ In bedrijfstelling</li>
+                  <li>✓ Montagemateriaal</li>
                 </ul>
                 <div class="text-2xl font-bold text-blue-400 mt-4">€225,-</div>
               </div>
@@ -149,7 +149,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
                   <li>✓ 5m koelleiding</li>
                   <li>✓ 5m kabelgoot</li>
                   <li>✓ Complete aansluitset</li>
-                  <li>✓ In bedrijfstelling</li>
+                  <li>✓ Montagemateriaal</li>
                 </ul>
                 <div class="text-2xl font-bold text-blue-400 mt-4">€275,-</div>
                 <div class="mt-2 text-xs text-green-400 font-semibold">⭐ Populair</div>
@@ -165,7 +165,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
                   <li>✓ 10m koelleiding</li>
                   <li>✓ 10m kabelgoot</li>
                   <li>✓ Complete aansluitset</li>
-                  <li>✓ In bedrijfstelling</li>
+                  <li>✓ Montagemateriaal</li>
                 </ul>
                 <div class="text-2xl font-bold text-blue-400 mt-4">€475,-</div>
               </div>
@@ -779,7 +779,14 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
       }
 
       config.currentStep = step;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Scroll to configurator section smoothly, not to top
+      const configSection = document.querySelector('.config-container');
+      if (configSection) {
+        const headerHeight = 80; // Height of fixed header
+        const targetPosition = configSection.offsetTop - headerHeight;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      }
     }
 
     // Step 1: Distance selection
@@ -929,6 +936,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
         subtotal += prices.inbedrijfstelling;
       }
       const totalPrice = subtotal + prices.shipping;
+      
       data.configuration = {
         distance: config.distanceName,
         pipeSize: config.pipeSizeName,
@@ -945,6 +953,12 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
       data.type = 'airco-aansluitpakket-bestelling';
       
       try {
+        // Show loading state
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        submitButton.innerHTML = '<span class="flex items-center gap-2"><svg class="animate-spin h-5 w-5" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Verwerken...</span>';
+        submitButton.disabled = true;
+        
         const response = await fetch('/api/offerte', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -952,16 +966,30 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
         });
         
         if (response.ok) {
-          document.getElementById('configurator-form').style.display = 'none';
-          document.querySelector('.bg-gradient-to-br.from-blue-500\\/10').style.display = 'none';
-          document.querySelector('.bg-gradient-to-br.from-slate-800').style.display = 'none';
-          document.getElementById('success-message').classList.remove('hidden');
+          // Store order data in sessionStorage for payment page
+          sessionStorage.setItem('airco-order', JSON.stringify({
+            customerName: data.naam,
+            customerEmail: data.email,
+            customerPhone: data.telefoon || '',
+            orderDetails: data.configuration,
+            totalAmount: totalPrice,
+            orderType: 'Airco Aansluitpakket'
+          }));
+          
+          // Redirect to PayPro payment page
+          // Replace with your actual PayPro payment URL/API endpoint
+          window.location.href = `/betaling?product=airco-aansluitpakket&amount=${totalPrice}&order=${encodeURIComponent(config.distanceName)}`;
+          
         } else {
           throw new Error('Failed to submit');
         }
       } catch (error) {
         console.error('Error:', error);
         alert('Er is een fout opgetreden. Bel ons direct op 06-58980933 of probeer het later opnieuw.');
+        // Restore button
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        submitButton.innerHTML = originalText;
+        submitButton.disabled = false;
       }
     });
   </script>
