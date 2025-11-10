@@ -1,5 +1,9 @@
 /* Experimental glass variant for homepage */
 
+/* REMOVED: .hero-grid is now defined in global.css */
+/* REMOVED: .glx-title - homepage now uses .hc-title from global.css */
+/* REMOVED: .glx-sub - homepage now uses .hero-subtitle from global.css */
+
 .home-glass-hero {
   position: relative;
   padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem,6vw,5rem);
@@ -32,9 +36,6 @@
 .home-glass-hero::before { backdrop-filter: blur(3px) brightness(0.95); }
 .home-glass-hero::after { background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 70%); }
 
-.hero-grid { display:grid; gap:3.5rem; align-items:center; }
-@media (min-width:1024px){ .hero-grid { grid-template-columns: 1fr 1fr; } }
-
 .glx-card {
   position:relative;
   background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
@@ -49,22 +50,6 @@
 }
 .glx-card::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg, rgba(105, 105, 105, 0.12), rgba(105, 105, 105, 0.10)); opacity:0; transition:.6s; mix-blend-mode:overlay; }
 .glx-card:hover::after { opacity:1; }
-
-.glx-title { 
-  font-size:clamp(2.75rem,5.3vw,3.75rem); 
-  font-weight:800; 
-  line-height:1.05; 
-  letter-spacing:-0.025em; 
-  margin:0 0 1rem; 
-  color: #fff;
-  text-shadow: 
-    0 1px 0 rgba(105, 105, 105, 0.5),
-    0 2px 0 rgba(105, 105, 105, 0.4),
-    0 3px 0 rgba(105, 105, 105, 0.3),
-    0 4px 4px rgba(0,0,0,0.2),
-    0 6px 8px rgba(0,0,0,0.15);
-}
-.glx-sub { font-size:clamp(1.1rem,1.5vw,1.35rem); line-height:1.6; color:var(--hc-muted); max-width:50ch; margin:0 0 2rem; }
 
 .hero-badge { position:absolute; top:1rem; left:1rem; background:linear-gradient(135deg,#3b82f6,#59a0ff); color:#fff; font-weight:600; padding:.55rem 1rem; border-radius:999px; font-size:.75rem; letter-spacing:.05em; box-shadow:0 4px 18px -4px rgba(0,0,0,.6), 0 0 20px rgba(59,130,246,0.4); }
 
