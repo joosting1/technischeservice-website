@@ -11,24 +11,24 @@ import GoogleReviews from '../components/GoogleReviews.astro';
   withOverlay
 >
 	<!-- Hero Section -->
-	<section class="page-hero-glass hc-hero">
+	<section class="hc-hero hero-left hero-spacious">
 		<div class="hc-container">
 			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Waterontharder' }]} />
 			<div class="hero-grid">
-				<div class="glx-card">
-					<h1 class="glx-title">Waterontharder Assen</h1>
-					<p class="glx-sub">Professionele installatie van Delta waterontharders in Assen en omgeving. Zacht water voor uw hele huis.</p>
-					<div class="flex flex-wrap gap-4 mt-4">
-						<a href="/offerte" class="glx-btn-primary">Gratis Watertest & Offerte</a>
-						<a href="tel:0658980933" class="glx-btn-primary" style="background:linear-gradient(90deg,#38bdf8,#0ea5e9);color:#0f172a;">📞 Direct Bellen</a>
+				<div class="hero-content">
+					<span class="hero-eyebrow">Delta Waterontharders</span>
+					<h1 class="hc-title">Waterontharder Assen</h1>
+					<p class="hero-subtitle">Professionele installatie van Delta waterontharders in Assen en omgeving. Zacht water voor uw hele huis.</p>
+					<div class="hero-actions">
+						<a href="/offerte" class="btn btn-primary">Gratis Watertest & Offerte</a>
+						<a href="https://wa.me/31658980933" class="btn btn-outline">📱 WhatsApp</a>
 					</div>
 				</div>
-				<div class="glx-img-wrap">
+				<div class="hero-image">
 					<picture>
 						<source type="image/avif" srcset="/assets/delta/responsive/delta_rusela-480w.avif 480w, /assets/delta/responsive/delta_rusela-768w.avif 768w, /assets/delta/responsive/delta_rusela-1024w.avif 1024w, /assets/delta/responsive/delta_rusela-1440w.avif 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 480px" />
 						<source type="image/webp" srcset="/assets/delta/responsive/delta_rusela-480w.webp 480w, /assets/delta/responsive/delta_rusela-768w.webp 768w, /assets/delta/responsive/delta_rusela-1024w.webp 1024w, /assets/delta/responsive/delta_rusela-1440w.webp 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 480px" />
-						<source type="image/jpeg" srcset="/assets/delta/responsive/delta_rusela-480w.jpg 480w, /assets/delta/responsive/delta_rusela-768w.jpg 768w, /assets/delta/responsive/delta_rusela-1024w.jpg 1024w, /assets/delta/responsive/delta_rusela-1440w.jpg 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 480px" />
-						<img src="/assets/delta/responsive/delta_rusela-480w.jpg" alt="Delta waterontharder installatie" fetchpriority="high" decoding="async" />
+						<img src="/assets/delta/responsive/delta_rusela-480w.jpg" alt="Delta Rusela waterontharder" loading="eager" decoding="async" />
 					</picture>
 				</div>
 			</div>

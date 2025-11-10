@@ -9,15 +9,81 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
   background="/assets/portfolio/responsive/daikin-airco-montage-groningen-1440w.avif"
   withOverlay
 >
-  <section class="hc-section hc-section-light">
+  <!-- Hero Section with Calculator Preview -->
+  <section class="hc-hero hero-left hero-spacious">
     <div class="hc-container">
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Airco Calculator' }]} />
-      
-      <div class="text-center mb-12">
-        <h1 class="hc-title">Premium Airco Calculator</h1>
-        <p class="hc-subtitle mt-4">De meest nauwkeurige airco vermogen calculator</p>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Premium Calculator</span>
+          <h1 class="hc-title">Airco Vermogen Calculator</h1>
+          <p class="hero-subtitle">De meest nauwkeurige airco vermogen calculator. Wetenschappelijke formules, aangepast aan uw locatie en eenvoudig te gebruiken.</p>
+          <div class="flex items-center gap-3">
+            <div class="flex gap-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+            </div>
+            <span class="text-white text-sm">HVAC Expert gecertificeerd</span>
+          </div>
+        </div>
+        <div class="hero-image">
+          <!-- Calculator Preview Card -->
+          <div class="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 shadow-2xl">
+            <div class="text-center mb-6">
+              <div class="text-5xl mb-3">🌡️</div>
+              <h3 class="text-xl font-bold text-white mb-2">Bereken BTU/Watt</h3>
+              <p class="text-slate-300 text-sm">Wetenschappelijk accuraat</p>
+            </div>
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center gap-3 p-3 bg-slate-700/30 rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-sm">✓</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Oppervlakte</span>
+                  <span class="text-slate-400 text-xs">Vloeroppervlak in m²</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-slate-700/30 rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-sm">✓</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Ruimtedetails</span>
+                  <span class="text-slate-400 text-xs">Hoogte, isolatie, ramen</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-slate-700/30 rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-sm">✓</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Klimaat & Oriëntatie</span>
+                  <span class="text-slate-400 text-xs">Locatie en zonligging</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-slate-700/30 rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold text-sm">✓</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Direct Resultaat</span>
+                  <span class="text-slate-400 text-xs">BTU en Watt berekening</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="inline-flex items-center gap-2 text-sm text-slate-400">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                <span>Scroll naar beneden om te berekenen</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </section>
 
+  <section class="hc-section hc-section-light">
+    <div class="hc-container">
+      
       <div class="max-w-4xl mx-auto">
         <!-- Waarom deze calculator -->
         <div class="hc-block mb-8">

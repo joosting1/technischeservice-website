@@ -1,0 +1,55 @@
+08        Eenmalige pallet
+08        Pallet
+09        Retour te zenden pallet
+200       Pallet ISO 0-1/2 EURO pallet
+201       Pallet ISO 0-1/1 EURO pallet
+202       Pallet ISO 2 pallet
+203       1/4 EURO pallet
+204       1/8 EURO pallet
+210       Grossier pallet
+211       Pallet 80 x 100 cm
+212       Pallet 60 x 100 cm
+AE        Spuitbus
+BA        Ton
+BC        Flessenkrat
+BC        Krat
+BE        Bundel
+BG        Zak
+BG        Geweven zak
+BGE       Bigbag
+BJ        Emmer
+BME       Blister
+BO        Fles
+BU        Vaatje
+BU        Vat
+BX        Kist
+BX        Bak
+BX        Kist
+CA        Blik, rechthoekig
+CT        Kartonnen doos
+CX        Blik, cilindrisch
+CX        Cilinder
+DR        Blik, bus
+JC        Jerrycan, rechthoekig
+JY        Jerrycan, cilindrisch
+LEN       Aaneengesloten lengte
+MPE       Multipack
+NE        Onverpakt
+OPE       Zuurstof verpakt
+PG        Plaat
+PK        Pakket
+PK        Pak
+RG        Ring
+RL        Haspel
+RO        Rol
+STE       Set
+SW        Krimpfolie
+SW        Verpakt in plastic
+TAE       Tablet, pastille
+TB        Kuip
+THE       Threepack
+TRE       Rolcontainer
+TTE       Staande tube
+TU        Tube
+TWE       Twopack
+VY        Silo

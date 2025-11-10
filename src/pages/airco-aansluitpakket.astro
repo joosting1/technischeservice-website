@@ -9,15 +9,16 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
   background="/assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1440w.avif" 
   withOverlay
 >
-  <!-- Hero Section -->
-  <section class="page-hero-glass hc-hero">
+  <!-- Hero Section with Calculator Preview -->
+  <section class="hc-hero hero-left hero-spacious">
     <div class="hc-container">
       <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Airco', href: '/airco-installatie' }, { name: 'Aansluitpakket' }]} />
       <div class="hero-grid">
-        <div class="glx-card max-w-2xl">
-          <h1 class="glx-title">Airco Aansluitpakket</h1>
-          <p class="glx-sub">Complete doe-het-zelf aansluitset voor uw airco installatie. Inclusief alle materialen en professionele in bedrijfstelling.</p>
-          <div class="flex items-center gap-3 mt-4">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Doe-Het-Zelf Pakket</span>
+          <h1 class="hc-title">Airco Aansluitpakket</h1>
+          <p class="hero-subtitle">Complete doe-het-zelf aansluitset voor uw airco installatie. Inclusief alle materialen en professionele in bedrijfstelling.</p>
+          <div class="flex items-center gap-3">
             <div class="flex gap-1">
               {[1,2,3,4,5].map(() => (
                 <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -26,6 +27,54 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
               ))}
             </div>
             <span class="text-white text-sm">BRL-100 Gecertificeerd</span>
+          </div>
+        </div>
+        <div class="hero-image">
+          <!-- Calculator Preview Card -->
+          <div class="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 shadow-2xl">
+            <div class="text-center mb-6">
+              <div class="text-5xl mb-3">🔧</div>
+              <h3 class="text-xl font-bold text-white mb-2">Bereken Uw Pakket</h3>
+              <p class="text-slate-300 text-sm">Vanaf €225,- inclusief IBS</p>
+            </div>
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center gap-3 p-3 bg-slate-700/30 rounded-lg">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">1</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Kies afstand</span>
+                  <span class="text-slate-400 text-xs">3m, 5m of 7m</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-slate-700/20 rounded-lg opacity-60">
+                <div class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center text-white font-bold text-sm">2</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Leidingmaat</span>
+                  <span class="text-slate-400 text-xs">¼" of ⅜"</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-slate-700/20 rounded-lg opacity-60">
+                <div class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center text-white font-bold text-sm">3</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Opties</span>
+                  <span class="text-slate-400 text-xs">Kabelgoot & units</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-slate-700/20 rounded-lg opacity-60">
+                <div class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center text-white font-bold text-sm">4</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Contactgegevens</span>
+                  <span class="text-slate-400 text-xs">Offerte aanvragen</span>
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <div class="inline-flex items-center gap-2 text-sm text-slate-400">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                <span>Scroll naar beneden om te starten</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -33,27 +33,26 @@ import GoogleReviews from '../components/GoogleReviews.astro';
 		<link rel="canonical" href="https://www.technischeserviceassen.nl/quooker-installatie" />
 	</Fragment>
 	<!-- Hero Section -->
-	<section class="page-hero-glass hc-hero">
+	<section class="hc-hero hero-left hero-spacious">
 		<div class="hc-container">
 			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Quooker' }]} />
 			<div class="hero-grid">
-				<div class="glx-card">
-					<h1 class="glx-title">Quooker Installatie Assen</h1>
-					<p class="glx-sub">20+ jaar Quooker specialist - inclusief de gloednieuwe Flex Square! Van installatie tot reparatie: één specialist voor alles.</p>
-					<div class="flex flex-wrap gap-4 mt-4" style="position:relative;z-index:10;">
-						<a href="/quooker-configurator" class="glx-btn-primary" style="background:linear-gradient(90deg,#f97316,#ea580c);cursor:pointer;">
-							🧮 Stel Uw Quooker Samen
-						</a>
-						<a href="/offerte" class="glx-btn-primary" style="cursor:pointer;">Gratis Offerte</a>
-						<a href="tel:0658980933" class="glx-btn-primary" style="background:linear-gradient(90deg,#38bdf8,#0ea5e9);color:#0f172a;cursor:pointer;">📞 Direct Bellen</a>
+				<div class="hero-content">
+					<span class="hero-eyebrow">Quooker Specialist</span>
+					<h1 class="hc-title">Quooker Installatie Assen</h1>
+					<p class="hero-subtitle">20+ jaar Quooker specialist - inclusief de gloednieuwe Flex Square! Van installatie tot reparatie: één specialist voor alles.</p>
+					<div class="hero-actions">
+						<a href="/quooker-configurator" class="btn btn-primary">🧮 Stel Uw Quooker Samen</a>
+						<a href="/offerte" class="btn btn-primary">Gratis Offerte</a>
+						<a href="https://wa.me/31658980933" class="btn btn-outline">📱 WhatsApp</a>
 					</div>
 				</div>
-				<div class="glx-img-wrap">
+				<div class="hero-image">
 					<picture>
 						<source type="image/avif" srcset="/assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-480w.avif 480w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-768w.avif 768w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-1024w.avif 1024w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-1440w.avif 1440w" sizes="(max-width: 1024px) 92vw, 640px" />
 						<source type="image/webp" srcset="/assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-480w.webp 480w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-768w.webp 768w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-1024w.webp 1024w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-1440w.webp 1440w" sizes="(max-width: 1024px) 92vw, 640px" />
 						<source type="image/jpeg" srcset="/assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-480w.jpg 480w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-768w.jpg 768w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-1024w.jpg 1024w, /assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-1440w.jpg 1440w" sizes="(max-width: 1024px) 92vw, 640px" />
-						<img src="/assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-480w.jpg" alt="Quooker Flex Square - nieuwste model kokendwaterkraan" fetchpriority="high" decoding="async" />
+						<img src="/assets/quooker-flex-square/responsive/2650-fxssst-rvs-thee-480w.jpg" alt="Quooker Flex Square - nieuwste model kokendwaterkraan" loading="eager" decoding="async" />
 					</picture>
 				</div>
 			</div>

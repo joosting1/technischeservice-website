@@ -1,0 +1,299 @@
+{
+  "products": [
+    {
+      "id": "spectrum-plus-09",
+      "series": "Spectrum Plus",
+      "model": "ASH-09BIS2/W",
+      "name": "Spectrum Plus Set ASH-09BIS2/W",
+      "description": "Complete split-unit airco set met inverter technologie",
+      "type": "complete-set",
+      "cooling_kw": 2.7,
+      "heating_kw": 3.5,
+      "price": 2405,
+      "features": [
+        "WiFi ready",
+        "Energielabel A++",
+        "Stille werking",
+        "R32 koudemiddel"
+      ]
+    },
+    {
+      "id": "spectrum-plus-13",
+      "series": "Spectrum Plus",
+      "model": "ASH-13BIS2/W",
+      "name": "Spectrum Plus Set ASH-13BIS2/W",
+      "description": "Complete split-unit airco set met inverter technologie",
+      "type": "complete-set",
+      "cooling_kw": 3.6,
+      "heating_kw": 4.2,
+      "price": 2473,
+      "features": [
+        "WiFi ready",
+        "Energielabel A++",
+        "Stille werking",
+        "R32 koudemiddel"
+      ]
+    },
+    {
+      "id": "spectrum-plus-18",
+      "series": "Spectrum Plus",
+      "model": "ASH-18BIS3/W",
+      "name": "Spectrum Plus Set ASH-18BIS3/W",
+      "description": "Complete split-unit airco set met inverter technologie",
+      "type": "complete-set",
+      "cooling_kw": 5.3,
+      "heating_kw": 6.2,
+      "price": 3095,
+      "features": [
+        "WiFi ready",
+        "Energielabel A++",
+        "Stille werking",
+        "R32 koudemiddel"
+      ]
+    },
+    {
+      "id": "spectrum-plus-24",
+      "series": "Spectrum Plus",
+      "model": "ASH-24BIS2/W",
+      "name": "Spectrum Plus Set ASH-24BIS2/W",
+      "description": "Complete split-unit airco set met inverter technologie",
+      "type": "complete-set",
+      "cooling_kw": 7.1,
+      "heating_kw": 7.1,
+      "price": 3337,
+      "features": [
+        "WiFi ready",
+        "Energielabel A++",
+        "Stille werking",
+        "R32 koudemiddel"
+      ]
+    },
+    {
+      "id": "terrel-09-wit",
+      "series": "Terrel",
+      "model": "SIH-09BITW + SOH-09BIT",
+      "name": "Terrel Set Wit 2.7/3.0kW",
+      "description": "Betaalbare split-unit airco in elegant wit design",
+      "type": "complete-set",
+      "color": "Wit",
+      "cooling_kw": 2.7,
+      "heating_kw": 3.0,
+      "price": 1306,
+      "features": [
+        "Energielabel A+",
+        "Stil 19dB",
+        "Sleep mode",
+        "Timer functie"
+      ]
+    },
+    {
+      "id": "terrel-13-wit",
+      "series": "Terrel",
+      "model": "SIH-13BITW + SOH-13BIT",
+      "name": "Terrel Set Wit 3.5/3.8kW",
+      "description": "Betaalbare split-unit airco in elegant wit design",
+      "type": "complete-set",
+      "color": "Wit",
+      "cooling_kw": 3.5,
+      "heating_kw": 3.8,
+      "price": 1379,
+      "features": [
+        "Energielabel A+",
+        "Stil 19dB",
+        "Sleep mode",
+        "Timer functie"
+      ]
+    },
+    {
+      "id": "terrel-18-wit",
+      "series": "Terrel",
+      "model": "SIH-18BIT2W + SOH-18BIT2",
+      "name": "Terrel Set Wit 5.3/5.6kW",
+      "description": "Betaalbare split-unit airco in elegant wit design",
+      "type": "complete-set",
+      "color": "Wit",
+      "cooling_kw": 5.3,
+      "heating_kw": 5.6,
+      "price": 2214,
+      "features": [
+        "Energielabel A+",
+        "Stil 19dB",
+        "Sleep mode",
+        "Timer functie"
+      ]
+    },
+    {
+      "id": "terrel-24-wit",
+      "series": "Terrel",
+      "model": "SIH-24BIT2W + SOH-24BIT2",
+      "name": "Terrel Set Wit 7.1/7.8kW",
+      "description": "Betaalbare split-unit airco in elegant wit design",
+      "type": "complete-set",
+      "color": "Wit",
+      "cooling_kw": 7.1,
+      "heating_kw": 7.8,
+      "price": 2555,
+      "features": [
+        "Energielabel A+",
+        "Stil 19dB",
+        "Sleep mode",
+        "Timer functie"
+      ]
+    },
+    {
+      "id": "terrel-09-antraciet",
+      "series": "Terrel",
+      "model": "SIH-09BITB + SOH-09BIT",
+      "name": "Terrel Set Antraciet 2.7/3.0kW",
+      "description": "Betaalbare split-unit airco in stijlvol antraciet",
+      "type": "complete-set",
+      "color": "Antraciet",
+      "cooling_kw": 2.7,
+      "heating_kw": 3.0,
+      "price": 1338,
+      "features": [
+        "Energielabel A+",
+        "Stil 19dB",
+        "Sleep mode",
+        "Timer functie"
+      ]
+    },
+    {
+      "id": "terrel-13-antraciet",
+      "series": "Terrel",
+      "model": "SIH-13BITB + SOH-13BIT",
+      "name": "Terrel Set Antraciet 3.5/3.8kW",
+      "description": "Betaalbare split-unit airco in stijlvol antraciet",
+      "type": "complete-set",
+      "color": "Antraciet",
+      "cooling_kw": 3.5,
+      "heating_kw": 3.8,
+      "price": 1415,
+      "features": [
+        "Energielabel A+",
+        "Stil 19dB",
+        "Sleep mode",
+        "Timer functie"
+      ]
+    },
+    {
+      "id": "keyon-09",
+      "series": "Keyon",
+      "model": "SIH-09BIK + SOH-09BIK",
+      "name": "Keyon Set 2.7/2.8kW",
+      "description": "Instapmodel split-unit airco met goede prijs/kwaliteit",
+      "type": "complete-set",
+      "cooling_kw": 2.7,
+      "heating_kw": 2.8,
+      "price": 350,
+      "features": [
+        "Energielabel A",
+        "Basis functionaliteit",
+        "Betrouwbaar",
+        "Betaalbaar"
+      ]
+    },
+    {
+      "id": "keyon-12",
+      "series": "Keyon",
+      "model": "SIH-12BIK + SOH-12BIK",
+      "name": "Keyon Set 3.2/3.4kW",
+      "description": "Instapmodel split-unit airco met goede prijs/kwaliteit",
+      "type": "complete-set",
+      "cooling_kw": 3.2,
+      "heating_kw": 3.4,
+      "price": 385,
+      "features": [
+        "Energielabel A",
+        "Basis functionaliteit",
+        "Betrouwbaar",
+        "Betaalbaar"
+      ]
+    },
+    {
+      "id": "keyon-18",
+      "series": "Keyon",
+      "model": "SIH-18BIK + SOH-18BIK",
+      "name": "Keyon Set 4.6/5.2kW",
+      "description": "Instapmodel split-unit airco met goede prijs/kwaliteit",
+      "type": "complete-set",
+      "cooling_kw": 4.6,
+      "heating_kw": 5.2,
+      "price": 550,
+      "features": [
+        "Energielabel A",
+        "Basis functionaliteit",
+        "Betrouwbaar",
+        "Betaalbaar"
+      ]
+    },
+    {
+      "id": "keyon-24",
+      "series": "Keyon",
+      "model": "SIH-24BIK + SOH-24BIK",
+      "name": "Keyon Set 6.2/6.4kW",
+      "description": "Instapmodel split-unit airco met goede prijs/kwaliteit",
+      "type": "complete-set",
+      "cooling_kw": 6.2,
+      "heating_kw": 6.4,
+      "price": 710,
+      "features": [
+        "Energielabel A",
+        "Basis functionaliteit",
+        "Betrouwbaar",
+        "Betaalbaar"
+      ]
+    }
+  ],
+  "series_info": {
+    "Spectrum Plus": {
+      "name": "Spectrum Plus",
+      "tagline": "Premium inverter airconditioner",
+      "description": "De Spectrum Plus serie is de top van de lijn met WiFi connectiviteit, zeer stil en energiezuinig met A++ label.",
+      "target_audience": "Voor wie het beste wil",
+      "price_range": "€2.405 - €3.337"
+    },
+    "Terrel": {
+      "name": "Terrel",
+      "tagline": "Betaalbare kwaliteit met stijl",
+      "description": "Perfect mid-range model met uitstekende prijs-kwaliteit verhouding. Verkrijgbaar in 4 kleuren.",
+      "target_audience": "Beste keuze voor meeste huishoudens",
+      "price_range": "€1.306 - €2.662"
+    },
+    "Keyon": {
+      "name": "Keyon",
+      "tagline": "Instapmodel met betrouwbaarheid",
+      "description": "Betaalbare instap split-unit met solide prestaties en betrouwbaarheid.",
+      "target_audience": "Budget-vriendelijke optie",
+      "price_range": "€350 - €710"
+    }
+  },
+  "installation_options": {
+    "standard": {
+      "name": "Standaard Installatie",
+      "description": "Complete installatie inclusief materialen tot 3 meter",
+      "price": 495,
+      "included": [
+        "Wandmontage binnenunit",
+        "Montage buitenunit",
+        "Koppelleidingen tot 3m",
+        "Elektrische aansluiting",
+        "Vacuümpomp behandeling",
+        "In bedrijfstelling",
+        "Uitleg bediening"
+      ]
+    },
+    "extended": {
+      "name": "Uitgebreide Installatie",
+      "description": "Voor complexere situaties met langere afstanden",
+      "price": 695,
+      "included": [
+        "Alle standaard diensten",
+        "Koppelleidingen tot 10m",
+        "Doorvoer door muur/gevel",
+        "Extra bevestigingsmaterialen",
+        "Kabelgoot plaatsing"
+      ]
+    }
+  }
+}

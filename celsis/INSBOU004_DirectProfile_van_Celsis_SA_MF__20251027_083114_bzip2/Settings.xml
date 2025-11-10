@@ -1,0 +1,75 @@
+<Settings ExportDate="2025-10-27T08:31:14.613" Version="SelprofAgent_5.50.1 (2025-10-22 17:44)" ExportedBy="2BA">
+  <SelectionProfile>
+    <ProfileID>49CEA987-DB90-4B2A-9575-D47AD33F511E</ProfileID>
+    <UserID>0006D3FB-D409-EA11-80E2-00155D1BC800</UserID>
+    <Description>DirectProfile van Celsis (SA_MF)</Description>
+    <ExportFormat>GS1_INSBOU_V004</ExportFormat>
+    <ExportComplete>1</ExportComplete>
+    <RunDate>2025-10-28T00:00:00</RunDate>
+    <PreviousRunDate>2004-01-01T00:00:00</PreviousRunDate>
+    <Recurrence>0</Recurrence>
+    <ExportSchedule>CUST_DAY</ExportSchedule>
+    <CustomPeriod>0</CustomPeriod>
+    <DaysToExport>5</DaysToExport>
+    <MonthsToExport>0</MonthsToExport>
+    <ExportMutationsSince>2004-01-01T00:00:00</ExportMutationsSince>
+    <ExportNumber>2</ExportNumber>
+    <NotifyOnNoData>1</NotifyOnNoData>
+    <MailWhenFinished>1</MailWhenFinished>
+    <SendCCTo />
+    <DateCreated>2025-10-27T08:31:09.517</DateCreated>
+    <DateLastChange>2025-10-27T08:31:09.517</DateLastChange>
+    <UserLastChange />
+    <InfoLastChange />
+    <CompressionMethod>BZip2ZIP</CompressionMethod>
+    <SelectionMethod>SA_MF</SelectionMethod>
+    <OnlyActualPrices>0</OnlyActualPrices>
+    <ExportArtToKo>1</ExportArtToKo>
+    <ExportDataToFolders>0</ExportDataToFolders>
+    <ProfileActive>0</ProfileActive>
+    <ProcessedBy />
+    <ReadOnly>1</ReadOnly>
+    <InactiveReason />
+    <ProfilePriority>100</ProfilePriority>
+    <LockedBy>SELPROFAGENT:ASTRAEUS_DBR2</LockedBy>
+    <MasterProfile />
+    <IncreaseCouplingPercentage>1</IncreaseCouplingPercentage>
+    <UseStagingData>0</UseStagingData>
+    <CoupleRecords>*;</CoupleRecords>
+    <IncludeAttachments>1</IncludeAttachments>
+    <FilterTradeItemsCoupledToDummyProducts>0</FilterTradeItemsCoupledToDummyProducts>
+    <AllowStatus130PAB2>0</AllowStatus130PAB2>
+    <ETIMPublicationType>2</ETIMPublicationType>
+    <ExportEtimFillindications>0</ExportEtimFillindications>
+    <ExportRefurbished>1</ExportRefurbished>
+    <ExportUsed>1</ExportUsed>
+    <ExportResidualMaterial>1</ExportResidualMaterial>
+    <ExportDummyProductsAndUnmaintainedData>0</ExportDummyProductsAndUnmaintainedData>
+    <ProfileRows NumberOfRows="1">
+      <ProfileRow>
+        <SelectionProfileRowID>81B07E8D-417D-4DC7-8C9D-543FA68547A6</SelectionProfileRowID>
+        <Description>GLN: 8712423016927 (ALL) A</Description>
+        <GLNSupplier>8712423016927</GLNSupplier>
+        <ArticleCodeSupplier />
+        <DiscountGroupSupplier />
+        <GroupIDSupplier />
+        <CustomPropertyValue />
+        <GLNManufacturer />
+        <BrandNameManufacturer />
+        <ProductClassManufacturer />
+        <ProductSeriesManufacturer />
+        <ProductTypeManufacturer />
+        <ProductCodeManufacturer />
+        <InverseRowSelection>0</InverseRowSelection>
+        <RowAdded>2025-10-27T08:31:09.970</RowAdded>
+        <RowEdited>2025-10-27T08:31:09.970</RowEdited>
+        <AssortmentType>OLD</AssortmentType>
+        <DownloadRowCompleteViaFile />
+        <LineType>0</LineType>
+      </ProfileRow>
+    </ProfileRows>
+  </SelectionProfile>
+  <RunParameters>
+    <SequenceNumber>251027083114534</SequenceNumber>
+  </RunParameters>
+</Settings>

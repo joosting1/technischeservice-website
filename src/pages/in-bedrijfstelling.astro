@@ -10,17 +10,25 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
   withOverlay
 >
 	<!-- Hero Section -->
-	<section class="page-hero-glass hc-hero">
+	<section class="hc-hero hero-left hero-spacious">
 		<div class="hc-container">
 			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'In Bedrijfstelling' }]} />
 			<div class="hero-grid">
-				<div class="glx-card">
-					<h1 class="glx-title">In Bedrijfstelling Airco & Warmtepomp</h1>
-					<p class="glx-sub">Professionele in bedrijfstelling van airconditioners en warmtepompen volgens de F-gassen regelgeving. Gecertificeerd en volgens alle veiligheidsnormen.</p>
-					<div class="flex flex-wrap gap-4 mt-4">
+				<div class="hero-content">
+					<span class="hero-eyebrow">F-gassen Gecertificeerd</span>
+					<h1 class="hc-title">In Bedrijfstelling Airco & Warmtepomp</h1>
+					<p class="hero-subtitle">Professionele in bedrijfstelling van airconditioners en warmtepompen volgens de F-gassen regelgeving. Gecertificeerd en volgens alle veiligheidsnormen.</p>
+					<div class="hero-actions">
 						<a href="/offerte" class="btn btn-primary">Gratis Offerte</a>
 						<a href="https://wa.me/31658980933" class="btn btn-outline">📱 WhatsApp</a>
 					</div>
+				</div>
+				<div class="hero-image">
+					<picture>
+						<source type="image/avif" srcset="/assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-480w.avif 480w, /assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-768w.avif 768w, /assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1024w.avif 1024w, /assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1440w.avif 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 480px" />
+						<source type="image/webp" srcset="/assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-480w.webp 480w, /assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-768w.webp 768w, /assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1024w.webp 1024w, /assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1440w.webp 1440w" sizes="(max-width: 768px) 92vw, (max-width: 1200px) 50vw, 480px" />
+						<img src="/assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-480w.jpg" alt="Professionele in bedrijfstelling Daikin airco" loading="eager" decoding="async" />
+					</picture>
 				</div>
 			</div>
 		</div>

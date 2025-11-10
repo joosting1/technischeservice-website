@@ -58,13 +58,61 @@ const allTags = Array.from(tagSet).sort();
 			]
 		})}</script>
 	</Fragment>
-	<section class="hc-section">
+	
+	<!-- Hero Section -->
+	<section class="hc-hero hero-left hero-spacious">
 		<div class="hc-container">
 			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Blog' }]} />
-			<div class="text-center mb-16">
-				<h1 class="hc-title mb-3">Blog & Advies</h1>
-				<p class="hc-subtitle mx-auto">Praktische tips en professioneel advies van onze experts</p>
+			<div class="hero-grid">
+				<div class="hero-content">
+					<span class="hero-eyebrow">Praktische Tips & Advies</span>
+					<h1 class="hc-title">Blog & Advies</h1>
+					<p class="hero-subtitle">Praktische tips en professioneel advies van onze experts. Alles over airco, Quooker en waterontharders.</p>
+					<div class="hero-actions">
+						<a href="#blog-content" class="btn btn-primary">Bekijk Artikelen</a>
+						<a href="/offerte" class="btn btn-outline">Gratis Advies</a>
+					</div>
+				</div>
+				<div class="hero-image">
+					<!-- Recent Articles Preview -->
+					<div class="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 shadow-2xl">
+						<div class="flex items-center gap-3 mb-4">
+							<div class="text-3xl">📝</div>
+							<div>
+								<h3 class="text-lg font-bold text-white">Nieuwste Artikelen</h3>
+								<p class="text-slate-400 text-sm">{posts.length} artikelen beschikbaar</p>
+							</div>
+						</div>
+						<div class="space-y-3">
+							{posts.slice(0, 4).map((post) => (
+								<a href={`/blog/${post.slug}/`} class="block p-3 bg-slate-700/30 hover:bg-slate-700/50 rounded-lg transition-colors group">
+									<div class="flex items-start gap-3">
+										<div class="w-2 h-2 rounded-full bg-blue-500 mt-2 flex-shrink-0 group-hover:bg-blue-400 transition-colors"></div>
+										<div class="flex-1 min-w-0">
+											<h4 class="text-white text-sm font-medium mb-1 line-clamp-1 group-hover:text-blue-400 transition-colors">{post.data.title}</h4>
+											<div class="flex items-center gap-2 text-xs text-slate-400">
+												<span>{post.data.tags?.[0] || 'Algemeen'}</span>
+												<span>•</span>
+												<FormattedDate date={post.data.pubDate} />
+											</div>
+										</div>
+									</div>
+								</a>
+							))}
+						</div>
+						{posts.length > 4 && (
+							<div class="mt-4 pt-4 border-t border-slate-700/50 text-center">
+								<span class="text-slate-400 text-sm">+{posts.length - 4} meer artikelen</span>
+							</div>
+						)}
+					</div>
+				</div>
 			</div>
+		</div>
+	</section>
+
+	<section class="hc-section" id="blog-content">
+		<div class="hc-container">
 
 			<!-- Dynamic Tag Filter (horizontal scroll on mobile) -->
 			<div class="category-scroll flex gap-3 mb-12 overflow-x-auto whitespace-nowrap sm:flex-wrap sm:justify-center px-1 -mx-1" aria-label="Tags" id="tag-filter">

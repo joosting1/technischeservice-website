@@ -1,0 +1,3 @@
+DAYS      Dag
+HOURS     Uur
+WEEKS     Week

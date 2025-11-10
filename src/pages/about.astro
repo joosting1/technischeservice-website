@@ -11,16 +11,21 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
   background="/assets/portfolio/responsive/sinclair-vries-1440w.avif"
 >
 	<!-- Hero -->
-	<section class="page-hero-glass">
+	<section class="hc-hero hero-left hero-spacious">
 		<div class="hc-container">
 			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Over ons' }]} />
 			<div class="hero-grid">
-				<div class="glx-card">
-					<h1 class="glx-title">Over ons</h1>
-					<p class="glx-sub">Vakmanschap en betrouwbaarheid. 15+ jaar ervaring in installatie van airco, Quooker en waterontharders in Noord-Nederland.</p>
+				<div class="hero-content">
+					<span class="hero-eyebrow">Technische Service Assen</span>
+					<h1 class="hc-title">Over ons</h1>
+					<p class="hero-subtitle">Vakmanschap en betrouwbaarheid. 15+ jaar ervaring in installatie van airco, Quooker en waterontharders in Noord-Nederland.</p>
+					<div class="hero-actions">
+						<a href="/offerte" class="btn btn-primary">Gratis Offerte</a>
+						<a href="https://wa.me/31658980933" class="btn btn-outline">📱 WhatsApp</a>
+					</div>
 				</div>
-				<div class="glx-img-wrap">
-					<img src={(AboutHeroImage as any).src} alt="Technische Service Assen" loading="lazy" decoding="async" />
+				<div class="hero-image">
+					<img src={(AboutHeroImage as any).src} alt="Technische Service Assen team" loading="eager" decoding="async" />
 				</div>
 			</div>
 		</div>

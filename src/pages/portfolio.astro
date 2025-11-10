@@ -100,14 +100,62 @@ items.sort((a, b) => {
 ---
 
 <Layout title="Afbeeldingen van recent werk | Technische Service Assen" description="Afbeeldingen van recent werk: airco-installaties, Quooker en waterontharders in Noord-Nederland." image="/assets/portfolio/sinclair-vries.jpg" background="/assets/portfolio/responsive/sinclair-vries-1440w.avif" withOverlay>
-  <section class="hc-section hc-section-light">
+  
+  <!-- Hero Section -->
+  <section class="hc-hero hero-left hero-spacious">
     <div class="hc-container">
-      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Afbeeldingen van recent werk' }]} />
-      <h1 class="hc-title">Afbeeldingen van recent werk</h1>
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Portfolio' }]} />
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Recent Werk</span>
+          <h1 class="hc-title">Afbeeldingen van recent werk</h1>
+          <p class="hero-subtitle">Bekijk onze professionele installaties van airconditioners, Quooker kranen en waterontharders in Noord-Nederland. Vakwerk waar we trots op zijn.</p>
+          <div class="hero-actions">
+            <a href="#portfolio-content" class="btn btn-primary">Bekijk Portfolio</a>
+            <a href="/offerte" class="btn btn-outline">Gratis Offerte</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <!-- Recent Work Preview -->
+          <div class="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 shadow-2xl">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="text-3xl">📸</div>
+              <div>
+                <h3 class="text-lg font-bold text-white">Recent Werk</h3>
+                <p class="text-slate-400 text-sm">{items.length} projecten voltooid</p>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              {items.slice(0, 6).map((item, idx) => (
+                <a href="#portfolio-content" data-lightbox-index={idx} class="group relative aspect-[4/3] rounded-lg overflow-hidden bg-slate-700">
+                  {item.variants?.avif?.[0] ? (
+                    <picture>
+                      <source type="image/avif" srcset={item.variants.avif[0]} />
+                      <source type="image/webp" srcset={item.variants.webp?.[0]} />
+                      <img src={item.url} alt={item.alt} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                    </picture>
+                  ) : (
+                    <img src={item.url} alt={item.alt} loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                  )}
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-2 text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p class="line-clamp-1 font-medium">{item.title}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+            {items.length > 6 && (
+              <div class="mt-4 pt-4 border-t border-slate-700/50 text-center">
+                <span class="text-slate-400 text-sm">+{items.length - 6} meer projecten</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="hc-section hc-section-light">
+  <section class="hc-section hc-section-light" id="portfolio-content">
     <div class="hc-container">
       {items.length === 0 ? (
         <div class="text-center text-gray-300 py-16">

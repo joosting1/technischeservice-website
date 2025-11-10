@@ -1,0 +1,6 @@
+ADR       Totaal overige (korting/toeslag)
+CRS       Afvalbeheersbijdrage
+DBD       Debiteur gebonden  (toeslag / korting)
+QD        Staffelkorting (korting)
+SH        Korting bewerkingstoeslag (korting)
+TD        Handelskorting (korting)

@@ -1,0 +1,18 @@
+ANN       Jaar
+CMT       Centimeter
+DAY       Dag
+GRM       Gram
+HUR       Uur
+KGM       Kilogram
+LTR       Liter
+MIN       Minuut
+MLT       Milliliter
+MMT       Millimeter
+MON       Maand
+MTK       Vierkante meter
+MTQ       Kubieke meter
+MTR       Meter
+PCE       Stuk
+QAN       Kwartaal
+TNE       Ton
+WEK       Week
