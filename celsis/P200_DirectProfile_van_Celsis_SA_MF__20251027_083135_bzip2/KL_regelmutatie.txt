@@ -1,4 +1,0 @@
-1         Toevoegen / Nieuw
-2         Verwijderen
-3         Wijziging
-4         Bevestigen, geen wijziging

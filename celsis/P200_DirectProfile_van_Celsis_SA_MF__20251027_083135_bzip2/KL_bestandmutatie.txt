@@ -1,4 +1,0 @@
-2         Nieuw assortiment
-3         Vervallen van het gehele assortiment
-4         Wijziging binnen het huidig assortiment
-5         Vervangen van het gehele assortiment
