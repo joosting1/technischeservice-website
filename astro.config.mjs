@@ -9,7 +9,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://technischeservice.nl',
+  site: 'https://technischeserviceassen.nl', // Info site - webshop blijft op technischeservice.nl
   output: 'server',
   adapter: cloudflare(),
   integrations: [sitemap()],
