@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const url = new URL(Astro.request.url);
+const paymentHash = url.searchParams.get('payment_hash');
+---
+
+<Layout 
+  title="Betaling Geslaagd - Technische Service Assen"
+  description="Uw betaling is succesvol verwerkt"
+  background="/assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1440w.avif"
+  withOverlay
+>
+  <section class="hc-hero hero-left">
+    <div class="hc-container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Betaling Geslaagd' }]} />
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">✅ Gelukt!</span>
+          <h1 class="hc-title">Betaling Geslaagd</h1>
+          <p class="hero-subtitle">Bedankt voor uw betaling</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hc-section">
+    <div class="hc-container max-w-3xl text-center">
+      
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-24 h-24 bg-green-500/20 rounded-full backdrop-blur-sm border-2 border-green-500/30 mb-6">
+          <svg class="w-12 h-12 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        
+        <h2 class="text-3xl font-bold text-white mb-4">Betaling Ontvangen!</h2>
+        <p class="text-slate-300 text-lg mb-8">
+          Uw betaling is succesvol verwerkt. U ontvangt binnen enkele minuten een bevestiging per e-mail.
+        </p>
+      </div>
+
+      <div class="bg-blue-500/10 border-2 border-blue-500/30 rounded-xl p-8 backdrop-blur-sm mb-8">
+        <h3 class="text-xl font-bold text-white mb-4">📦 Wat gebeurt er nu?</h3>
+        <div class="space-y-4 text-left text-slate-300">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/30">
+                <span class="text-blue-400 font-bold">1</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-white font-semibold mb-1">Bevestiging per e-mail</p>
+              <p class="text-sm">U ontvangt een bevestigingsmail met alle details van uw bestelling.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/30">
+                <span class="text-blue-400 font-bold">2</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-white font-semibold mb-1">Wij nemen contact op</p>
+              <p class="text-sm">Binnen 1 werkdag nemen wij contact met u op voor het plannen van de levering/installatie.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center border border-blue-500/30">
+                <span class="text-blue-400 font-bold">3</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-white font-semibold mb-1">Levering & installatie</p>
+              <p class="text-sm">Uw bestelling wordt geleverd en professioneel geïnstalleerd op de afgesproken datum.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {paymentHash && (
+        <div class="bg-white/5 border border-white/10 rounded-lg p-4 mb-8 backdrop-blur-sm">
+          <p class="text-sm text-slate-400">
+            Betalingsnummer: <span class="font-mono text-white">{paymentHash}</span>
+          </p>
+        </div>
+      )}
+
+      <div class="space-y-4">
+        <a href="/" class="block w-full bg-blue-600 text-white font-semibold py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+          Terug naar Homepage
+        </a>
+        <p class="text-slate-400 text-sm">
+          Vragen? Bel ons op <a href="tel:0658980933" class="text-blue-400 hover:text-blue-300 font-semibold">06-58980933</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+</Layout>

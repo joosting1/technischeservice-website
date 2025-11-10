@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Airco Aansluitpakket', href: '/airco-aansluitpakket' },
+  { label: 'Betaling', href: '/betaling' },
+  { label: 'Geannuleerd', href: '/betaling-cancel' }
+];
+---
+
+<Layout 
+  title="Betaling Geannuleerd - Technische Service Assen"
+  description="Uw betaling is geannuleerd"
+  background="/assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1440w.avif"
+  withOverlay
+>
+  <section class="hc-hero hero-left">
+    <Breadcrumbs items={breadcrumbs} />
+    
+    <h1 class="hc-title">Betaling Geannuleerd</h1>
+    <p class="hc-subtitle">
+      U heeft de betaling geannuleerd
+    </p>
+  </section>
+
+  <section class="hc-section">
+    <div class="hc-container max-w-3xl text-center">
+      
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-24 h-24 bg-yellow-500/20 rounded-full backdrop-blur-sm border-2 border-yellow-500/30 mb-6">
+          <svg class="w-12 h-12 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+          </svg>
+        </div>
+        
+        <h2 class="text-3xl font-bold text-white mb-4">Betaling Niet Voltooid</h2>
+        <p class="text-slate-300 text-lg mb-8">
+          U heeft de betaling geannuleerd. Geen zorgen, er is nog niets afgeschreven.
+        </p>
+      </div>
+
+      <div class="bg-blue-500/10 border-2 border-blue-500/30 rounded-xl p-8 backdrop-blur-sm mb-8">
+        <h3 class="text-xl font-bold text-white mb-4">💡 Wat nu?</h3>
+        <div class="space-y-3 text-slate-300 text-left">
+          <p>
+            • <strong class="text-white">Opnieuw proberen:</strong> U kunt de bestelling opnieuw plaatsen en de betaling voltooien.
+          </p>
+          <p>
+            • <strong class="text-white">Andere betaalmethode:</strong> Kies voor bankoverschrijving als alternatief.
+          </p>
+          <p>
+            • <strong class="text-white">Hulp nodig?:</strong> Bel ons gerust voor persoonlijke assistentie.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <a href="/airco-aansluitpakket" class="block w-full bg-blue-600 text-white font-semibold py-4 px-6 rounded-lg hover:bg-blue-700 transition-colors">
+          Opnieuw Proberen
+        </a>
+        <a href="/" class="block w-full bg-white/10 text-white font-semibold py-4 px-6 rounded-lg hover:bg-white/20 transition-colors border border-white/20">
+          Terug naar Homepage
+        </a>
+        <p class="text-slate-400 text-sm pt-4">
+          Vragen? Bel ons op <a href="tel:0658980933" class="text-blue-400 hover:text-blue-300 font-semibold">06-58980933</a><br>
+          Of stuur een WhatsApp naar <a href="https://wa.me/31658980933" class="text-blue-400 hover:text-blue-300 font-semibold">06-58980933</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+</Layout>
