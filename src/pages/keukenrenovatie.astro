@@ -1,0 +1,964 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Keukenrenovatie', href: '/keukenrenovatie' }
+];
+---
+
+<Layout 
+  title="Keukenrenovatie - Second Life voor Uw Keuken | Technische Service Assen"
+  description="Geef uw oude keuken een tweede leven! Nieuwe fronten, wangen, plinten en zijpanelen. Duurzaam, betaalbaar en zonder complete verbouwing. Bereken direct uw prijs."
+>
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <Breadcrumbs items={breadcrumbs} />
+      <div class="hero-content">
+        <h1>Keukenrenovatie - Second Life</h1>
+        <p class="hero-subtitle">Geef uw oude keuken een nieuw uiterlijk zonder complete vervanging</p>
+        <p class="hero-description">Duurzaam, betaalbaar en binnen enkele dagen gerealiseerd. Transformeer uw keuken met nieuwe fronten, wangen, plinten en accessoires.</p>
+        <a href="#calculator" class="cta-button">Bereken uw prijs →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Explanation -->
+  <section class="info-section">
+    <div class="container">
+      <h2>Wat is Second Life Keukenrenovatie?</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-icon">♻️</div>
+          <h3>Duurzaam</h3>
+          <p>Hergebruik uw bestaande keukenkasten en geef ze een nieuwe uitstraling. Goed voor het milieu en uw portemonnee.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">💰</div>
+          <h3>Betaalbaar</h3>
+          <p>Tot 70% goedkoper dan een complete nieuwe keuken. Alleen vervangen wat echt nodig is.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">⚡</div>
+          <h3>Snel</h3>
+          <p>Binnen enkele dagen een volledig vernieuwde keuken. Minimale overlast, maximaal resultaat.</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🎨</div>
+          <h3>Op maat</h3>
+          <p>Keuze uit verschillende kleuren en stijlen. Creëer de keuken die perfect bij u past.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works -->
+  <section class="process-section">
+    <div class="container">
+      <h2>Hoe werkt het?</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Meet op</h3>
+          <p>Meet uw keukenkasten en deuren op. Noteer afmetingen en aantallen.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Configureer</h3>
+          <p>Gebruik onze calculator hieronder om uw nieuwe keuken samen te stellen.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Bestel</h3>
+          <p>Vraag een vrijblijvende offerte aan. Wij nemen contact met u op.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Montage</h3>
+          <p>Optioneel: laat ons de montage verzorgen voor een zorgeloos resultaat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section id="calculator" class="calculator-section">
+    <div class="container">
+      <h2>Bereken uw prijs</h2>
+      <p class="calculator-intro">Configureer uw nieuwe keuken en zie direct de prijs. Alle prijzen zijn exclusief BTW.</p>
+      
+      <div class="calculator-form">
+        
+        <!-- Fronten Section -->
+        <div class="calculator-group">
+          <h3>🚪 Keukenfronten</h3>
+          <p class="group-description">Selecteer type, kleur en aantal fronten</p>
+          
+          <div class="form-row">
+            <label>
+              Type front
+              <select id="fronten-type">
+                <option value="0">Selecteer type...</option>
+                <option value="basic" data-price="85">Basic (€85/stuk)</option>
+                <option value="comfort" data-price="110">Comfort (€110/stuk)</option>
+                <option value="premium" data-price="145">Premium (€145/stuk)</option>
+                <option value="glas" data-price="175">Glas (€175/stuk)</option>
+              </select>
+            </label>
+            
+            <label>
+              Aantal fronten
+              <input type="number" id="fronten-aantal" min="0" value="0" />
+            </label>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal fronten:</span>
+            <strong id="fronten-subtotal">€ 0,00</strong>
+          </div>
+        </div>
+
+        <!-- Wangen Section -->
+        <div class="calculator-group">
+          <h3>📐 Wangen (Zijpanelen)</h3>
+          <p class="group-description">Afwerkingspanelen voor zijkanten</p>
+          
+          <div class="form-row">
+            <label>
+              Type wangen
+              <select id="wangen-type">
+                <option value="0">Selecteer type...</option>
+                <option value="standaard" data-price="65">Standaard (€65/stuk)</option>
+                <option value="premium" data-price="85">Premium (€85/stuk)</option>
+              </select>
+            </label>
+            
+            <label>
+              Aantal wangen
+              <input type="number" id="wangen-aantal" min="0" value="0" />
+            </label>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal wangen:</span>
+            <strong id="wangen-subtotal">€ 0,00</strong>
+          </div>
+        </div>
+
+        <!-- Plinten Section -->
+        <div class="calculator-group">
+          <h3>📏 Plinten (Sokkel)</h3>
+          <p class="group-description">Afwerking onderkant keuken</p>
+          
+          <div class="form-row">
+            <label>
+              Type plint
+              <select id="plinten-type">
+                <option value="0">Selecteer type...</option>
+                <option value="kunststof" data-price="12">Kunststof (€12/meter)</option>
+                <option value="aluminium" data-price="18">Aluminium (€18/meter)</option>
+                <option value="hout" data-price="22">Hout (€22/meter)</option>
+              </select>
+            </label>
+            
+            <label>
+              Lengte (meters)
+              <input type="number" id="plinten-lengte" min="0" step="0.1" value="0" />
+            </label>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal plinten:</span>
+            <strong id="plinten-subtotal">€ 0,00</strong>
+          </div>
+        </div>
+
+        <!-- Zijpanelen Section -->
+        <div class="calculator-group">
+          <h3>🔲 Zijpanelen</h3>
+          <p class="group-description">Extra afwerkingspanelen</p>
+          
+          <div class="form-row">
+            <label>
+              Prijs per paneel (€)
+              <input type="number" id="zijpanelen-prijs" min="0" step="0.01" value="45" />
+            </label>
+            
+            <label>
+              Aantal panelen
+              <input type="number" id="zijpanelen-aantal" min="0" value="0" />
+            </label>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal zijpanelen:</span>
+            <strong id="zijpanelen-subtotal">€ 0,00</strong>
+          </div>
+        </div>
+
+        <!-- Scharnieren Section -->
+        <div class="calculator-group">
+          <h3>🔧 Scharnieren</h3>
+          <p class="group-description">Nieuwe scharnieren voor optimale werking</p>
+          
+          <div class="form-row">
+            <label>
+              Prijs per scharnier (€)
+              <input type="number" id="scharnieren-prijs" min="0" step="0.01" value="8.75" />
+            </label>
+            
+            <label>
+              Aantal scharnieren
+              <input type="number" id="scharnieren-aantal" min="0" value="0" />
+            </label>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal scharnieren:</span>
+            <strong id="scharnieren-subtotal">€ 0,00</strong>
+          </div>
+        </div>
+
+        <!-- Grepen Section -->
+        <div class="calculator-group">
+          <h3>✋ Grepen</h3>
+          <p class="group-description">Handgrepen voor uw keukenfronten</p>
+          
+          <div class="form-row">
+            <label>
+              Prijs per greep (€)
+              <input type="number" id="grepen-prijs" min="0" step="0.01" value="12.50" />
+            </label>
+            
+            <label>
+              Aantal grepen
+              <input type="number" id="grepen-aantal" min="0" value="0" />
+            </label>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal grepen:</span>
+            <strong id="grepen-subtotal">€ 0,00</strong>
+          </div>
+        </div>
+
+        <!-- Montage Section -->
+        <div class="calculator-group">
+          <h3>👷 Montage (optioneel)</h3>
+          <p class="group-description">Laat ons de montage verzorgen</p>
+          
+          <div class="form-row">
+            <label class="checkbox-label">
+              <input type="checkbox" id="montage-checkbox" />
+              <span>Inclusief professionele montage</span>
+            </label>
+          </div>
+          
+          <div id="montage-details" style="display: none;">
+            <div class="form-row">
+              <label>
+                Geschat aantal uren
+                <input type="number" id="montage-uren" min="0" step="0.5" value="4" />
+              </label>
+              
+              <label>
+                Tarief per uur (€)
+                <input type="number" id="montage-tarief" min="0" step="0.01" value="59" readonly />
+              </label>
+            </div>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal montage:</span>
+            <strong id="montage-subtotal">€ 0,00</strong>
+          </div>
+        </div>
+
+        <!-- Transport Section -->
+        <div class="calculator-group">
+          <h3>🚚 Transport</h3>
+          <p class="group-description">Levering van de materialen</p>
+          
+          <div class="form-row">
+            <label>
+              Transportkosten (€)
+              <input type="number" id="transport-prijs" min="0" step="0.01" value="50" readonly />
+            </label>
+          </div>
+          
+          <div class="price-row">
+            <span>Subtotaal transport:</span>
+            <strong id="transport-subtotal">€ 50,00</strong>
+          </div>
+        </div>
+
+        <!-- Total Section -->
+        <div class="calculator-total">
+          <div class="total-row">
+            <span>Totaal excl. BTW:</span>
+            <strong id="total-excl-btw">€ 50,00</strong>
+          </div>
+          <div class="total-row btw-row">
+            <span>BTW (21%):</span>
+            <strong id="total-btw">€ 10,50</strong>
+          </div>
+          <div class="total-row grand-total">
+            <span>Totaal incl. BTW:</span>
+            <strong id="total-incl-btw">€ 60,50</strong>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="calculator-cta">
+          <a href="/offerte" class="cta-button large">Vraag Gratis Offerte Aan →</a>
+          <p class="cta-note">Vrijblijvend en zonder verplichtingen. Wij nemen binnen 24 uur contact op.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section">
+    <div class="container">
+      <h2>Waarom kiezen voor Second Life Keukenrenovatie?</h2>
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <div>
+            <strong>Kostenbesparing</strong>
+            <p>Tot 70% goedkoper dan een volledig nieuwe keuken aanschaffen</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <div>
+            <strong>Duurzaam</strong>
+            <p>Hergebruik van bestaande kasten vermindert afval en CO2-uitstoot</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <div>
+            <strong>Snelle realisatie</strong>
+            <p>Binnen enkele dagen een volledig vernieuwde keuken zonder grote verbouwing</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <div>
+            <strong>Minimale overlast</strong>
+            <p>Bestaande indeling blijft behouden, alleen fronten en afwerking worden vervangen</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <div>
+            <strong>Professioneel advies</strong>
+            <p>Onze experts helpen u bij het kiezen van de juiste materialen en kleuren</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-check">✓</span>
+          <div>
+            <strong>Kwaliteitsgarantie</strong>
+            <p>Hoogwaardige materialen met garantie voor langdurig plezier</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Veelgestelde vragen</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Hoe meet ik mijn keuken op?</summary>
+          <p>Meet de breedte en hoogte van elke keukendeur. Noteer ook het aantal wangen, de totale lengte van de plinten en het aantal zijpanelen dat u nodig heeft. Bij twijfel kunnen wij langskomen voor een gratis opmeting.</p>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Kan ik de montage zelf doen?</summary>
+          <p>Ja, dat is mogelijk! Alle onderdelen worden geleverd met montage-instructies. Heeft u liever dat wij het doen? Dan kunt u de montage-optie selecteren in de calculator.</p>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Hoe lang duurt de levering?</summary>
+          <p>Na bevestiging van uw bestelling bedraagt de levertijd ongeveer 2-3 weken. Montage kan vaak direct na levering worden ingepland.</p>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Wat gebeurt er met mijn oude fronten?</summary>
+          <p>De oude fronten kunnen worden afgevoerd via het reguliere afval. Indien gewenst kunnen wij de oude fronten meenemen en laten recyclen.</p>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Zijn er stalen beschikbaar?</summary>
+          <p>Ja! Wij kunnen stalen van verschillende kleuren en materialen naar u toesturen, zodat u thuis kunt beoordelen welke het beste past.</p>
+        </details>
+        
+        <details class="faq-item">
+          <summary>Krijg ik garantie?</summary>
+          <p>Ja, op alle materialen geldt een fabrieksgarantie. Op de montage door ons bedrijf geven wij 2 jaar installatiegarantie.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta-section">
+    <div class="container">
+      <h2>Klaar om uw keuken nieuw leven in te blazen?</h2>
+      <p>Vraag een vrijblijvende offerte aan en ontdek de mogelijkheden</p>
+      <div class="cta-buttons">
+        <a href="/offerte" class="cta-button large">Vraag Offerte Aan</a>
+        <a href="tel:0592240098" class="cta-button secondary large">Bel: 0592 240 098</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 0 6rem;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: white;
+    color: #667eea;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .cta-button.large {
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+  }
+
+  .cta-button.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .cta-button.secondary:hover {
+    background: white;
+    color: #667eea;
+  }
+
+  .info-section, .process-section, .calculator-section, 
+  .benefits-section, .faq-section, .final-cta-section {
+    padding: 4rem 0;
+  }
+
+  .info-section {
+    background: #f8f9fa;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .container h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2d3748;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .info-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .info-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-card h3 {
+    color: #667eea;
+    margin-bottom: 0.5rem;
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+
+  .step {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .step-number {
+    background: #667eea;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem;
+  }
+
+  .step h3 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+  }
+
+  .calculator-section {
+    background: #f8f9fa;
+  }
+
+  .calculator-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #4a5568;
+    margin-bottom: 3rem;
+  }
+
+  .calculator-form {
+    background: white;
+    padding: 3rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .calculator-group {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  .calculator-group:last-of-type {
+    border-bottom: none;
+  }
+
+  .calculator-group h3 {
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+  }
+
+  .group-description {
+    color: #718096;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+  }
+
+  select, input[type="number"] {
+    padding: 0.75rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+
+  select:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+
+  .checkbox-label {
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f7fafc;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+
+  .price-row span {
+    color: #4a5568;
+    font-size: 1rem;
+  }
+
+  .price-row strong {
+    color: #667eea;
+    font-size: 1.2rem;
+  }
+
+  .calculator-total {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+  }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+  }
+
+  .total-row span {
+    font-size: 1.1rem;
+  }
+
+  .total-row strong {
+    font-size: 1.3rem;
+  }
+
+  .btw-row {
+    opacity: 0.9;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 1rem;
+  }
+
+  .grand-total {
+    border-top: 2px solid rgba(255,255,255,0.3);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .grand-total span {
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  .grand-total strong {
+    font-size: 2rem;
+  }
+
+  .calculator-cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .cta-note {
+    margin-top: 1rem;
+    color: #718096;
+    font-size: 0.95rem;
+  }
+
+  .benefits-section {
+    background: white;
+  }
+
+  .benefits-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .benefit-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .benefit-check {
+    color: #48bb78;
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .benefit-item strong {
+    color: #2d3748;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .benefit-item p {
+    color: #4a5568;
+    margin: 0;
+  }
+
+  .faq-section {
+    background: #f8f9fa;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .faq-item summary {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: #2d3748;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .faq-item summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: #667eea;
+  }
+
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+
+  .faq-item p {
+    padding: 0 1.5rem 1.5rem;
+    color: #4a5568;
+    line-height: 1.6;
+  }
+
+  .final-cta-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+  }
+
+  .final-cta-section h2 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .final-cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section h1 {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .container h2 {
+      font-size: 2rem;
+    }
+
+    .calculator-form {
+      padding: 1.5rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  // Calculator logic
+  function updateCalculations() {
+    // Fronten
+    const frontenType = document.getElementById('fronten-type') as HTMLSelectElement;
+    const frontenAantal = document.getElementById('fronten-aantal') as HTMLInputElement;
+    const frontenPrice = parseFloat(frontenType.selectedOptions[0]?.dataset.price || '0');
+    const frontenSubtotal = frontenPrice * parseInt(frontenAantal.value || '0');
+    (document.getElementById('fronten-subtotal') as HTMLElement).textContent = 
+      `€ ${frontenSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Wangen
+    const wangenType = document.getElementById('wangen-type') as HTMLSelectElement;
+    const wangenAantal = document.getElementById('wangen-aantal') as HTMLInputElement;
+    const wangenPrice = parseFloat(wangenType.selectedOptions[0]?.dataset.price || '0');
+    const wangenSubtotal = wangenPrice * parseInt(wangenAantal.value || '0');
+    (document.getElementById('wangen-subtotal') as HTMLElement).textContent = 
+      `€ ${wangenSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Plinten
+    const plintenType = document.getElementById('plinten-type') as HTMLSelectElement;
+    const plintenLengte = document.getElementById('plinten-lengte') as HTMLInputElement;
+    const plintenPrice = parseFloat(plintenType.selectedOptions[0]?.dataset.price || '0');
+    const plintenSubtotal = plintenPrice * parseFloat(plintenLengte.value || '0');
+    (document.getElementById('plinten-subtotal') as HTMLElement).textContent = 
+      `€ ${plintenSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Zijpanelen
+    const zijpanelenPrijs = document.getElementById('zijpanelen-prijs') as HTMLInputElement;
+    const zijpanelenAantal = document.getElementById('zijpanelen-aantal') as HTMLInputElement;
+    const zijpanelenSubtotal = parseFloat(zijpanelenPrijs.value || '0') * parseInt(zijpanelenAantal.value || '0');
+    (document.getElementById('zijpanelen-subtotal') as HTMLElement).textContent = 
+      `€ ${zijpanelenSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Scharnieren
+    const scharnierenPrijs = document.getElementById('scharnieren-prijs') as HTMLInputElement;
+    const scharnierenAantal = document.getElementById('scharnieren-aantal') as HTMLInputElement;
+    const scharnierenSubtotal = parseFloat(scharnierenPrijs.value || '0') * parseInt(scharnierenAantal.value || '0');
+    (document.getElementById('scharnieren-subtotal') as HTMLElement).textContent = 
+      `€ ${scharnierenSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Grepen
+    const grepenPrijs = document.getElementById('grepen-prijs') as HTMLInputElement;
+    const grepenAantal = document.getElementById('grepen-aantal') as HTMLInputElement;
+    const grepenSubtotal = parseFloat(grepenPrijs.value || '0') * parseInt(grepenAantal.value || '0');
+    (document.getElementById('grepen-subtotal') as HTMLElement).textContent = 
+      `€ ${grepenSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Montage
+    const montageCheckbox = document.getElementById('montage-checkbox') as HTMLInputElement;
+    const montageUren = document.getElementById('montage-uren') as HTMLInputElement;
+    const montageTarief = document.getElementById('montage-tarief') as HTMLInputElement;
+    const montageSubtotal = montageCheckbox.checked ? 
+      parseFloat(montageUren.value || '0') * parseFloat(montageTarief.value || '0') : 0;
+    (document.getElementById('montage-subtotal') as HTMLElement).textContent = 
+      `€ ${montageSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Transport
+    const transportPrijs = document.getElementById('transport-prijs') as HTMLInputElement;
+    const transportSubtotal = parseFloat(transportPrijs.value || '50');
+    (document.getElementById('transport-subtotal') as HTMLElement).textContent = 
+      `€ ${transportSubtotal.toFixed(2).replace('.', ',')}`;
+
+    // Totals
+    const totalExclBtw = frontenSubtotal + wangenSubtotal + plintenSubtotal + 
+                         zijpanelenSubtotal + scharnierenSubtotal + grepenSubtotal + 
+                         montageSubtotal + transportSubtotal;
+    const totalBtw = totalExclBtw * 0.21;
+    const totalInclBtw = totalExclBtw + totalBtw;
+
+    (document.getElementById('total-excl-btw') as HTMLElement).textContent = 
+      `€ ${totalExclBtw.toFixed(2).replace('.', ',')}`;
+    (document.getElementById('total-btw') as HTMLElement).textContent = 
+      `€ ${totalBtw.toFixed(2).replace('.', ',')}`;
+    (document.getElementById('total-incl-btw') as HTMLElement).textContent = 
+      `€ ${totalInclBtw.toFixed(2).replace('.', ',')}`;
+  }
+
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    // All input changes trigger recalculation
+    const inputs = document.querySelectorAll('select, input[type="number"], input[type="checkbox"]');
+    inputs.forEach(input => {
+      input.addEventListener('change', updateCalculations);
+      input.addEventListener('input', updateCalculations);
+    });
+
+    // Montage checkbox toggles details
+    const montageCheckbox = document.getElementById('montage-checkbox') as HTMLInputElement;
+    const montageDetails = document.getElementById('montage-details') as HTMLElement;
+    
+    montageCheckbox.addEventListener('change', () => {
+      montageDetails.style.display = montageCheckbox.checked ? 'block' : 'none';
+      updateCalculations();
+    });
+
+    // Initial calculation
+    updateCalculations();
+  });
+</script>
