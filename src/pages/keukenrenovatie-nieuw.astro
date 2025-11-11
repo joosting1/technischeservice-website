@@ -1,0 +1,1379 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<Layout 
+  title="Keukenrenovatie Calculator - Fronten, Wangen & Panelen | Technische Service Assen" 
+  description="Bereken de prijs van uw keukenrenovatie. Kies uit 6 prijsgroepen, verschillende diktes en materialen. Deuren, wangen, panelen en plinten op maat."
+  background="/assets/afbeeldingupload/responsive/daikin-in bedrijfstelling-groningen-1440w.avif"
+  withOverlay
+>
+  <!-- Hero Section -->
+  <section class="hc-hero hero-left hero-spacious">
+    <div class="hc-container">
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Keukenrenovatie' }]} />
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow">Keuken Op Maat</span>
+          <h1 class="hc-title">Keukenrenovatie Calculator</h1>
+          <p class="hero-subtitle">Configureer uw nieuwe keukenfronten, wangen, panelen en plinten. Professioneel verwerkt, precies op maat gemaakt en geleverd.</p>
+          <div class="flex items-center gap-3">
+            <div class="flex gap-1">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                </svg>
+              ))}
+            </div>
+            <span class="text-white text-sm">Premium Kwaliteit</span>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div style="background: linear-gradient(to bottom right, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9)); backdrop-filter: blur(4px);" class="border border-slate-700 rounded-xl p-6 shadow-2xl">
+            <div class="text-center mb-6">
+              <div class="text-5xl mb-3">🚪</div>
+              <h3 class="text-xl font-bold text-white mb-2">Bereken Uw Keuken</h3>
+              <p class="text-slate-300 text-sm">6 Prijsgroepen beschikbaar</p>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3 p-3 rounded-lg" style="background-color: rgba(51, 65, 85, 0.3);">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">1</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Kies prijsgroep</span>
+                  <span class="text-slate-400 text-xs">€16 - €385</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg" style="background-color: rgba(51, 65, 85, 0.3);">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">2</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Geef afmetingen op</span>
+                  <span class="text-slate-400 text-xs">Hoogte × Breedte</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-3 p-3 rounded-lg" style="background-color: rgba(51, 65, 85, 0.3);">
+                <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">3</div>
+                <div class="flex-1">
+                  <span class="text-white text-sm block">Direct prijsberekening</span>
+                  <span class="text-slate-400 text-xs">Inclusief montage & transport</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="hc-section">
+    <div class="hc-container">
+      <div class="max-w-5xl mx-auto">
+        
+        <!-- Calculator Card -->
+        <div class="hc-card-glass p-8">
+          <h2 class="hc-title text-center mb-8">Keukenrenovatie Calculator</h2>
+          
+          <form id="kitchenCalculator" class="space-y-8">
+            
+            <!-- Step 1: Component Type Selection -->
+            <div>
+              <label class="block text-lg font-semibold text-white mb-2">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold mr-2">1</span>
+                Wat wilt u bestellen?
+              </label>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                <button type="button" class="component-btn active" data-component="fronten">
+                  <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                  </svg>
+                  <span>Fronten (Deuren)</span>
+                </button>
+                <button type="button" class="component-btn" data-component="wangen">
+                  <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg>
+                  <span>Wangen</span>
+                </button>
+                <button type="button" class="component-btn" data-component="panelen">
+                  <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                  </svg>
+                  <span>Designpanelen</span>
+                </button>
+                <button type="button" class="component-btn" data-component="plinten">
+                  <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  </svg>
+                  <span>Plinten</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Door Style Selection (only for Fronten with PG5/6) -->
+            <div id="doorStyleSection" class="hidden">
+              <label class="block text-lg font-semibold text-white mb-2">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold mr-2">2</span>
+                Kies Deurstijl
+              </label>
+              <select id="doorStyle" class="form-input w-full max-w-md mt-4">
+                <option value="">Selecteer een stijl...</option>
+              </select>
+            </div>
+
+            <!-- Step 3: Color/Finish Selection -->
+            <div id="colorSection">
+              <label class="block text-lg font-semibold text-white mb-2">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold mr-2" id="colorStepNumber">2</span>
+                Kies Kleur / Afwerking
+              </label>
+              <p class="text-slate-400 text-sm mb-2">👉 <strong>Klik op een kleur om deze te selecteren</strong> - de geselecteerde kleur krijgt een groene rand met "✓ GESELECTEERD"</p>
+              <p class="text-slate-400 text-xs mb-4">De gekozen kleur bepaalt automatisch de prijsgroep</p>
+              
+              <!-- Price Group Tabs -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <button type="button" class="price-group-tab active" data-group="1">Prijsgroep 1</button>
+                <button type="button" class="price-group-tab" data-group="2">Prijsgroep 2</button>
+                <button type="button" class="price-group-tab" data-group="3">Prijsgroep 3</button>
+                <button type="button" class="price-group-tab" data-group="4">Prijsgroep 4</button>
+                <button type="button" class="price-group-tab" data-group="5">Prijsgroep 5</button>
+                <button type="button" class="price-group-tab" data-group="6">Prijsgroep 6</button>
+              </div>
+
+              <!-- Color Grid -->
+              <div id="colorGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
+                <!-- Colors will be populated by JavaScript -->
+              </div>
+            </div>
+
+            <!-- Step 4: Dimensions Input -->
+            <div id="dimensionsSection" class="space-y-4">
+              <label class="block text-lg font-semibold text-white mb-2">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold mr-2" id="dimensionsStepNumber">3</span>
+                Afmetingen
+              </label>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div>
+                  <label class="block text-sm text-slate-300 mb-2">Hoogte (mm)</label>
+                  <input type="number" id="height" class="form-input w-full" placeholder="bijv. 715" min="126" max="2200">
+                  <p class="text-xs text-slate-400 mt-1" id="heightHint">Deuren: 126-1556mm</p>
+                </div>
+                <div>
+                  <label class="block text-sm text-slate-300 mb-2">Breedte (mm)</label>
+                  <input type="number" id="width" class="form-input w-full" placeholder="bijv. 600" min="150" max="1200">
+                  <p class="text-xs text-slate-400 mt-1" id="widthHint">Deuren: 150-1200mm</p>
+                </div>
+              </div>
+              
+              <!-- Thickness selector for wangen/panelen -->
+              <div id="thicknessSection" class="hidden">
+                <label class="block text-sm text-slate-300 mb-2">Dikte</label>
+                <div class="flex gap-3">
+                  <button type="button" class="thickness-btn active" data-thickness="19">19mm</button>
+                  <button type="button" class="thickness-btn" data-thickness="25">25mm</button>
+                  <button type="button" class="thickness-btn" data-thickness="50">50mm</button>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">Max. afmeting: 2200 × 1100mm</p>
+              </div>
+
+              <!-- Height selector for plinten -->
+              <div id="plintenHeightSection" class="hidden">
+                <label class="block text-sm text-slate-300 mb-2">Plinthoogte</label>
+                <div class="flex gap-3">
+                  <button type="button" class="plint-height-btn active" data-height="120">120mm</button>
+                  <button type="button" class="plint-height-btn" data-height="150">150mm</button>
+                  <button type="button" class="plint-height-btn" data-height="200">200mm</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 5: Quantity -->
+            <div>
+              <label class="block text-sm text-slate-300 mb-2">
+                <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-bold mr-2">5</span>
+                Aantal
+              </label>
+              <input type="number" id="quantity" class="form-input w-full max-w-xs" value="1" min="1">
+            </div>
+
+            <!-- Add to Cart Button -->
+            <div class="text-center pt-6">
+              <button type="submit" id="addToCartBtn" class="add-to-cart-btn">
+                <span class="btn-icon">🛒</span>
+                <span class="btn-text">Voeg toe aan Winkelwagen</span>
+                <span class="btn-arrow">→</span>
+              </button>
+              <p class="text-slate-400 text-sm mt-3">
+                💡 <strong>Na toevoegen kunt u nog meer fronten invoeren</strong> voordat u verder gaat naar de volgende sectie
+              </p>
+            </div>
+
+          </form>
+
+          <!-- Shopping Cart -->
+          <div id="shoppingCart" class="mt-8 hidden">
+            <h3 class="text-xl font-bold text-white mb-4">Winkelwagen</h3>
+            <div id="cartItems" class="space-y-3 mb-4">
+              <!-- Cart items will be inserted here -->
+            </div>
+            <div class="flex justify-between items-center pt-4 border-t border-slate-700">
+              <div>
+                <p class="text-slate-400 text-sm">Totaal (excl. BTW)</p>
+                <p class="text-3xl font-bold text-white">€<span id="cartTotal">0.00</span></p>
+              </div>
+              <div class="flex gap-3">
+                <button type="button" id="clearCart" class="px-4 py-2 rounded-lg border border-slate-600 text-slate-300 hover:bg-slate-700">
+                  Leeg Winkelwagen
+                </button>
+                <button type="button" id="proceedToCheckout" class="hc-btn hc-btn-primary">
+                  Verder naar Betaling
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Information Cards -->
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+          <div class="hc-card-glass p-6">
+            <div class="text-3xl mb-3">📏</div>
+            <h3 class="text-lg font-bold text-white mb-2">Op Maat Gemaakt</h3>
+            <p class="text-slate-300 text-sm">Deuren worden kostenloos op maat gemaakt. Wangen en panelen max. 2200×1100mm.</p>
+          </div>
+          <div class="hc-card-glass p-6">
+            <div class="text-3xl mb-3">✅</div>
+            <h3 class="text-lg font-bold text-white mb-2">Levering 4-5 Weken</h3>
+            <p class="text-slate-300 text-sm">Professionele verwerking en levering binnen 4-5 weken. Transport €75.</p>
+          </div>
+          <div class="hc-card-glass p-6">
+            <div class="text-3xl mb-3">🔧</div>
+            <h3 class="text-lg font-bold text-white mb-2">Montage Service</h3>
+            <p class="text-slate-300 text-sm">Optionele montage door professionals. €59 per uur exclusief BTW.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .form-input {
+    background-color: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgb(51, 65, 85);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    transition: all 0.2s;
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: rgb(59, 130, 246);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  }
+
+  .component-btn, .price-group-btn {
+    position: relative;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid rgba(51, 65, 85, 0.5);
+    background-color: rgba(30, 41, 59, 0.3);
+    backdrop-filter: blur(4px);
+    color: rgb(203, 213, 225);
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .component-btn:hover, .price-group-btn:hover {
+    color: white;
+    border-color: rgba(59, 130, 246, 0.7);
+    background-color: rgba(59, 130, 246, 0.15);
+    transform: scale(1.03);
+  }
+
+  .component-btn.active, .price-group-btn.active {
+    border: 3px solid rgb(59, 130, 246);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.2));
+    color: white;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  }
+
+  .price-group-btn {
+    text-align: center;
+  }
+
+  .price-group-tab {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    border: 2px solid rgba(51, 65, 85, 0.5);
+    background-color: rgba(30, 41, 59, 0.3);
+    color: rgb(148, 163, 184);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .price-group-tab:hover {
+    background-color: rgba(51, 65, 85, 0.4);
+    border-color: rgba(59, 130, 246, 0.5);
+    color: white;
+  }
+
+  .price-group-tab.active {
+    border: 3px solid rgb(59, 130, 246);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.2));
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+
+  #colorGrid .color-btn {
+    padding: 0;
+    height: 200px;
+    border-radius: 0.75rem;
+    text-align: left;
+    border: 3px solid rgba(51, 65, 85, 0.5);
+    background-color: rgba(30, 41, 59, 0.5);
+    backdrop-filter: blur(4px);
+    color: rgb(203, 213, 225);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Overlay voor tekst over afbeelding */
+  .color-btn-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(to top, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(0, 0, 0, 0.85) 50%,
+                rgba(0, 0, 0, 0.5) 80%,
+                transparent 100%);
+    backdrop-filter: blur(2px);
+    color: white;
+  }
+  
+  #colorGrid .color-btn:hover {
+    color: white !important;
+    border-color: rgba(59, 130, 246, 0.9) !important;
+    transform: translateY(-4px) scale(1.03) !important;
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.6) !important;
+  }
+  
+  #colorGrid .color-btn:hover .color-btn-overlay {
+    background: linear-gradient(to top, 
+                rgba(59, 130, 246, 0.95) 0%, 
+                rgba(37, 99, 235, 0.85) 50%,
+                rgba(29, 78, 216, 0.5) 80%,
+                transparent 100%);
+  }
+
+  #colorGrid .color-btn.active {
+    border: 4px solid rgb(34, 197, 94) !important;
+    box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.5), 
+                0 0 45px rgba(34, 197, 94, 0.8),
+                0 15px 40px rgba(34, 197, 94, 0.4) !important;
+    transform: scale(1.05) !important;
+    animation: pulse-glow-green 2s infinite !important;
+  }
+  
+  #colorGrid .color-btn.active .color-btn-overlay {
+    background: linear-gradient(to top, 
+                rgba(34, 197, 94, 0.95) 0%, 
+                rgba(22, 163, 74, 0.85) 50%,
+                rgba(21, 128, 61, 0.5) 80%,
+                transparent 100%);
+  }
+  
+  #colorGrid .color-btn.active::before {
+    content: '✓ GESELECTEERD' !important;
+    display: block !important;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74));
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.5);
+    z-index: 10;
+    white-space: nowrap;
+  }
+  
+  @keyframes pulse-glow-green {
+    0%, 100% {
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.4), 
+                  0 0 35px rgba(34, 197, 94, 0.6),
+                  inset 0 0 25px rgba(34, 197, 94, 0.2);
+      border-color: rgb(34, 197, 94);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.5), 
+                  0 0 50px rgba(34, 197, 94, 0.8),
+                  inset 0 0 30px rgba(34, 197, 94, 0.3);
+      border-color: rgb(22, 163, 74);
+    }
+  }
+  
+  .color-btn.active::before {
+    content: '✓';
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: rgb(59, 130, 246);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: bold;
+  }
+
+  .thickness-btn, .plint-height-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: 2px solid rgba(51, 65, 85, 0.5);
+    background-color: rgba(30, 41, 59, 0.3);
+    color: rgb(203, 213, 225);
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  
+  .thickness-btn:hover, .plint-height-btn:hover {
+    background-color: rgba(59, 130, 246, 0.15);
+    border-color: rgba(59, 130, 246, 0.7);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .thickness-btn.active, .plint-height-btn.active {
+    border: 3px solid rgb(59, 130, 246);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.2));
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+
+  /* Add to Cart Button - Super Prominent */
+  .add-to-cart-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.25rem 3rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border: 3px solid #fbbf24;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4),
+                0 0 0 0 rgba(251, 191, 36, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .add-to-cart-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .add-to-cart-btn:hover::before {
+    left: 100%;
+  }
+
+  .add-to-cart-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(245, 158, 11, 0.6),
+                0 0 0 6px rgba(251, 191, 36, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-color: #fcd34d;
+  }
+
+  .add-to-cart-btn:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(245, 158, 11, 0.5);
+  }
+
+  .btn-icon {
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+  }
+
+  .btn-arrow {
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .add-to-cart-btn:hover .btn-arrow {
+    transform: translateX(5px);
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .add-to-cart-btn {
+      font-size: 1.1rem;
+      padding: 1rem 2rem;
+      gap: 0.75rem;
+    }
+  }
+
+</style>
+
+<script>
+  // ========================================
+  // PRICING DATA
+  // ========================================
+  
+  // Door dimensions (heights and widths in mm)
+  const DOOR_HEIGHTS = [126, 142, 256, 284, 321, 356, 386, 427, 516, 571, 646, 715, 776, 859, 938, 1052, 1166, 1296, 1426, 1556];
+  const DOOR_WIDTHS = [150, 300, 400, 450, 500, 600, 800, 900, 1000, 1200];
+
+  // Color/finish options per price group with fronttype
+  // Helper functie om afbeelding pad te genereren met format fallback
+  const getImagePath = (code: string) => {
+    // Map van bekende PNG bestanden (automatisch gegenereerd uit directory listing)
+    const pngFiles = new Set([
+      // Prijsgroep 1
+      'K021', 'K023', 'K025', 'K054', 'K081', 'K085', 'K090', 
+      'K092', 'K093', 'K094', 'K095', 'K096', 'K097', 'K105', 
+      'K117', 'K127', 'K193',
+      // Prijsgroep 4
+      'PS110', 'PS100', 'HGL090',
+      // Prijsgroep 6
+      '145', '751', '280', '270'
+    ]);
+    
+    // Check of dit bestand als PNG beschikbaar is
+    const extension = pngFiles.has(code) ? 'png' : 'jpeg';
+    return `/assets/keuken-fronten/${code}.${extension}`;
+  };
+
+  const COLOR_OPTIONS = {
+    1: [ // Prijsgroep 1 - Trend Melamine
+      { code: 'K127', name: 'Wit', type: 'uni', fronttype: 'Vlak', image: getImagePath('K127') },
+      { code: 'K025', name: 'Licht Grijs', type: 'uni', fronttype: 'Vlak', image: getImagePath('K025') },
+      { code: 'K092', name: 'Antraciet', type: 'uni', fronttype: 'Vlak', image: getImagePath('K092') },
+      { code: 'K080', name: 'Zwart', type: 'uni', fronttype: 'Vlak', image: getImagePath('K080') },
+      { code: 'K094', name: 'Stone Grey', type: 'uni', fronttype: 'Vlak', image: getImagePath('K094') },
+      { code: 'K093', name: 'Graphite', type: 'uni', fronttype: 'Vlak', image: getImagePath('K093') },
+      { code: 'K117', name: 'Beige', type: 'uni', fronttype: 'Vlak', image: getImagePath('K117') },
+      { code: 'K097', name: 'Cashmere', type: 'uni', fronttype: 'Vlak', image: getImagePath('K097') },
+      { code: 'K096', name: 'Sahara', type: 'uni', fronttype: 'Vlak', image: getImagePath('K096') },
+      { code: 'K095', name: 'Sand', type: 'uni', fronttype: 'Vlak', image: getImagePath('K095') },
+      { code: 'K033', name: 'Vanille', type: 'uni', fronttype: 'Vlak', image: getImagePath('K033') },
+      { code: 'K105', name: 'Taupe', type: 'uni', fronttype: 'Vlak', image: getImagePath('K105') },
+      { code: 'K023', name: 'Creme', type: 'uni', fronttype: 'Vlak', image: getImagePath('K023') },
+      { code: 'K090', name: 'Wit Hoogglans', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('K090') },
+      { code: 'K098', name: 'Cappuccino', type: 'uni', fronttype: 'Vlak', image: getImagePath('K098') },
+      { code: 'K050', name: 'Licht Grijs Hoogglans', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('K050') },
+      { code: 'K081', name: 'Zwart Hoogglans', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('K081') },
+      { code: 'K054', name: 'Magnolia Hoogglans', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('K054') },
+      { code: 'K085', name: 'Creme Hoogglans', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('K085') },
+      { code: 'K021', name: 'Magnolia', type: 'uni', fronttype: 'Vlak', image: getImagePath('K021') }
+    ],
+    2: [ // Prijsgroep 2 - Decorative
+      { code: 'K160', name: 'Halifax Eiken Natuur', type: 'hout', fronttype: 'Vlak', image: getImagePath('K160') },
+      { code: 'K142', name: 'Halifax Eiken Wit', type: 'hout', fronttype: 'Vlak', image: getImagePath('K142') },
+      { code: 'K034', name: 'Shannon Eiken', type: 'hout', fronttype: 'Vlak', image: getImagePath('K034') },
+      { code: 'K035', name: 'Bordeaux Eiken', type: 'hout', fronttype: 'Vlak', image: getImagePath('K035') },
+      { code: 'K140', name: 'Gladstone Eiken', type: 'hout', fronttype: 'Vlak', image: getImagePath('K140') },
+      { code: 'K020', name: 'Ribbeck Eiken', type: 'hout', fronttype: 'Vlak', image: getImagePath('K020') },
+      { code: 'K131', name: 'Truffel Eiken', type: 'hout', fronttype: 'Vlak', image: getImagePath('K131') },
+      { code: 'K022', name: 'Beton Licht Grijs', type: 'beton', fronttype: 'Vlak', image: getImagePath('K022') },
+      { code: 'K065', name: 'Beton Grijs', type: 'beton', fronttype: 'Vlak', image: getImagePath('K065') },
+      { code: 'K017', name: 'Beton Donker Grijs', type: 'beton', fronttype: 'Vlak', image: getImagePath('K017') },
+      { code: 'K189', name: 'Chicago Beton Licht', type: 'beton', fronttype: 'Vlak', image: getImagePath('K189') },
+      { code: 'K187', name: 'Chicago Beton Grijs', type: 'beton', fronttype: 'Vlak', image: getImagePath('K187') },
+      { code: 'K186', name: 'Chicago Beton Donker', type: 'beton', fronttype: 'Vlak', image: getImagePath('K186') },
+      { code: 'K175', name: 'Ferro Brons', type: 'beton', fronttype: 'Vlak', image: getImagePath('K175') }
+    ],
+    3: [ // Prijsgroep 3 - Sherwood/Fleetwood/Reflex
+      { code: 'K195', name: 'Sherwood Eiken Natuur', type: 'sherwood', fronttype: 'Gefreesd', image: getImagePath('K195') },
+      { code: 'K190', name: 'Sherwood Halifax Natuur', type: 'sherwood', fronttype: 'Gefreesd', image: getImagePath('K190') },
+      { code: 'K191', name: 'Sherwood Halifax Wit', type: 'sherwood', fronttype: 'Gefreesd', image: getImagePath('K191') },
+      { code: 'K194', name: 'Sherwood Gladstone Eiken', type: 'sherwood', fronttype: 'Gefreesd', image: getImagePath('K194') },
+      { code: 'K193', name: 'Sherwood Bordeaux Eiken', type: 'sherwood', fronttype: 'Gefreesd', image: getImagePath('K193') },
+      { code: 'K241', name: 'Fleetwood Licht', type: 'fleetwood', fronttype: 'Gefreesd', image: getImagePath('K241') },
+      { code: 'K250', name: 'Fleetwood Natuur', type: 'fleetwood', fronttype: 'Gefreesd', image: getImagePath('K250') },
+      { code: 'K253', name: 'Fleetwood Grijs', type: 'fleetwood', fronttype: 'Gefreesd', image: getImagePath('K253') },
+      { code: 'K256', name: 'Fleetwood Grafiet', type: 'fleetwood', fronttype: 'Gefreesd', image: getImagePath('K256') },
+      { code: 'K254', name: 'Fleetwood Donker', type: 'fleetwood', fronttype: 'Gefreesd', image: getImagePath('K254') },
+      { code: 'K291', name: 'Reflex Zilver', type: 'reflex', fronttype: 'Gefreesd', image: getImagePath('K291') },
+      { code: 'K292', name: 'Reflex Brons', type: 'reflex', fronttype: 'Gefreesd', image: getImagePath('K292') },
+      { code: 'K248', name: 'Reflex Grafiet', type: 'reflex', fronttype: 'Gefreesd', image: getImagePath('K248') },
+      { code: 'K274', name: 'Reflex Zwart', type: 'reflex', fronttype: 'Gefreesd', image: getImagePath('K274') },
+      { code: 'K273', name: 'Reflex Koper', type: 'reflex', fronttype: 'Gefreesd', image: getImagePath('K273') }
+    ],
+    4: [ // Prijsgroep 4 - Perfect Sense/Gerona
+      { code: 'PS110', name: 'Perfect Sense Wit', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS110') },
+      { code: 'PS100', name: 'Perfect Sense Licht Grijs', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS100') },
+      { code: 'PS120', name: 'Perfect Sense Beige', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS120') },
+      { code: 'PS130', name: 'Perfect Sense Zand', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS130') },
+      { code: 'PS170', name: 'Perfect Sense Antraciet', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS170') },
+      { code: 'PS150', name: 'Perfect Sense Grafiet', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS150') },
+      { code: 'PS140', name: 'Perfect Sense Donker Grijs', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS140') },
+      { code: 'PS160', name: 'Perfect Sense Zwart', type: 'matlak', fronttype: 'Vlak', image: getImagePath('PS160') },
+      { code: 'HGL090', name: 'Gerona Wit', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL090') },
+      { code: 'HGL025', name: 'Gerona Licht Grijs', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL025') },
+      { code: 'HGL070', name: 'Gerona Magnolia', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL070') },
+      { code: 'HGL080', name: 'Gerona Zwart', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL080') },
+      { code: 'HGL071', name: 'Gerona Vanille', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL071') },
+      { code: 'HGL069', name: 'Gerona Cashmere', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL069') },
+      { code: 'HGL105', name: 'Gerona Taupe', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL105') },
+      { code: 'HGL023', name: 'Gerona Creme', type: 'hoogglans', fronttype: 'Vlak', image: getImagePath('HGL023') }
+    ],
+    5: [ // Prijsgroep 5 - MDF Folie (styles available for all colors)
+      { code: 'F341', name: 'Wit', fronttype: 'Diversen', image: getImagePath('F341') },
+      { code: 'F205', name: 'Licht Grijs', fronttype: 'Diversen', image: getImagePath('F205') },
+      { code: 'F222', name: 'Stone Grey', fronttype: 'Diversen', image: getImagePath('F222') },
+      { code: 'F208', name: 'Graphite', fronttype: 'Diversen', image: getImagePath('F208') },
+      { code: 'F210', name: 'Antraciet', fronttype: 'Diversen', image: getImagePath('F210') },
+      { code: 'F335', name: 'Zwart', fronttype: 'Diversen', image: getImagePath('F335') },
+      { code: 'F040', name: 'Magnolia', fronttype: 'Diversen', image: getImagePath('F040') },
+      { code: 'F325', name: 'Beige', fronttype: 'Diversen', image: getImagePath('F325') },
+      { code: 'F345', name: 'Cashmere', fronttype: 'Diversen', image: getImagePath('F345') },
+      { code: 'F365', name: 'Sahara', fronttype: 'Diversen', image: getImagePath('F365') },
+      { code: 'F375', name: 'Cappuccino', fronttype: 'Diversen' },
+      { code: 'F385', name: 'Taupe', fronttype: 'Diversen' },
+      { code: 'F305', name: 'Creme', fronttype: 'Diversen' },
+      { code: 'F2.0', name: 'Vanille', fronttype: 'Diversen' },
+      { code: 'F427', name: 'Sand', fronttype: 'Diversen' }
+    ],
+    6: [ // Prijsgroep 6 - Lak (styles available for all colors)
+      { code: '145', name: 'Snow', fronttype: 'Diversen', image: getImagePath('145') },
+      { code: '751', name: 'Wit', fronttype: 'Diversen', image: getImagePath('751') },
+      { code: '280', name: 'Oudwit', fronttype: 'Diversen', image: getImagePath('280') },
+      { code: '270', name: 'Stone', fronttype: 'Diversen', image: getImagePath('270') },
+      { code: '752', name: 'Magnolia', fronttype: 'Diversen' },
+      { code: '950', name: 'Fresco', fronttype: 'Diversen' },
+      { code: '602', name: 'Sand', fronttype: 'Diversen' },
+      { code: '603', name: 'Truffel', fronttype: 'Diversen' },
+      { code: '781', name: 'Kashmir', fronttype: 'Diversen' },
+      { code: '815', name: 'Grigio', fronttype: 'Diversen' },
+      { code: '165', name: 'Lava', fronttype: 'Diversen' },
+      { code: '204', name: 'Umbra', fronttype: 'Diversen' },
+      { code: '205', name: 'Arabic', fronttype: 'Diversen' },
+      { code: '730', name: 'Carbon', fronttype: 'Diversen' },
+      { code: '430', name: 'Zwart', fronttype: 'Diversen' }
+    ]
+  };
+
+  // Door styles per price group
+  const DOOR_STYLES = {
+    5: [ // MDF Folie has specific styles
+      'Monaco F',
+      'Prato F',
+      'Como F',
+      'Mostar F',
+      'Lausanne',
+      'Bergamo',
+      'Selb F',
+      'Kreta',
+      'Liverpool',
+      'Bamberg',
+      'Siegen',
+      'Rena T/L (Greeploos)'
+    ],
+    6: [ // Lak has specific styles
+      'Monaco ML',
+      'Monaco HGL',
+      'Prato ML',
+      'Prato HGL',
+      'Como ML',
+      'Como HGL',
+      'Mostar ML',
+      'Mostar HGL',
+      'Lausanne',
+      'Bergamo',
+      'Selb F',
+      'Kreta',
+      'Liverpool',
+      'Bamberg',
+      'Siegen',
+      'Rena T/L (Greeploos)'
+    ]
+  };
+
+  // Door price tables
+  // Structure: DOOR_PRICES[priceGroup][heightIndex][widthIndex]
+  // Heights: [126, 142, 256, 284, 321, 356, 386, 427, 516, 571, 646, 715, 776, 859, 938, 1052, 1166, 1296, 1426, 1556]
+  // Widths: [150, 300, 400, 450, 500, 600, 800, 900, 1000, 1200]
+  
+  const DOOR_PRICES = {
+    // Prijsgroep 1 - Trend Melamine (€16-€185)
+    1: [
+      [16, 18, 21, 24, 26, 32, 38, 42, 47, 60],      // 126mm
+      [18, 20, 23, 28, 29, 36, 44, 48, 52, 68],      // 142mm
+      [22, 27, 29, 36, 40, 46, 60, 72, 77, 84],      // 256mm
+      [24, 30, 36, 39, 42, 49, 68, 78, 85, 92],      // 284mm
+      [26, 33, 37, 46, 49, 54, 75, 83, 92, 104],     // 321mm
+      [28, 35, 42, 48, 52, 61, 84, 91, 102, 114],    // 356mm
+      [30, 40, 46, 52, 56, 64, 91, 98, 109, 124],    // 386mm
+      [32, 46, 49, 56, 66, 69, 94, 106, 119, 136],   // 427mm
+      [34, 48, 57, 62, 68, 76, 110, 114, 'x', 'x'],  // 516mm
+      [36, 54, 66, 67, 73, 86, 122, 'x', 'x', 'x'],  // 571mm
+      [44, 61, 73, 77, 84, 94, 'x', 'x', 'x', 'x'],  // 646mm
+      [48, 65, 78, 84, 87, 101, 'x', 'x', 'x', 'x'], // 715mm
+      [51, 70, 85, 89, 95, 106, 'x', 'x', 'x', 'x'], // 776mm
+      [54, 75, 90, 94, 104, 111, 'x', 'x', 'x', 'x'], // 859mm
+      [56, 82, 101, 105, 114, 119, 'x', 'x', 'x', 'x'], // 938mm
+      [63, 89, 111, 115, 127, 133, 'x', 'x', 'x', 'x'], // 1052mm
+      [68, 94, 119, 124, 136, 143, 'x', 'x', 'x', 'x'], // 1166mm
+      [73, 102, 130, 138, 150, 158, 'x', 'x', 'x', 'x'], // 1296mm
+      [77, 111, 138, 148, 160, 177, 'x', 'x', 'x', 'x'], // 1426mm
+      [84, 123, 149, 154, 172, 185, 'x', 'x', 'x', 'x']  // 1556mm
+    ],
+    
+    // Prijsgroep 2 - Decorative (€16-€200)
+    2: [
+      [16, 18, 21, 24, 26, 32, 38, 42, 47, 60],      // 126mm
+      [18, 20, 23, 28, 29, 36, 44, 48, 52, 68],      // 142mm
+      [22, 27, 29, 36, 40, 46, 60, 72, 77, 84],      // 256mm
+      [24, 30, 36, 39, 42, 49, 68, 78, 85, 92],      // 284mm
+      [26, 33, 37, 46, 49, 54, 75, 83, 92, 104],     // 321mm
+      [28, 35, 42, 48, 52, 61, 84, 91, 102, 114],    // 356mm
+      [30, 40, 46, 52, 56, 64, 91, 98, 109, 124],    // 386mm
+      [32, 46, 49, 56, 66, 69, 94, 106, 119, 136],   // 427mm
+      [34, 48, 57, 62, 68, 76, 110, 114, 'x', 'x'],  // 516mm
+      [36, 54, 66, 67, 73, 86, 122, 'x', 'x', 'x'],  // 571mm
+      [44, 61, 73, 77, 84, 94, 'x', 'x', 'x', 'x'],  // 646mm
+      [48, 65, 78, 84, 87, 101, 'x', 'x', 'x', 'x'], // 715mm
+      [51, 70, 85, 89, 95, 106, 'x', 'x', 'x', 'x'], // 776mm
+      [54, 75, 90, 94, 104, 111, 'x', 'x', 'x', 'x'], // 859mm
+      [56, 82, 101, 105, 114, 119, 'x', 'x', 'x', 'x'], // 938mm
+      [63, 89, 111, 115, 127, 133, 'x', 'x', 'x', 'x'], // 1052mm
+      [68, 94, 119, 124, 136, 143, 'x', 'x', 'x', 'x'], // 1166mm
+      [73, 102, 130, 138, 150, 158, 'x', 'x', 'x', 'x'], // 1296mm
+      [80, 109, 149, 156, 168, 189, 'x', 'x', 'x', 'x'], // 1426mm
+      [91, 118, 158, 172, 185, 200, 'x', 'x', 'x', 'x']  // 1556mm
+    ],
+    
+    // Prijsgroep 3 - Sherwood/Fleetwood/Reflex (€24-€235)
+    3: [
+      [24, 34, 39, 43, 47, 53, 57, 61, 66, 71],      // 126mm
+      [27, 36, 42, 46, 50, 56, 60, 65, 69, 78],      // 142mm
+      [39, 43, 47, 53, 57, 67, 73, 79, 85, 92],      // 256mm
+      [42, 46, 50, 56, 62, 74, 78, 88, 97, 111],     // 284mm
+      [45, 49, 54, 58, 66, 79, 85, 98, 113, 117],    // 321mm
+      [48, 52, 57, 63, 72, 87, 96, 106, 119, 131],   // 356mm
+      [51, 56, 61, 66, 80, 91, 102, 113, 130, 143],  // 386mm
+      [53, 60, 65, 71, 84, 96, 110, 127, 140, 158],  // 427mm
+      [55, 66, 69, 76, 95, 101, 123, 139, 'x', 'x'], // 516mm
+      [59, 70, 74, 81, 98, 105, 129, 'x', 'x', 'x'], // 571mm
+      [63, 79, 81, 93, 106, 113, 'x', 'x', 'x', 'x'], // 646mm
+      [68, 81, 84, 99, 109, 119, 'x', 'x', 'x', 'x'], // 715mm
+      [71, 84, 88, 101, 113, 122, 'x', 'x', 'x', 'x'], // 776mm
+      [73, 90, 93, 105, 120, 132, 'x', 'x', 'x', 'x'], // 859mm
+      [77, 95, 104, 114, 132, 145, 'x', 'x', 'x', 'x'], // 938mm
+      [80, 101, 116, 132, 145, 152, 'x', 'x', 'x', 'x'], // 1052mm
+      [83, 109, 123, 122, 144, 156, 'x', 'x', 'x', 'x'], // 1166mm
+      [88, 118, 131, 146, 160, 173, 'x', 'x', 'x', 'x'], // 1296mm
+      [95, 129, 145, 175, 195, 222, 'x', 'x', 'x', 'x'], // 1426mm
+      [104, 136, 158, 188, 211, 235, 'x', 'x', 'x', 'x']  // 1556mm
+    ],
+    
+    // Prijsgroep 4 - Perfect Sense/Gerona (€40-€348)
+    4: [
+      [40, 50, 52, 55, 60, 65, 75, 85, 95, 105],           // 126mm
+      [42, 52, 56, 62, 65, 72, 81, 91, 102, 119],          // 142mm
+      [48, 59, 67, 72, 79, 87, 106, 121, 139, 162],        // 256mm
+      [54, 66, 73, 80, 87, 100, 120, 138, 158, 188],       // 284mm
+      [59, 72, 80, 88, 96, 110, 133, 154, 177, 215],       // 321mm
+      [65, 79, 88, 96, 105, 121, 146, 170, 196, 242],      // 356mm
+      [70, 86, 95, 104, 114, 132, 159, 185, 214, 268],     // 386mm
+      [76, 93, 102, 112, 123, 142, 172, 201, 233, 295],    // 427mm
+      [92, 113, 124, 136, 149, 172, 209, 244, 284, 'x'],   // 516mm
+      [99, 121, 133, 146, 159, 184, 224, 263, 'x', 'x'],   // 571mm
+      [107, 131, 144, 158, 173, 200, 243, 'x', 'x', 'x'],  // 646mm
+      [115, 140, 154, 169, 185, 214, 261, 'x', 'x', 'x'],  // 715mm
+      [120, 147, 161, 177, 194, 224, 273, 'x', 'x', 'x'],  // 776mm
+      [128, 156, 172, 188, 206, 238, 290, 'x', 'x', 'x'],  // 859mm
+      [134, 164, 180, 198, 217, 251, 306, 'x', 'x', 'x'],  // 938mm
+      [145, 177, 195, 214, 234, 271, 330, 'x', 'x', 'x'],  // 1052mm
+      [156, 191, 210, 230, 252, 291, 355, 'x', 'x', 'x'],  // 1166mm
+      [173, 211, 232, 255, 279, 323, 394, 'x', 'x', 'x'],  // 1296mm
+      [188, 230, 253, 278, 304, 352, 429, 'x', 'x', 'x'],  // 1426mm
+      [203, 248, 273, 300, 328, 380, 463, 'x', 'x', 'x']   // 1556mm
+    ],
+    
+    // Prijsgroep 5 - MDF Folie (€25-€242)
+    5: [
+      [25, 35, 40, 45, 50, 55, 60, 65, 70, 75],            // 126mm
+      [30, 40, 45, 50, 55, 60, 65, 70, 75, 80],            // 142mm
+      [40, 50, 55, 60, 65, 70, 80, 90, 100, 110],          // 256mm
+      [45, 55, 60, 65, 70, 80, 90, 100, 110, 120],         // 284mm
+      [50, 60, 65, 70, 80, 90, 100, 110, 120, 130],        // 321mm
+      [55, 65, 70, 80, 90, 100, 110, 120, 130, 140],       // 356mm
+      [60, 70, 80, 90, 100, 110, 120, 130, 140, 150],      // 386mm
+      [65, 80, 90, 100, 110, 120, 130, 140, 150, 160],     // 427mm
+      [80, 95, 110, 120, 130, 140, 150, 160, 170, 'x'],    // 516mm
+      [90, 105, 120, 130, 140, 150, 160, 170, 'x', 'x'],   // 571mm
+      [105, 120, 135, 145, 155, 165, 175, 'x', 'x', 'x'],  // 646mm
+      [115, 130, 145, 155, 165, 175, 185, 'x', 'x', 'x'],  // 715mm
+      [125, 140, 155, 165, 175, 185, 195, 'x', 'x', 'x'],  // 776mm
+      [135, 150, 165, 175, 185, 195, 205, 'x', 'x', 'x'],  // 859mm
+      [145, 160, 175, 185, 195, 205, 215, 'x', 'x', 'x'],  // 938mm
+      [160, 175, 190, 200, 210, 220, 230, 'x', 'x', 'x'],  // 1052mm
+      [175, 190, 205, 215, 225, 235, 245, 'x', 'x', 'x'],  // 1166mm
+      [195, 210, 225, 235, 245, 255, 265, 'x', 'x', 'x'],  // 1296mm
+      [215, 230, 245, 255, 265, 275, 285, 'x', 'x', 'x'],  // 1426mm
+      [235, 250, 265, 275, 285, 295, 305, 'x', 'x', 'x']   // 1556mm
+    ],
+    
+    // Prijsgroep 6 - Lak (€50-€385)
+    6: [
+      [50, 57, 59, 62, 65, 67, 87, 97, 106, 121],          // 126mm
+      [52, 58, 62, 65, 68, 75, 93, 105, 119, 142],         // 142mm
+      [59, 72, 79, 86, 93, 102, 124, 142, 163, 194],       // 256mm
+      [66, 81, 88, 96, 105, 119, 144, 166, 191, 232],      // 284mm
+      [72, 88, 96, 105, 115, 132, 160, 185, 213, 263],     // 321mm
+      [79, 96, 105, 115, 126, 145, 176, 204, 236, 296],    // 356mm
+      [86, 105, 115, 126, 138, 159, 192, 223, 258, 327],   // 386mm
+      [93, 113, 124, 136, 149, 172, 209, 244, 284, 361],   // 427mm
+      [113, 138, 152, 166, 182, 210, 256, 299, 348, 'x'],  // 516mm
+      [121, 148, 163, 178, 195, 225, 274, 321, 'x', 'x'],  // 571mm
+      [131, 160, 176, 193, 211, 244, 297, 'x', 'x', 'x'],  // 646mm
+      [140, 171, 188, 206, 226, 261, 318, 'x', 'x', 'x'],  // 715mm
+      [147, 180, 198, 217, 238, 275, 335, 'x', 'x', 'x'],  // 776mm
+      [156, 191, 210, 230, 252, 291, 355, 'x', 'x', 'x'],  // 859mm
+      [164, 201, 221, 242, 265, 307, 374, 'x', 'x', 'x'],  // 938mm
+      [177, 217, 238, 261, 286, 331, 403, 'x', 'x', 'x'],  // 1052mm
+      [191, 234, 257, 282, 308, 357, 435, 'x', 'x', 'x'],  // 1166mm
+      [211, 258, 284, 311, 341, 395, 481, 'x', 'x', 'x'],  // 1296mm
+      [230, 281, 309, 339, 371, 430, 524, 'x', 'x', 'x'],  // 1426mm
+      [248, 304, 334, 366, 401, 464, 566, 'x', 'x', 'x']   // 1556mm
+    ]
+  };
+
+  // Design panel pricing (per m²)
+  const PANEL_PRICES = {
+    19: { // 19mm thickness
+      1: [[70,100,150,170,180],[80,120,160,180,190],[90,140,180,210,220],[100,160,200,240,240],[0,0,0,0,0],[180,290,450,620,640],[200,320,490,680,700]], // [tot 0.3, tot 0.5, tot 0.75, tot 1, vanaf 1.1] for groups 1-4,6ML,6HGL
+      tiers: [0.3, 0.5, 0.75, 1.0, 1.1]
+    },
+    25: { // 25mm thickness
+      1: [[120,160,180,190,200],[130,170,190,210,220],[170,240,270,290,300],[0,0,0,0,0],[0,0,0,0,0],[240,390,550,710,730],[270,420,640,790,800]],
+      tiers: [0.3, 0.5, 0.75, 1.0, 1.1]
+    },
+    50: { // 50mm thickness (only groups 1-3)
+      1: [[170,200,240,280,290],[190,220,270,310,320],[230,280,320,370,380],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]],
+      tiers: [0.3, 0.5, 0.75, 1.0, 1.1]
+    }
+  };
+
+  // Plinten pricing (baseboards)
+  const PLINTEN_PRICES = {
+    1800: { // up to 1800mm length
+      120: [80,90,120,100,170,180], // height 120mm for groups 1-6 (index matches group-1)
+      150: [90,100,130,110,190,200],
+      200: [100,110,130,120,220,230]
+    },
+    2600: { // up to 2600mm length
+      120: [120,130,150,140,220,240],
+      150: [140,150,170,160,240,260],
+      200: [160,170,190,180,260,280]
+    }
+  };
+
+  // Glass door options
+  const GLASS_TYPES = {
+    HG: 'Helderglas',
+    MG: 'Melkglas',
+    DG: 'Dark Grey'
+  };
+  
+  const GLASS_DOOR_TYPES = ['SG', 'GG', 'PR4', 'PR', 'RD'];
+  const GLASS_SURCHARGE = 200;
+
+  // 19mm-only color codes
+  const COLORS_19MM_ONLY = {
+    1: ['K054', 'K085', 'K092', 'K094', 'K098', 'K023'],
+    2: ['K175', 'K131', 'K017', 'K034'],
+    3: ['K253', 'K254', 'K256', 'K250']
+  };
+
+  // Hardware and services
+  const HINGES_PRICE = 7.50; // Blum per piece
+  const INSTALLATION_HOURLY = 59; // per hour excl BTW
+  const TRANSPORT_COST = 75; // flat rate excl BTW
+
+  // Surcharges
+  const SURCHARGE_HOOGGLANS = 0.10; // 10%
+  const SURCHARGE_KADER = 0.10; // 10%
+
+  // ========================================
+  // CALCULATION FUNCTIONS
+  // ========================================
+
+  function findNextLargerDoorSize(height: number, width: number): [number, number] {
+    // Find next larger height
+    const nextHeight = DOOR_HEIGHTS.find(h => h >= height) || DOOR_HEIGHTS[DOOR_HEIGHTS.length - 1];
+    // Find next larger width
+    const nextWidth = DOOR_WIDTHS.find(w => w >= width) || DOOR_WIDTHS[DOOR_WIDTHS.length - 1];
+    return [nextHeight, nextWidth];
+  }
+
+  function calculatePanelArea(height: number, width: number): number {
+    // Convert mm to meters and calculate m²
+    return (height / 1000) * (width / 1000);
+  }
+
+  function getPanelPrice(area: number, thickness: number, priceGroup: number): number {
+    const panelData = (PANEL_PRICES as any)[thickness];
+    if (!panelData) return 0;
+
+    const tiers = panelData.tiers;
+    let tierIndex = tiers.findIndex((tier: number) => area <= tier);
+    if (tierIndex === -1) tierIndex = tiers.length - 1;
+
+    const prices = panelData[1]; // Get price array
+    const groupIndex = priceGroup === 6 ? 5 : priceGroup - 1; // Adjust for 6ML/6HGL
+    
+    return prices[groupIndex][tierIndex] || 0;
+  }
+
+  function getPlintenPrice(length: number, height: number, priceGroup: number): number {
+    const lengthTier = length <= 1800 ? 1800 : 2600;
+    const priceData = (PLINTEN_PRICES as any)[lengthTier];
+    
+    if (!priceData || !(priceData as any)[height]) return 0;
+    
+    const groupIndex = priceGroup - 1;
+    return (priceData as any)[height][groupIndex] || 0;
+  }
+
+  // ========================================
+  // UI LOGIC
+  // ========================================
+  
+  console.log('Keukenrenovatie calculator loaded');
+  
+  // State
+  let activeComponent = 'fronten';
+  let selectedPriceGroup = 1;
+  let selectedColor: { code: string; priceGroup: number; name: string; fronttype?: string } | null = null;
+  let selectedThickness = 19;
+  let selectedPlintHeight = 120;
+
+  // Shopping cart
+  interface CartItem {
+    id: string;
+    component: string;
+    color: string;
+    fronttype?: string;
+    priceGroup: number;
+    dimensions: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+  }
+  
+  let shoppingCart: CartItem[] = [];
+
+  // Function to update cart display
+  function updateCartDisplay() {
+    const cartContainer = document.getElementById('shoppingCart');
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartTotalElement = document.getElementById('cartTotal');
+
+    if (!cartContainer || !cartItemsContainer || !cartTotalElement) return;
+
+    if (shoppingCart.length === 0) {
+      cartContainer.classList.add('hidden');
+      return;
+    }
+
+    cartContainer.classList.remove('hidden');
+
+    // Calculate total
+    const total = shoppingCart.reduce((sum, item) => sum + item.totalPrice, 0);
+    cartTotalElement.textContent = total.toFixed(2);
+
+    // Render cart items
+    cartItemsContainer.innerHTML = shoppingCart.map(item => `
+      <div class="flex justify-between items-start p-4 rounded-lg" style="background-color: rgba(30, 41, 59, 0.5); border: 1px solid rgb(51, 65, 85);">
+        <div class="flex-1">
+          <p class="text-white font-semibold">${item.component}${item.fronttype ? ` - ${item.fronttype}` : ''}</p>
+          <p class="text-slate-300 text-sm">${item.color} (Prijsgroep ${item.priceGroup})</p>
+          <p class="text-slate-400 text-sm">${item.dimensions}</p>
+          <p class="text-slate-400 text-sm">${item.quantity}x €${item.unitPrice.toFixed(2)}</p>
+        </div>
+        <div class="text-right">
+          <p class="text-white font-bold">€${item.totalPrice.toFixed(2)}</p>
+          <button class="text-red-400 hover:text-red-300 text-sm mt-2" onclick="removeFromCart('${item.id}')">
+            Verwijderen
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Function to add item to cart
+  function addToCart(item: Omit<CartItem, 'id'>) {
+    const cartItem = {
+      ...item,
+      id: Date.now().toString() + Math.random().toString(36).substr(2, 9)
+    };
+    shoppingCart.push(cartItem);
+    updateCartDisplay();
+    
+    // Reset form for next item
+    resetFormAfterAdd();
+  }
+
+  // Function to remove item from cart
+  (window as any).removeFromCart = function(itemId: string) {
+    shoppingCart = shoppingCart.filter(item => item.id !== itemId);
+    updateCartDisplay();
+  };
+
+  // Function to reset form after adding to cart
+  function resetFormAfterAdd() {
+    // Keep component and color selection
+    // Reset only dimensions and quantity
+    const heightInput = document.getElementById('height') as HTMLInputElement;
+    const widthInput = document.getElementById('width') as HTMLInputElement;
+    const quantityInput = document.getElementById('quantity') as HTMLInputElement;
+    const thicknessInputs = document.querySelectorAll<HTMLButtonElement>('.thickness-btn');
+    const plintHeightInputs = document.querySelectorAll<HTMLButtonElement>('.plint-height-btn');
+
+    if (heightInput) heightInput.value = '';
+    if (widthInput) widthInput.value = '';
+    if (quantityInput) quantityInput.value = '1';
+    
+    thicknessInputs.forEach(btn => btn.classList.remove('active'));
+    plintHeightInputs.forEach(btn => btn.classList.remove('active'));
+
+    // Show success message
+    const successMsg = document.createElement('div');
+    successMsg.className = 'fixed top-4 right-4 px-6 py-3 rounded-lg text-white z-50';
+    successMsg.style.background = 'linear-gradient(to right, rgb(34, 197, 94), rgb(22, 163, 74))';
+    successMsg.textContent = '✓ Toegevoegd aan winkelwagen';
+    document.body.appendChild(successMsg);
+    
+    setTimeout(() => {
+      successMsg.remove();
+    }, 3000);
+  }
+
+  // Component type handling
+  const componentBtns = document.querySelectorAll<HTMLButtonElement>('.component-btn');
+  
+  componentBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      componentBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeComponent = btn.dataset.component || 'fronten';
+      updateUIForComponent();
+      console.log('Selected component:', activeComponent);
+    });
+  });
+
+  function updateUIForComponent() {
+    const doorStyleSection = document.getElementById('doorStyleSection');
+    const thicknessSection = document.getElementById('thicknessSection');
+    const plintenHeightSection = document.getElementById('plintenHeightSection');
+    const colorStepNumber = document.getElementById('colorStepNumber');
+    const dimensionsStepNumber = document.getElementById('dimensionsStepNumber');
+    const heightHint = document.getElementById('heightHint');
+    const widthHint = document.getElementById('widthHint');
+    
+    // Reset visibility
+    doorStyleSection?.classList.add('hidden');
+    thicknessSection?.classList.add('hidden');
+    plintenHeightSection?.classList.add('hidden');
+    
+    if (activeComponent === 'fronten') {
+      if (colorStepNumber) colorStepNumber.textContent = '2';
+      if (dimensionsStepNumber) dimensionsStepNumber.textContent = '3';
+      if (heightHint) heightHint.textContent = 'Deuren: 126-1556mm';
+      if (widthHint) widthHint.textContent = 'Deuren: 150-1200mm';
+    } else if (activeComponent === 'wangen' || activeComponent === 'panelen') {
+      if (colorStepNumber) colorStepNumber.textContent = '2';
+      if (dimensionsStepNumber) dimensionsStepNumber.textContent = '3';
+      thicknessSection?.classList.remove('hidden');
+      if (heightHint) heightHint.textContent = 'Max: 2200mm';
+      if (widthHint) widthHint.textContent = 'Max: 1100mm';
+    } else if (activeComponent === 'plinten') {
+      if (colorStepNumber) colorStepNumber.textContent = '2';
+      if (dimensionsStepNumber) dimensionsStepNumber.textContent = '3';
+      plintenHeightSection?.classList.remove('hidden');
+      if (heightHint) heightHint.textContent = 'Plinthoogte geselecteerd in stap 3';
+      if (widthHint) widthHint.textContent = 'Lengte: max 2600mm';
+    }
+    
+    populateColors();
+  }
+
+  // Price group tabs
+  const priceGroupTabs = document.querySelectorAll<HTMLButtonElement>('.price-group-tab');
+  
+  priceGroupTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      priceGroupTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      selectedPriceGroup = parseInt(tab.dataset.group || '1');
+      populateColors();
+    });
+  });
+
+  // Populate color options
+  function populateColors() {
+    const colorGrid = document.getElementById('colorGrid');
+    if (!colorGrid) return;
+    
+    const colors = (COLOR_OPTIONS as any)[selectedPriceGroup] || [];
+    
+    colorGrid.innerHTML = colors.map((color: any) => `
+      <button 
+        type="button" 
+        class="color-btn" 
+        data-code="${color.code}" 
+        data-name="${color.name}" 
+        data-fronttype="${color.fronttype || ''}" 
+        data-group="${selectedPriceGroup}"
+        data-image="${color.image || ''}"
+        style="${color.image ? `background-image: url('${color.image}'); background-size: cover; background-position: center;` : ''}"
+      >
+        <div class="color-btn-overlay">
+          <div class="text-sm font-semibold mb-1">${color.name}</div>
+          <div class="text-xs text-slate-300">${color.code}</div>
+          ${color.fronttype ? `<div class="text-xs text-green-400 mt-1">${color.fronttype}</div>` : ''}
+        </div>
+      </button>
+    `).join('');
+    
+    // Add click handlers
+    const colorBtns = colorGrid.querySelectorAll<HTMLButtonElement>('.color-btn');
+    colorBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Color button clicked:', btn.dataset.name);
+        
+        // Reset all buttons
+        colorBtns.forEach(b => {
+          b.classList.remove('active');
+          b.style.border = '';
+          b.style.boxShadow = '';
+          b.style.transform = '';
+          // Remove label if exists
+          const existingLabel = b.querySelector('.selection-label');
+          if (existingLabel) existingLabel.remove();
+        });
+        
+        // Style the clicked button with inline styles (guaranteed to work)
+        btn.classList.add('active');
+        btn.style.border = '4px solid rgb(34, 197, 94)';
+        btn.style.boxShadow = '0 0 0 5px rgba(34, 197, 94, 0.5), 0 0 45px rgba(34, 197, 94, 0.8), 0 15px 40px rgba(34, 197, 94, 0.4)';
+        btn.style.transform = 'scale(1.05)';
+        
+        // Add selection label
+        const label = document.createElement('div');
+        label.className = 'selection-label';
+        label.textContent = '✓ GESELECTEERD';
+        label.style.cssText = `
+          position: absolute;
+          top: -12px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, rgb(34, 197, 94), rgb(22, 163, 74));
+          color: white;
+          padding: 0.25rem 0.75rem;
+          border-radius: 1rem;
+          font-size: 0.7rem;
+          font-weight: bold;
+          letter-spacing: 0.5px;
+          box-shadow: 0 4px 12px rgba(34, 197, 94, 0.5);
+          z-index: 10;
+          white-space: nowrap;
+          pointer-events: none;
+        `;
+        btn.appendChild(label);
+        
+        selectedColor = {
+          code: btn.dataset.code || '',
+          name: btn.dataset.name || '',
+          fronttype: btn.dataset.fronttype || '',
+          priceGroup: parseInt(btn.dataset.group || '1')
+        };
+        console.log('Selected color:', selectedColor);
+      });
+    });
+  }
+
+  // Thickness selection
+  const thicknessBtns = document.querySelectorAll<HTMLButtonElement>('.thickness-btn');
+  thicknessBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      thicknessBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedThickness = parseInt(btn.dataset.thickness || '19');
+      console.log('Selected thickness:', selectedThickness);
+    });
+  });
+
+  // Plint height selection
+  const plintHeightBtns = document.querySelectorAll<HTMLButtonElement>('.plint-height-btn');
+  plintHeightBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      plintHeightBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedPlintHeight = parseInt(btn.dataset.height || '120');
+      console.log('Selected plint height:', selectedPlintHeight);
+    });
+  });
+
+  // Form submission
+  const form = document.getElementById('kitchenCalculator') as HTMLFormElement;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    calculatePrice();
+  });
+
+  function calculatePrice() {
+    const height = parseInt((document.getElementById('height') as HTMLInputElement)?.value || '0');
+    const width = parseInt((document.getElementById('width') as HTMLInputElement)?.value || '0');
+    const quantity = parseInt((document.getElementById('quantity') as HTMLInputElement)?.value || '1');
+
+    if (!selectedColor) {
+      alert('Selecteer eerst een kleur/afwerking');
+      return;
+    }
+
+    if (!height || !width) {
+      alert('Voer geldige afmetingen in');
+      return;
+    }
+
+    console.log('Calculating price:', { 
+      activeComponent, 
+      selectedColor, 
+      height, 
+      width, 
+      quantity,
+      thickness: selectedThickness,
+      plintHeight: selectedPlintHeight
+    });
+
+    let unitPrice = 0;
+    let dimensions = '';
+    
+    if (activeComponent === 'fronten') {
+      unitPrice = calculateDoorPrice(selectedColor.priceGroup, height, width);
+      dimensions = `${height}mm × ${width}mm`;
+    } else if (activeComponent === 'wangen' || activeComponent === 'panelen') {
+      const area = calculatePanelArea(height, width);
+      unitPrice = getPanelPrice(area, selectedThickness, selectedColor.priceGroup);
+      dimensions = `${height}mm × ${width}mm (${selectedThickness}mm dik, ${area.toFixed(2)}m²)`;
+    } else if (activeComponent === 'plinten') {
+      unitPrice = getPlintenPrice(width, selectedPlintHeight, selectedColor.priceGroup);
+      dimensions = `${width}mm lengte × ${selectedPlintHeight}mm hoogte`;
+    }
+
+    if (unitPrice === 0) {
+      return; // Error already shown in calculation function
+    }
+
+    const totalPrice = unitPrice * quantity;
+
+    // Add to cart
+    addToCart({
+      component: activeComponent.charAt(0).toUpperCase() + activeComponent.slice(1),
+      color: selectedColor.name || selectedColor.code,
+      fronttype: selectedColor.fronttype,
+      priceGroup: selectedColor.priceGroup,
+      dimensions: dimensions,
+      quantity: quantity,
+      unitPrice: unitPrice,
+      totalPrice: totalPrice
+    });
+  }
+
+  function calculateDoorPrice(priceGroup: number, height: number, width: number): number {
+    // Find next larger size
+    const [nextHeight, nextWidth] = findNextLargerDoorSize(height, width);
+    
+    // Get indices
+    const heightIndex = DOOR_HEIGHTS.indexOf(nextHeight);
+    const widthIndex = DOOR_WIDTHS.indexOf(nextWidth);
+    
+    // Look up price
+    const priceTable = (DOOR_PRICES as any)[priceGroup];
+    if (!priceTable || !priceTable[heightIndex] || priceTable[heightIndex][widthIndex] === undefined) {
+      console.warn('Price not found in table, returning 0');
+      return 0;
+    }
+    
+    const price = priceTable[heightIndex][widthIndex];
+    
+    // Check if "x" (not available)
+    if (price === 'x' || price === 0) {
+      alert('Deze maat is niet beschikbaar als deur. Gebruik een designpaneel of wangen.');
+      return 0;
+    }
+    
+    return price;
+  }
+
+  // Cart button handlers
+  const clearCartBtn = document.getElementById('clearCart');
+  clearCartBtn?.addEventListener('click', () => {
+    if (confirm('Weet je zeker dat je de winkelwagen wilt legen?')) {
+      shoppingCart = [];
+      updateCartDisplay();
+    }
+  });
+
+  const proceedBtn = document.getElementById('proceedToCheckout');
+  proceedBtn?.addEventListener('click', () => {
+    if (shoppingCart.length === 0) {
+      alert('Je winkelwagen is leeg');
+      return;
+    }
+    // TODO: Navigate to payment page or open payment modal
+    alert('Betaalfunctionaliteit komt binnenkort...');
+  });
+
+  // Initialize
+  populateColors();
+</script>
