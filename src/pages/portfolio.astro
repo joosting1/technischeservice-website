@@ -1,30 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 
-// Pre-render this page at build time (not SSR) because fs operations don't work on Cloudflare Workers
+// Pre-render this page at build time
 export const prerender = true;
 
-const portfolioDir = fileURLToPath(new URL("../../public/assets/portfolio/", import.meta.url));
+// Use Astro's import.meta.glob to get all portfolio images at build time
+const portfolioImages = import.meta.glob<{ default: ImageMetadata }>('/public/assets/portfolio/*.{jpg,jpeg,png,webp,avif}', { eager: true });
+const responsiveImages = import.meta.glob<{ default: ImageMetadata }>('/public/assets/portfolio/responsive/*.{jpg,jpeg,png,webp,avif}', { eager: true });
 
-const isImage = (name: string) => /\.(jpg|jpeg|png|webp|avif)$/i.test(name);
 const widths = [480, 768, 1024, 1440];
-
-const files = fs.existsSync(portfolioDir) 
-  ? fs.readdirSync(portfolioDir).filter(name => {
-      // Exclude the responsive directory and only include image files
-      if (name === 'responsive') return false;
-      const fullPath = path.join(portfolioDir, name);
-      try {
-        return fs.statSync(fullPath).isFile() && isImage(name);
-      } catch {
-        return false;
-      }
-    }) 
-  : [];
 
 const humanize = (filename: string) => {
   const base = filename.replace(/\.[^.]+$/, "");
@@ -62,28 +47,28 @@ const humanize = (filename: string) => {
   return text;
 };
 
-const items = files.map((name) => {
+// Process portfolio images
+const items = Object.keys(portfolioImages).map((path) => {
+  const name = path.split('/').pop() || '';
   const title = humanize(name);
   const url = `/assets/portfolio/${name}`;
   const alt = `${title}`;
   const caption = `${title}`;
 
-  // Build responsive variants when available under /public/assets/portfolio/responsive
+  // Build responsive variants
   const base = name.replace(/\.[^.]+$/, "");
-  const responsiveDir = path.join(portfolioDir, 'responsive');
-  const hasResponsive = fs.existsSync(responsiveDir);
   const avifSet: string[] = [];
   const webpSet: string[] = [];
   const jpgSet: string[] = [];
-  if (hasResponsive) {
-    for (const w of widths) {
-      const avifPath = path.join(responsiveDir, `${base}-${w}w.avif`);
-      const webpPath = path.join(responsiveDir, `${base}-${w}w.webp`);
-      const jpgPath = path.join(responsiveDir, `${base}-${w}w.jpg`);
-      if (fs.existsSync(avifPath)) avifSet.push(`/assets/portfolio/responsive/${base}-${w}w.avif`);
-      if (fs.existsSync(webpPath)) webpSet.push(`/assets/portfolio/responsive/${base}-${w}w.webp`);
-      if (fs.existsSync(jpgPath)) jpgSet.push(`/assets/portfolio/responsive/${base}-${w}w.jpg`);
-    }
+  
+  for (const w of widths) {
+    const avifKey = `/public/assets/portfolio/responsive/${base}-${w}w.avif`;
+    const webpKey = `/public/assets/portfolio/responsive/${base}-${w}w.webp`;
+    const jpgKey = `/public/assets/portfolio/responsive/${base}-${w}w.jpg`;
+    
+    if (responsiveImages[avifKey]) avifSet.push(`/assets/portfolio/responsive/${base}-${w}w.avif`);
+    if (responsiveImages[webpKey]) webpSet.push(`/assets/portfolio/responsive/${base}-${w}w.webp`);
+    if (responsiveImages[jpgKey]) jpgSet.push(`/assets/portfolio/responsive/${base}-${w}w.jpg`);
   }
 
   const variants = (avifSet.length + webpSet.length + jpgSet.length) > 0 ? { avif: avifSet, webp: webpSet, jpg: jpgSet } : null;
@@ -91,12 +76,8 @@ const items = files.map((name) => {
   return { name, url, title, alt, caption, variants };
 });
 
-// Sort newest first by filesystem mtime
-items.sort((a, b) => {
-  const aTime = fs.statSync(path.join(portfolioDir, a.name)).mtimeMs;
-  const bTime = fs.statSync(path.join(portfolioDir, b.name)).mtimeMs;
-  return bTime - aTime;
-});
+// Sort by filename (newest first - assuming filenames have dates or are alphabetically sortable)
+items.sort((a, b) => b.name.localeCompare(a.name));
 ---
 
 <Layout title="Afbeeldingen van recent werk | Technische Service Assen" description="Afbeeldingen van recent werk: airco-installaties, Quooker en waterontharders in Noord-Nederland." image="/assets/portfolio/sinclair-vries.jpg" background="/assets/portfolio/responsive/sinclair-vries-1440w.avif" withOverlay>
