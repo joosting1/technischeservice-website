@@ -29,9 +29,9 @@ const category = "Waterontharder";
         <!-- Breadcrumbs -->
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a>
-          <span class="separator">→</span>
+          <span class="separator"></span>
           <a href="/blog">Blog</a>
-          <span class="separator">→</span>
+          <span class="separator"></span>
           <span class="current">{title}</span>
         </nav>
 
@@ -178,7 +178,7 @@ const category = "Waterontharder";
     </button>
     
     <div class="controls-panel" id="controlsPanel">
-      <h3>🎨 Design Controls</h3>
+      <h3>Design Controls</h3>
       
       <!-- Header Transparency -->
       <div class="control-group">
@@ -223,10 +223,10 @@ const category = "Waterontharder";
       </div>
 
       <!-- Reset Button -->
-      <button class="reset-btn" id="resetBtn">↺ Reset naar standaard</button>
+      <button class="reset-btn" id="resetBtn">Reset naar standaard</button>
       
       <!-- Copy CSS Button -->
-      <button class="copy-btn" id="copyBtn">📋 Kopieer CSS</button>
+      <button class="copy-btn" id="copyBtn">Kopieer CSS</button>
       
       <div class="css-output" id="cssOutput" style="display: none;">
         <textarea id="cssCode" readonly></textarea>
@@ -475,7 +475,7 @@ const category = "Waterontharder";
   }
 
   .content-block li:before {
-    content: "✓";
+    content: "";
     position: absolute;
     left: 0;
     color: #60a5fa;
@@ -891,9 +891,9 @@ const category = "Waterontharder";
       
       const btn = document.getElementById('copyBtn');
       if (btn) {
-        btn.textContent = '✓ Gekopieerd!';
+        btn.textContent = 'Gekopieerd!';
         setTimeout(() => {
-          btn.textContent = '📋 Kopieer CSS';
+          btn.textContent = 'Kopieer CSS';
         }, 2000);
       }
     }

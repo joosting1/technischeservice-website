@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Pagina niet gevonden - Technische Service Assen" 
+  description="De gevraagde pagina kan niet worden gevonden. Bekijk onze diensten of neem contact op."
+>
+  <section class="hc-hero hero-center">
+    <div class="hc-container">
+      <div class="hero-content text-center max-w-2xl mx-auto">
+        <span class="hero-eyebrow">Foutmelding 404</span>
+        <h1 class="hc-title">Pagina niet gevonden</h1>
+        <p class="hero-subtitle">
+          Deze pagina bestaat niet (meer). Mogelijk bent u op zoek naar één van onze diensten?
+        </p>
+        
+        <!-- Populaire diensten -->
+        <div class="grid md:grid-cols-3 gap-4 mt-8 mb-8">
+          <a href="/airco-installatie" class="block p-6 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-all group">
+            <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-400">Airco Installatie</h3>
+            <p class="text-slate-400 text-sm">Professionele installatie van split-units</p>
+          </a>
+          
+          <a href="/quooker-installatie" class="block p-6 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-all group">
+            <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-400">Quooker</h3>
+            <p class="text-slate-400 text-sm">Installatie en onderhoud kokendwaterkraan</p>
+          </a>
+          
+          <a href="/waterontharder" class="block p-6 bg-slate-800/50 hover:bg-slate-800/70 rounded-lg transition-all group">
+            <h3 class="text-lg font-semibold text-white mb-2 group-hover:text-blue-400">Waterontharder</h3>
+            <p class="text-slate-400 text-sm">Delta waterontharders voor zacht water</p>
+          </a>
+        </div>
+
+        <div class="hero-actions justify-center">
+          <a href="/" class="btn btn-primary">Terug naar Home</a>
+          <a href="/offerte" class="btn btn-outline">Gratis Offerte</a>
+          <a href="/blog" class="btn btn-outline">Blog</a>
+        </div>
+
+        <!-- Oude WordPress URLs uitleg -->
+        <div class="mt-12 p-6 bg-blue-900/20 border border-blue-800/30 rounded-lg text-left">
+          <h3 class="text-white font-semibold mb-3">ℹ️ Komt u van een oude link?</h3>
+          <p class="text-slate-300 text-sm mb-2">
+            Onze website is vernieuwd! Oude WordPress product- en categoriepagina's zijn vervangen door nieuwe servicedetail pagina's.
+          </p>
+          <ul class="text-slate-400 text-sm space-y-1">
+            <li>• Producten zijn nu onderdeel van onze <a href="/offerte" class="text-blue-400 hover:text-blue-300">offerte pagina</a></li>
+            <li>• Blog posts zijn te vinden op onze <a href="/blog" class="text-blue-400 hover:text-blue-300">blog</a></li>
+            <li>• Merken zoals Daikin, Mitsubishi en Quooker hebben eigen pagina's</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,89 @@
+# Cloudflare Pages Redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Oude blog tag URLs met spaties -> nieuwe URLs
+/blog/tag/airco%20foutcodes /blog 301
+/blog/tag/airco%20garantie /blog 301
+/blog/tag/airco%20geluid /blog 301
+/blog/tag/airco%20onderhoud /blog 301
+/blog/tag/BRL%20installateur /blog 301
+/blog/tag/Daikin%20foutcode /blog 301
+/blog/tag/Daikin%20garantie /blog 301
+/blog/tag/Delta%20betrouwbaarheid /blog 301
+/blog/tag/Delta%20kwaliteit /blog 301
+/blog/tag/Delta%20waterontharder /blog 301
+/blog/tag/europese%20kwaliteit /blog 301
+/blog/tag/F-gassen%20wet /blog 301
+/blog/tag/illegale%20leveranciers /blog 301
+/blog/tag/nieuwe%20kraan /blog 301
+/blog/tag/Quooker%20Flex%20Square /blog 301
+/blog/tag/Quooker%20reparatie /blog 301
+/blog/tag/Quooker%20storing /blog 301
+/blog/tag/Quooker%20voordelen /blog 301
+/blog/tag/waterontharder%20nodig /blog 301
+/blog/tag/waterontharder%20service /blog 301
+/blog/tag/winter%20tips /blog 301
+/blog/tag/zacht%20water /blog 301
+
+# Design/test pagina's (moeten niet geïndexeerd worden)
+/design-playground / 301
+/design-test / 301
+/home-glass / 301
+
+# Catch-all voor niet-bestaande blog tags
+/blog/tag/* /blog 301
+
+# WordPress WooCommerce Shop URLs -> Nieuwe Astro pagina's
+/product/in-bedrijfstelling-airco/ /in-bedrijfstelling 301
+/product/evolar-evo-cover-omkasting-small-houtskool-grijs-700-x-1000-x-500-mm/ /airco-installatie 301
+/product/evolar-evo-cover-omkasting-small-zwart-aluminium-gepoedercoat-700-x-1000-x-500-mm/ /airco-installatie 301
+/product/delta-rusela-waterontharder/ /waterontharder 301
+/product/quooker-onderhoud-reservoir/ /quooker-onderhoudscontract 301
+/product-categorie/quooker/ /quooker-installatie 301
+/product-categorie/airco/ /airco-installatie 301
+/product-categorie/evolar-aico-omkasting/ /airco-installatie 301
+/winkel/ /offerte 301
+
+# Product tags -> Relevante pagina's
+/product-tag/waterontharder/ /waterontharder 301
+/product-tag/airco-cover/ /airco-installatie 301
+/product-tag/airco/ /airco-installatie 301
+/product-tag/quooker/ /quooker-installatie 301
+/product-tag/quooker-service/ /quooker-onderhoudscontract 301
+
+# Add-to-cart URLs -> Offerte pagina (met wildcard voor product IDs)
+/product-categorie/quooker/?add-to-cart=* /offerte 301
+/product-tag/airco/?add-to-cart=* /offerte 301
+/product-tag/waterontharder/?add-to-cart=* /offerte 301
+/winkel/?add-to-cart=* /offerte 301
+/merk/quooker/?add-to-cart=* /offerte 301
+/product/evolar-evo-cover-omkasting-small-zwart-aluminium-gepoedercoat-700-x-1000-x-500-mm/?add-to-cart=* /offerte 301
+
+# WordPress blog categories -> Nieuwe blog
+/category/uncategorized/ /blog 301
+/category/airco/ /blog/tag/daikin 301
+/tag/algemeen-nieuws/ /blog 301
+/tag/airco/ /blog/tag/daikin 301
+
+# WordPress specifieke URLs
+/author/api-agent/ /blog 301
+/merk/quooker/ /quooker-installatie 301
+
+# Oude blog posts -> Nieuwe locaties
+/delta-waterontharders-in-rolde/ /blog/delta-waterontharders-belgische-kwaliteit 301
+/daikin-aircos-in-assen/ /daikin-airco 301
+/quooker-geeft-weinig-kokend-water-oorzaken-oplossingen/ /blog/quooker-bekende-gebreken 301
+/delta-rusela-waterontharder-in-beilen/ /waterontharder 301
+/mitsubishi-heavy-airco-kopen-en-laten-installeren-in-assen-en-omgeving/ /mitsubishi-airco 301
+/quooker-onderhoud-assen-hendel-afgebroken-actieprijs-vanaf-e175/ /quooker-onderhoudscontract 301
+/inbedrijfstellen-van-aircos-ook-voor-klanten-van-aircoplaza-zwolle/ /in-bedrijfstelling 301
+/quooker-onderhoud-verkoop/ /quooker-onderhoudscontract 301
+
+# Contact pagina
+/contact/ /offerte 301
+
+# Catch-all voor alle product URLs (moet onderaan staan)
+/product/* /offerte 301
+/product-categorie/* /offerte 301
+/product-tag/* /offerte 301
+/merk/* /offerte 301

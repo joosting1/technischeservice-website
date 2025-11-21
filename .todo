@@ -1,1 +1,4 @@
--
+- [ ] Catalog all current emoji icons and tag them as functional or decorative.
+- [ ] Strip decorative-only emojis from affected components/pages (keep phone/email cues).
+- [ ] Re-test key pages (header, offerte form, home-glass) for layout regressions post-removal.
+- [ ] Confirm if `src/pages/design-playground.astro` still needs to be removed and act accordingly.

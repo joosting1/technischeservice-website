@@ -1,0 +1,10 @@
+Reden,Bron,Validatie,Pagina&#39;s
+Niet gevonden (404),Website,Niet gestart,42
+Alternatieve pagina met correcte canonieke tag,Website,Niet gestart,9
+Uitgesloten door tag noindex,Website,Niet gestart,4
+Pagina met omleiding,Website,Niet gestart,3
+Geblokkeerd door robots.txt,Website,Niet gestart,2
+Serverfout (5xx),Website,Niet gestart,1
+Gevonden - momenteel niet geïndexeerd,Google-systemen,Niet gestart,62
+Gecrawld - momenteel niet geïndexeerd,Google-systemen,Niet gestart,7
+"Dubbele pagina, Google heeft een andere canonieke pagina gekozen dan de gebruiker",Google-systemen,Niet gestart,2

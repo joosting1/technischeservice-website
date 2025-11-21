@@ -18,7 +18,7 @@ const titles = {
   <span class="hc-accent-bar" aria-hidden="true"></span>
   <div class="p-8">
     <h2 class="text-2xl font-bold text-slate-200 mb-6">
-      📝 {titles[type]}
+      {titles[type]}
     </h2>
     
     <form id="contract-form" class="space-y-6">
@@ -176,7 +176,7 @@ const titles = {
                 <div>
                   <span class="font-medium">De unit is goed bereikbaar (beneden 3 meter)</span>
                   <div id="accessibility-warning" class="hidden mt-2 p-3 bg-amber-500/10 border border-amber-500 rounded-lg text-amber-400 text-sm">
-                    ⚠️ <strong>Let op:</strong> Voor moeilijk bereikbare units (boven 3 meter, ladder nodig, of beperkte toegang) 
+                    <strong>Let op:</strong> Voor moeilijk bereikbare units (boven 3 meter, ladder nodig, of beperkte toegang) 
                     berekenen we een meerprijs in overleg. Dit komt neer op ongeveer 2 uur extra werk (±€150-€300 per beurt). 
                     We nemen hierover contact met u op.
                   </div>
@@ -187,7 +187,7 @@ const titles = {
             <!-- Price Calculation Display for Airco -->
             <div class="md:col-span-2">
               <div id="price-calculation" class="hidden bg-linear-to-r from-green-500/10 to-emerald-500/10 border-2 border-green-400 rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-green-400 mb-3">💰 Maandelijkse Kosten</h3>
+                <h3 class="text-lg font-semibold text-green-400 mb-3">Maandelijkse Kosten</h3>
                 <div class="space-y-2 text-slate-200">
                   <div id="outdoor-price-line" class="flex justify-between">
                     <span class="text-slate-300">Buitenunits:</span>
@@ -211,7 +211,7 @@ const titles = {
 
             <div class="md:col-span-2">
               <label for="photos" class="block text-sm font-medium text-slate-300 mb-2">
-                📸 Foto's van de installatie
+                Foto's van de installatie
               </label>
               <input 
                 type="file" 
@@ -246,7 +246,7 @@ const titles = {
 
             <div class="md:col-span-2">
               <label for="photos" class="block text-sm font-medium text-slate-300 mb-2">
-                📸 Foto's van de installatie (optioneel)
+                Foto's van de installatie (optioneel)
               </label>
               <input 
                 type="file" 
@@ -267,7 +267,7 @@ const titles = {
         {type === 'waterontharder' && (
           <div class="md:col-span-2">
             <label for="photos" class="block text-sm font-medium text-slate-300 mb-2">
-              📸 Foto's van de installatie (optioneel)
+              Foto's van de installatie (optioneel)
             </label>
             <input 
               type="file" 
@@ -348,7 +348,7 @@ const titles = {
         type="submit"
         class="btn btn-primary w-full text-lg"
       >
-        📄 Contract Aanvragen
+        Contract Aanvragen
       </button>
 
       <p class="text-sm text-slate-400 text-center">
@@ -471,7 +471,7 @@ const titles = {
     
     // Disable submit button
     submitButton.disabled = true;
-    submitButton.textContent = '⏳ Versturen...';
+    submitButton.textContent = 'Versturen...';
     
     // Collect form data
     const formData = new FormData(form);
@@ -552,7 +552,7 @@ const titles = {
       if (messageDiv) {
         if (result.ok) {
           messageDiv.className = 'p-4 rounded-lg bg-green-500/20 border-2 border-green-400 text-green-300';
-          messageDiv.textContent = '✅ Uw aanvraag is verzonden! We nemen spoedig contact met u op.';
+          messageDiv.textContent = 'Uw aanvraag is verzonden! We nemen spoedig contact met u op.';
           messageDiv.classList.remove('hidden');
           form.reset();
           if (photoPreview) photoPreview.innerHTML = '';
@@ -563,12 +563,12 @@ const titles = {
     } catch (error) {
       if (messageDiv) {
         messageDiv.className = 'p-4 rounded-lg bg-red-500/20 border-2 border-red-400 text-red-300';
-        messageDiv.textContent = '❌ Er is een fout opgetreden. Probeer het opnieuw of neem telefonisch contact op.';
+        messageDiv.textContent = 'Er is een fout opgetreden. Probeer het opnieuw of neem telefonisch contact op.';
         messageDiv.classList.remove('hidden');
       }
     } finally {
       submitButton.disabled = false;
-      submitButton.textContent = '📄 Contract Aanvragen';
+      submitButton.textContent = 'Contract Aanvragen';
     }
   });
 </script>

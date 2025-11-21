@@ -1,0 +1,31 @@
+# Robots.txt voor technischeserviceassen.nl
+
+User-agent: *
+Allow: /
+
+# Blokkeer test/design pagina's
+Disallow: /design-playground
+Disallow: /design-test
+Disallow: /home-glass
+
+# Blokkeer API endpoints die niet geïndexeerd hoeven
+Disallow: /api/
+
+# Blokkeer oude WordPress URLs (voorkomen dat ze opnieuw gecrawld worden)
+Disallow: /product/
+Disallow: /product-categorie/
+Disallow: /product-tag/
+Disallow: /winkel/
+Disallow: /merk/
+Disallow: /category/
+Disallow: /tag/
+Disallow: /author/
+Disallow: /cdn-cgi/
+
+# Blokkeer betaalpagina's (privacy-gevoelig)
+Disallow: /betaling
+Disallow: /betaling-success
+Disallow: /betaling-cancel
+
+# Sitemap
+Sitemap: https://technischeserviceassen.nl/sitemap-index.xml

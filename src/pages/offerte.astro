@@ -3,77 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
-<Layout 
-  title="Gratis Offerte Aanvragen - Technische Service Assen" 
-  description="Vraag gratis een offerte aan voor airco, Quooker of waterontharder installatie. Snel antwoord, scherpe prijzen en professioneel advies."
-  withOverlay 
-  background="/assets/portfolio/responsive/sinclair-vries-1440w.avif"
->
+<Layout title="Gratis Offerte Aanvragen - Technische Service Assen" withOverlay background="/assets/portfolio/responsive/sinclair-vries-1440w.jpg">
 	<!-- Hero Section -->
-	<section class="hc-hero hero-left hero-spacious">
-		<div class="hc-container">
-			<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Offerte' }]} />
-			<div class="hero-grid">
-				<div class="hero-content">
-					<span class="hero-eyebrow">Gratis & Vrijblijvend</span>
-					<h1 class="hc-title">Gratis Offerte Aanvragen</h1>
-					<p class="hero-subtitle">Vul het formulier in en wij nemen binnen 24 uur contact op voor een gratis adviesgesprek. Scherpe prijzen en professioneel advies.</p>
-					<div class="flex items-center gap-3">
-						<div class="flex gap-1">
-							{[1,2,3,4,5].map(() => (
-								<svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-									<path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-								</svg>
-							))}
-						</div>
-						<span class="text-white text-sm">Binnen 24 uur reactie</span>
-					</div>
+	<section class="hc-section">
+		<div class="hc-container text-center">
+					<Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Offerte' }]} />
+					<h1 class="hc-title mb-4">Gratis Offerte Aanvragen</h1>
+					<p class="hc-subtitle mb-8">Vul het formulier in en wij nemen binnen 24 uur contact op voor een gratis adviesgesprek.</p>
 				</div>
-				<div class="hero-image">
-					<!-- Offerte Workflow -->
-					<div class="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 shadow-2xl">
-						<div class="text-center mb-6">
-							<div class="text-5xl mb-3">📋</div>
-							<h3 class="text-xl font-bold text-white mb-2">Offerte Proces</h3>
-							<p class="text-slate-300 text-sm">Binnen 24 uur reactie</p>
-						</div>
-						<div class="space-y-4">
-							<div class="flex items-start gap-3">
-								<div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">1</div>
-								<div class="flex-1 pt-1">
-									<h4 class="text-white text-sm font-semibold mb-1">Formulier Invullen</h4>
-									<p class="text-slate-400 text-xs">Vertel ons over uw wensen en situatie</p>
-								</div>
-							</div>
-							<div class="h-8 w-px bg-slate-700 ml-4"></div>
-							<div class="flex items-start gap-3">
-								<div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">2</div>
-								<div class="flex-1 pt-1">
-									<h4 class="text-white text-sm font-semibold mb-1">Telefonisch Contact</h4>
-									<p class="text-slate-400 text-xs">We bellen binnen 24 uur voor advies</p>
-								</div>
-							</div>
-							<div class="h-8 w-px bg-slate-700 ml-4"></div>
-							<div class="flex items-start gap-3">
-								<div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm shrink-0">3</div>
-								<div class="flex-1 pt-1">
-									<h4 class="text-white text-sm font-semibold mb-1">Locatie Bezoek</h4>
-									<p class="text-slate-400 text-xs">Gratis opname ter plaatse (indien nodig)</p>
-								</div>
-							</div>
-							<div class="h-8 w-px bg-slate-700 ml-4"></div>
-							<div class="flex items-start gap-3">
-								<div class="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-sm shrink-0">✓</div>
-								<div class="flex-1 pt-1">
-									<h4 class="text-white text-sm font-semibold mb-1">Offerte op Maat</h4>
-									<p class="text-slate-400 text-xs">Scherp geprijsd en helder toegelicht</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</section>
 
 	<!-- Contact Form -->
@@ -173,10 +110,9 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 							<!-- Success message -->
 							<div id="success-message" class="hidden mt-6 hc-outline p-4 rounded-lg" role="status" aria-live="polite">
 								<div class="flex">
-									<div class="text-orange-400 mr-3">✅</div>
 									<div>
 										<h3 class="font-medium text-slate-200">Bedankt voor uw aanvraag!</h3>
-										<p class="text-slate-300 text-sm mt-1">We nemen binnen 24 uur contact met u op voor de planning van uw gratis adviesgesprek. Heeft u haast? <a class="text-orange-300 underline" href="https://wa.me/31658980933">App ons direct via WhatsApp</a>.</p>
+										<p class="text-slate-300 text-sm mt-1">We nemen binnen 24 uur contact met u op voor de planning van uw gratis adviesgesprek. Heeft u haast? Bel ons direct via <a class="text-orange-300 underline" href="tel:0658980933">06-58980933</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -184,10 +120,9 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 							<!-- Error message -->
 							<div id="error-message" class="hidden mt-6 hc-outline p-4 rounded-lg" role="alert" aria-live="assertive">
 								<div class="flex">
-									<div class="text-red-400 mr-3">❌</div>
 									<div>
 										<h3 class="font-medium text-slate-200">Er is iets misgegaan</h3>
-										<p class="text-slate-300 text-sm mt-1">Probeer het opnieuw of <a class="text-orange-300 underline" href="https://wa.me/31658980933">app ons direct via WhatsApp</a>.</p>
+										<p class="text-slate-300 text-sm mt-1">Probeer het opnieuw of bel ons direct op <a class="text-orange-300 underline" href="tel:0658980933">06-58980933</a>.</p>
 									</div>
 								</div>
 							</div>
@@ -206,18 +141,12 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
 						<div class="hc-block text-center">
-							<div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-								<span class="text-white text-2xl">�</span>
-							</div>
-							<h3 class="hc-block-title mb-2">WhatsApp</h3>
-							<p class="text-slate-300 mb-4">Snelle reactie via WhatsApp</p>
-							<a href="https://wa.me/31658980933" target="_blank" rel="noopener" class="btn btn-primary text-lg">06-58980933</a>
+							<h3 class="hc-block-title mb-2">Bel Direct</h3>
+							<p class="text-slate-300 mb-4">Directe hulp en advies van onze specialisten</p>
+							<a href="tel:0658980933" class="btn btn-primary text-lg">06-58980933</a>
 						</div>
 
 						<div class="hc-block text-center">
-							<div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-								<span class="text-white text-2xl">✉️</span>
-							</div>
 							<h3 class="hc-block-title mb-2">E-mail</h3>
 							<p class="text-slate-300 mb-4">Stuur uw vraag per e-mail</p>
 							<a href="mailto:info@technischeservice.nl" class="btn btn-outline text-lg">info@technischeservice.nl</a>
@@ -225,121 +154,121 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 			</div>
 		</div>
 	</section>
-<script>
-	// @ts-nocheck
-	document.addEventListener('DOMContentLoaded', function() {
-		const formEl = document.getElementById('offerte-form');
-		const form = formEl instanceof HTMLFormElement ? formEl : null;
-		const successMessage = document.getElementById('success-message');
-		const errorMessage = document.getElementById('error-message');
-		const submitBtn = document.getElementById('submit-btn');
-		const submitText = submitBtn?.querySelector('.btn-text');
-		const startTime = Date.now();
-		const MIN_SECONDS = 3;
-		const lastSubmissionKey = 'offerte-last';
-		const REPEAT_INTERVAL_MS = 60 * 1000;
-		const spamPhrases = [/free money/i, /bitcoin/i, /crypto/i, /viagra/i, /loan/i];
+			<script>
+				// @ts-nocheck
+				// Basis spamdetectie: honeypot, tijdsdrempel, throttling en simpele inhoudscheck
+								document.addEventListener('DOMContentLoaded', function() {
+					const formEl = document.getElementById('offerte-form');
+					const form = formEl instanceof HTMLFormElement ? formEl : null;
+					const successMessage = document.getElementById('success-message');
+					const errorMessage = document.getElementById('error-message');
+										const submitBtn = document.getElementById('submit-btn');
+										const submitText = submitBtn?.querySelector('.btn-text');
+					const startTime = Date.now();
+					const MIN_SECONDS = 3; // minimaal tijd op pagina
+					const lastSubmissionKey = 'offerte-last';
+					const REPEAT_INTERVAL_MS = 60 * 1000; // 1 minuut
+					const spamPhrases = [/free money/i, /bitcoin/i, /crypto/i, /viagra/i, /loan/i];
 
-		function setLoading(loading) {
-			if (!form) return;
-			if (submitBtn && 'disabled' in submitBtn) {
-				submitBtn.disabled = !!loading;
-				submitBtn.ariaBusy = loading ? 'true' : 'false';
-			}
-			if (submitText) submitText.textContent = loading ? 'Versturen…' : 'Verstuur Offerte Aanvraag';
-			const inputs = form.querySelectorAll('input, select, textarea, button');
-			inputs.forEach(el => {
-				if (el instanceof HTMLButtonElement && el.type === 'submit') return;
-				if ('disabled' in el) el.disabled = !!loading;
-			});
-		}
+										/** @param {boolean} loading */
+										function setLoading(loading) {
+											if (!form) return;
+											if (submitBtn && 'disabled' in submitBtn) {
+												submitBtn.disabled = !!loading;
+												submitBtn.ariaBusy = loading ? 'true' : 'false';
+											}
+											if (submitText) submitText.textContent = loading ? 'Versturen…' : 'Verstuur Offerte Aanvraag';
+											const inputs = form.querySelectorAll('input, select, textarea, button');
+											inputs.forEach(el => {
+												if (el instanceof HTMLButtonElement && el.type === 'submit') return;
+												if ('disabled' in el) el.disabled = !!loading;
+											});
+										}
 
-		function showError(msg) {
-			setLoading(false);
-			if (!errorMessage) return;
-			const p = errorMessage.querySelector('p');
-			if (p) p.textContent = msg;
-			errorMessage.classList.remove('hidden');
-			successMessage?.classList.add('hidden');
-			errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-			submitBtn?.focus?.();
-		}
+										form?.addEventListener('submit', async function(e) {
+						e.preventDefault();
+						const f = e.currentTarget;
+						if (!(f instanceof HTMLFormElement)) return;
 
-		function showSuccess() {
-			setLoading(false);
-			if (!successMessage) return;
-			successMessage.classList.remove('hidden');
-			errorMessage?.classList.add('hidden');
-			successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-			submitBtn?.setAttribute('disabled', 'true');
-			setTimeout(() => submitBtn?.removeAttribute('disabled'), 15000);
-		}
+						successMessage?.classList.add('hidden');
+						errorMessage?.classList.add('hidden');
 
-		form?.addEventListener('submit', async function(e) {
-			e.preventDefault();
-			const f = e.currentTarget;
-			if (!(f instanceof HTMLFormElement)) return;
+						const formData = new FormData(f);
+						const data = Object.fromEntries(formData.entries());
 
-			successMessage?.classList.add('hidden');
-			errorMessage?.classList.add('hidden');
+											// HTML5 required velden checken
+											if (!f.reportValidity()) {
+												return;
+											}						// Honeypot: echte gebruikers laten dit leeg
+						if (data['website']) {
+							return showError('Spam gedetecteerd.');
+						}
 
-			const formData = new FormData(f);
-			const data = Object.fromEntries(formData.entries());
+						// Tijdsdrempel
+						const elapsedSec = (Date.now() - startTime) / 1000;
+						if (elapsedSec < MIN_SECONDS) {
+							return showError('Formulier te snel verzonden, probeer opnieuw.');
+						}
 
-			if (!f.reportValidity()) {
-				return;
-			}
-			
-			const privacyCheckbox = document.getElementById('privacy');
-			if (privacyCheckbox instanceof HTMLInputElement && !privacyCheckbox.checked) {
-				return showError('U moet akkoord gaan met het privacybeleid.');
-			}
-			
-			if (data['website']) {
-				return showError('Spam gedetecteerd.');
-			}
+						// Herhaal-beperking
+						const last = parseInt(localStorage.getItem(lastSubmissionKey) || '0', 10);
+						if (Date.now() - last < REPEAT_INTERVAL_MS) {
+							return showError('Te snel opnieuw verzonden, wacht even.');
+						}
 
-			const elapsedSec = (Date.now() - startTime) / 1000;
-			if (elapsedSec < MIN_SECONDS) {
-				return showError('Formulier te snel verzonden, probeer opnieuw.');
-			}
+						// E-mailpatroon
+						const email = (data['email'] || '').toString().trim();
+						const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+						if (!emailOk) {
+							return showError('Ongeldig e-mailadres.');
+						}
 
-			const last = parseInt(localStorage.getItem(lastSubmissionKey) || '0', 10);
-			if (Date.now() - last < REPEAT_INTERVAL_MS) {
-				return showError('Te snel opnieuw verzonden, wacht even.');
-			}
+						// Simpele spamfrases in opmerkingen
+						const opmerkingen = (data['opmerkingen'] || '').toString();
+						if (spamPhrases.some(r => r.test(opmerkingen))) {
+							return showError('Inhoud lijkt op spam.');
+						}
 
-			const email = (data['email'] || '').toString().trim();
-			const emailOk = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
-			if (!emailOk) {
-				return showError('Ongeldig e-mailadres.');
-			}
+											try {
+												setLoading(true);
+											const resp = await fetch('/api/offerte', {
+												method: 'POST',
+												headers: { 'content-type': 'application/json' },
+												body: JSON.stringify(data)
+											});
+											const json = await resp.json().catch(()=>({ ok:false }));
+											if (!resp.ok || !json?.ok) {
+												const msg = json?.message || 'Versturen mislukt. Probeer later opnieuw.';
+												return showError(msg);
+											}
+											localStorage.setItem(lastSubmissionKey, Date.now().toString());
+											showSuccess();
+											if (f && 'reset' in f) f.reset();
+											successMessage?.focus?.();
+										} catch (err) {
+											showError('Technische fout, probeer later opnieuw.');
+											} finally {
+												setLoading(false);
+										}
+					});
 
-			const opmerkingen = (data['opmerkingen'] || '').toString();
-			if (spamPhrases.some(r => r.test(opmerkingen))) {
-				return showError('Inhoud lijkt op spam.');
-			}
+										function showError(msg: string) {
+						if (!errorMessage) return;
+						const p = errorMessage.querySelector('p');
+						if (p) p.textContent = msg;
+						errorMessage.classList.remove('hidden');
+						errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+											submitBtn?.focus?.();
+					}
 
-			setLoading(true);
-			try {
-				const resp = await fetch('/api/offerte', {
-					method: 'POST',
-					headers: { 'content-type': 'application/json' },
-					body: JSON.stringify(data)
+										function showSuccess() {
+						if (!successMessage) return;
+						successMessage.classList.remove('hidden');
+						successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+											// Voorkom per ongeluk dubbel verzenden binnen korte tijd
+											submitBtn?.setAttribute('disabled', 'true');
+											setTimeout(()=> submitBtn?.removeAttribute('disabled'), 15000);
+					}
 				});
-				const json = await resp.json().catch(() => ({ ok: false }));
-				if (!resp.ok || !json?.ok) {
-					const msg = json?.message || 'Versturen mislukt. Probeer later opnieuw.';
-					return showError(msg);
-				}
-				localStorage.setItem(lastSubmissionKey, Date.now().toString());
-				showSuccess();
-				if (f && 'reset' in f) f.reset();
-				successMessage?.focus?.();
-			} catch (err) {
-				showError('Technische fout, probeer later opnieuw.');
-			}
-		});
-	});
-</script>
+			</script>
 </Layout>

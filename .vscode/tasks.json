@@ -8,6 +8,13 @@
 			"isBackground": true,
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "Build for Production",
+			"type": "shell",
+			"command": "npm run build",
+			"problemMatcher": [],
+			"group": "build"
 		}
 	]
 }

@@ -77,7 +77,7 @@ const allTags = Array.from(tagSet).sort();
 					<!-- Recent Articles Preview -->
 					<div class="bg-gradient-to-br from-slate-800/90 to-slate-900/90 backdrop-blur-sm border border-slate-700/50 rounded-xl p-6 shadow-2xl">
 						<div class="flex items-center gap-3 mb-4">
-							<div class="text-3xl">📝</div>
+							
 							<div>
 								<h3 class="text-lg font-bold text-white">Nieuwste Artikelen</h3>
 								<p class="text-slate-400 text-sm">{posts.length} artikelen beschikbaar</p>
@@ -155,7 +155,7 @@ const allTags = Array.from(tagSet).sort();
 							</div>
 							<h2 class={`hc-block-title mb-3 group-hover:text-orange-300 transition-colors ${index === 0 ? 'text-2xl' : 'text-xl'}`}>{post.data.title}</h2>
 							<p class="text-slate-300 text-sm leading-relaxed mb-4">{post.data.description}</p>
-							<span class="text-orange-300 font-semibold">Lees verder →</span>
+									<span class="text-orange-300 font-semibold">Lees verder</span>
 						</a>
 					</article>
 				))}
@@ -168,7 +168,7 @@ const allTags = Array.from(tagSet).sort();
 				<p class="text-slate-300 mb-6">Onze experts staan klaar voor vragen over airco, Quooker of waterontharders.</p>
 				<div class="flex flex-col sm:flex-row gap-4 justify-center">
 					<a href="/offerte" class="btn btn-secondary px-8 py-4 text-lg">Gratis Offerte Aanvragen</a>
-					<a href="tel:0658980933" class="btn btn-outline px-8 py-4 text-lg">📞 06-58980933</a>
+					<a href="tel:0658980933" class="btn btn-outline px-8 py-4 text-lg">06-58980933</a>
 				</div>
 			</div>
 		</div>

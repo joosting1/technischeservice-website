@@ -101,9 +101,9 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
       <div class="hero-grid">
         <div class="hero-content">
           <div class="flex flex-wrap gap-4 items-center text-slate-400 text-sm mb-4">
-            <div class="flex items-center gap-2"><span>📅</span><FormattedDate date={pubDate} /></div>
-            {author && (<div class="flex items-center gap-2"><span>👤</span><span>{author}</span></div>)}
-            {readTime && (<div class="flex items-center gap-2"><span>⏱️</span><span>{readTime}</span></div>)}
+            <div class="flex items-center gap-2"><FormattedDate date={pubDate} /></div>
+            {author && (<div class="flex items-center gap-2"><span>{author}</span></div>)}
+            {readTime && (<div class="flex items-center gap-2"><span>{readTime}</span></div>)}
           </div>
           <h1 class="hc-title">{title}</h1>
           <p class="hero-subtitle">{description}</p>
@@ -164,11 +164,11 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
         <h3 class="hc-block-title mb-3">Meer lezen</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <a href="/blog" class="hc-outline rounded-lg p-4 hover:bg-slate-800 transition-colors">
-            <div class="text-xs text-slate-400 uppercase tracking-wide mb-1">← Terug naar</div>
+            <div class="text-xs text-slate-400 uppercase tracking-wide mb-1">Terug naar</div>
             <div class="text-slate-200 font-semibold">Alle Blog Artikelen</div>
           </a>
           <a href="/offerte" class="hc-outline rounded-lg p-4 hover:bg-slate-800 transition-colors">
-            <div class="text-xs text-slate-400 uppercase tracking-wide mb-1">Interesse? →</div>
+            <div class="text-xs text-slate-400 uppercase tracking-wide mb-1">Interesse? </div>
             <div class="text-slate-200 font-semibold">Vraag Offerte Aan</div>
           </a>
         </div>
@@ -199,7 +199,7 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
     <div class="bg-slate-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-700">
       <!-- Modal Header -->
       <div class="sticky top-0 bg-slate-800 border-b border-slate-700 px-6 py-4 flex items-center justify-between">
-        <h3 class="text-2xl font-bold text-white">📅 Maak een Afspraak</h3>
+        <h3 class="text-2xl font-bold text-white">Maak een Afspraak</h3>
         <button 
           id="close-modal-btn"
           class="text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-700 rounded-lg"
@@ -214,7 +214,7 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
       <!-- Modal Content -->
       <form id="appointment-form" class="p-6 space-y-6">
         <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 text-sm text-blue-200">
-          <strong>⚡ Snelle service:</strong> We nemen binnen 24 uur contact met u op om de afspraak te bevestigen!
+          <strong>Snelle service:</strong> We nemen binnen 24 uur contact met u op om de afspraak te bevestigen!
         </div>
 
         <!-- Service Type -->
@@ -335,7 +335,7 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
             <label class="flex items-center gap-3 p-3 bg-slate-900 rounded-lg cursor-pointer hover:bg-slate-800 transition-colors">
               <input type="radio" name="urgency" value="spoed" class="w-4 h-4 text-orange-600" />
               <div>
-                <div class="text-white font-medium">🚨 Spoed</div>
+                <div class="text-white font-medium">Spoed</div>
                 <div class="text-slate-400 text-sm">Binnen 24-48 uur (bijkomende kosten mogelijk)</div>
               </div>
             </label>
@@ -363,7 +363,7 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
             type="submit"
             class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 hover:-translate-y-0.5"
           >
-            📅 Afspraak Aanvragen
+            Afspraak Aanvragen
           </button>
           <button 
             type="button"
@@ -387,7 +387,7 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Afspraak Aangevraagd! ✅</h3>
+          <h3 class="text-2xl font-bold text-white mb-2">Afspraak Aangevraagd! </h3>
           <p class="text-slate-300 mb-6">
             Bedankt voor uw aanvraag. We nemen binnen 24 uur contact met u op om de afspraak te bevestigen.
           </p>
@@ -456,7 +456,7 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
       try {
         if (submitBtn) {
           submitBtn.disabled = true;
-          submitBtn.textContent = '⏳ Verzenden...';
+          submitBtn.textContent = 'Verzenden...';
         }
 
         const formData = new FormData(form);
@@ -487,7 +487,7 @@ const ogImage = (heroVariants?.jpg?.[2] || resolvedHero) ?? undefined;
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          submitBtn.textContent = originalText || '📅 Afspraak Aanvragen';
+          submitBtn.textContent = originalText || 'Afspraak Aanvragen';
         }
       }
     });
